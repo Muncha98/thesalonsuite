@@ -1,0 +1,1303 @@
+[
+  {
+    "id": "developer-mixing-calculator",
+    "name": "Developer Volume Mixing Calculator",
+    "category": "hair-color",
+    "categoryName": "\ud83c\udfa8 Hair Color & Chemistry",
+    "icon": "\ud83e\uddea",
+    "badge": "Popular",
+    "description": "Calculate exact proportions of two developers (10, 20, 30, 40 Vol) to hit any custom target volume in ml or fluid ounces.",
+    "intro": "When you run low on 20 Volume developer behind the chair, you don't need to cancel your client. Using Pearson's alligation formula, this calculator tells you the exact ratio of 10 Vol and 30 Vol (or 10 Vol and 40 Vol) to blend for an exact target strength with zero chemical guesswork.",
+    "formula_summary": "Formula: Parts Low = High Vol - Target Vol | Parts High = Target Vol - Low Vol. Mix in digital grams or fluid ounces.",
+    "inputs": [
+      {
+        "id": "dev1",
+        "label": "Low Developer Volume (Vol)",
+        "type": "number",
+        "default": 10
+      },
+      {
+        "id": "dev2",
+        "label": "High Developer Volume (Vol)",
+        "type": "number",
+        "default": 30
+      },
+      {
+        "id": "target_vol",
+        "label": "Target Desired Volume (Vol)",
+        "type": "number",
+        "default": 20
+      },
+      {
+        "id": "total_ml",
+        "label": "Total Batch Needed",
+        "type": "number",
+        "default": 60,
+        "unit": "ml"
+      }
+    ],
+    "keywords": [
+      "developer mixing",
+      "mix 10 and 30 vol",
+      "make 20 volume developer",
+      "developer ratio"
+    ]
+  },
+  {
+    "id": "bleach-developer-ratio-calculator",
+    "name": "Bleach & Lightener Ratio Calculator",
+    "category": "hair-color",
+    "categoryName": "\ud83c\udfa8 Hair Color & Chemistry",
+    "icon": "\u2696\ufe0f",
+    "badge": "Essential",
+    "description": "Tare your digital scale and calculate exact gram weights for 1:1, 1:1.5, 1:2, and 1:3 powder lightener ratios.",
+    "intro": "Consistency is everything in blonding. Whether you need a thick 1:1 clay consistency for open-air balayage or a smooth 1:2 foil ratio, this tool gives you precise gram and ounce measurements to prevent over-dilution and bowl waste.",
+    "formula_summary": "Formula: Developer Weight = Powder Grams \u00d7 Ratio Multiplier (1.0, 1.5, 2.0, or 3.0). Total Bowl Weight = Powder + Developer.",
+    "inputs": [
+      {
+        "id": "powder_grams",
+        "label": "Powder Lightener Amount",
+        "type": "number",
+        "default": 30,
+        "unit": "grams"
+      },
+      {
+        "id": "ratio",
+        "label": "Mixing Ratio (Powder : Developer)",
+        "type": "select",
+        "default": "1:2",
+        "options": [
+          {
+            "val": "1:1",
+            "text": "1:1 (Thick / Open Air Clay)"
+          },
+          {
+            "val": "1:1.5",
+            "text": "1:1.5 (Standard Balayage)"
+          },
+          {
+            "val": "1:2",
+            "text": "1:2 (Standard Foil Highlights)"
+          },
+          {
+            "val": "1:3",
+            "text": "1:3 (Gentle Scalp Bleach Bath)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "bleach ratio",
+      "lightener developer ratio",
+      "how much developer for 30g bleach",
+      "foil mixing ratio"
+    ]
+  },
+  {
+    "id": "hair-level-undertone-chart",
+    "name": "Hair Level & Undertone Neutralizer Guide",
+    "category": "hair-color",
+    "categoryName": "\ud83c\udfa8 Hair Color & Chemistry",
+    "icon": "\ud83c\udfa8",
+    "badge": "Top Tool",
+    "description": "Identify exposed warmth at levels 1 through 10 and look up the exact counteracting toner pigments on the color wheel.",
+    "intro": "Every level of lift exposes a predictable underlying pigment\u2014from red at Level 2 up to pale yellow at Level 9. Use this interactive chart to instantly identify the exact complementary pigment required to neutralize brassiness or enhance golden tones.",
+    "formula_summary": "Color Wheel Rule: Green neutralizes Red (Levels 1\u20133), Blue neutralizes Orange (Levels 5\u20136), Violet neutralizes Yellow (Levels 8\u201310).",
+    "inputs": [
+      {
+        "id": "current_level",
+        "label": "Exposed Lift Level (1 - 10)",
+        "type": "range",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "default": 8,
+        "unit": "Level"
+      }
+    ],
+    "keywords": [
+      "hair level chart",
+      "undertone wheel",
+      "neutralize brassy hair",
+      "toner color wheel",
+      "level 7 undertone"
+    ]
+  },
+  {
+    "id": "grey-coverage-formula-calculator",
+    "name": "Grey Hair Coverage Formulation Calculator",
+    "category": "hair-color",
+    "categoryName": "\ud83c\udfa8 Hair Color & Chemistry",
+    "icon": "\ud83d\udc75",
+    "badge": "Popular",
+    "description": "Formulate exact base-to-fashion shade ratios based on client grey percentage (25%, 50%, 75%, 100%).",
+    "intro": "Translucent grey hair lacks natural background pigment. To achieve 100% opaque coverage on stubborn grey hair, you must blend a dedicated Natural/Base series with your client's target fashion shade. This calculator provides the exact gram breakdown.",
+    "formula_summary": "Standard Formulation: 25% grey = 25% Natural Base | 50% grey = 50% Natural Base | 75%+ grey = 66%\u201375% Natural Base with 20 Vol developer.",
+    "inputs": [
+      {
+        "id": "grey_pct",
+        "label": "Client Grey Percentage (%)",
+        "type": "range",
+        "min": 10,
+        "max": 100,
+        "step": 5,
+        "default": 50,
+        "unit": "%"
+      },
+      {
+        "id": "total_color_grams",
+        "label": "Total Color Batch Needed",
+        "type": "number",
+        "default": 60,
+        "unit": "grams"
+      }
+    ],
+    "keywords": [
+      "grey hair formula",
+      "grey coverage ratio",
+      "how to formulate grey hair",
+      "stubborn grey hair dye"
+    ]
+  },
+  {
+    "id": "balayage-pricing-product-calculator",
+    "name": "Balayage Service Cost & Product Estimator",
+    "category": "hair-color",
+    "categoryName": "\ud83c\udfa8 Hair Color & Chemistry",
+    "icon": "\ud83d\udd8c\ufe0f",
+    "badge": "Money Maker",
+    "description": "Calculate backbar product costs, toner bowls, bond builders, and labor time to quote profitable balayage services.",
+    "intro": "Balayage is one of the highest-revenue salon services, but extra bowls of clay lightener, glosses, and bond builders can quickly destroy your profit margins if not calculated. Use this tool to quote transparent, profitable blonding appointments.",
+    "formula_summary": "Service Quote Formula: (Lightener Bowls \u00d7 Cost) + (Gloss Bowls \u00d7 Cost) + Bond Builder + (Service Hours \u00d7 Target Hourly Rate).",
+    "inputs": [
+      {
+        "id": "bowls_bleach",
+        "label": "Bowls of Lightener / Clay Needed",
+        "type": "number",
+        "default": 3
+      },
+      {
+        "id": "cost_per_bowl",
+        "label": "Product Cost per Bowl ($/\u00a3)",
+        "type": "number",
+        "default": 8.5
+      },
+      {
+        "id": "toner_bowls",
+        "label": "Glosser / Toner Bowls",
+        "type": "number",
+        "default": 2
+      },
+      {
+        "id": "bond_builder",
+        "label": "Include Bond Multiplier (Olaplex/K18)",
+        "type": "select",
+        "default": "yes",
+        "options": [
+          {
+            "val": "yes",
+            "text": "Yes (Add $12 backbar cost)"
+          },
+          {
+            "val": "no",
+            "text": "No bond builder"
+          }
+        ]
+      },
+      {
+        "id": "service_hours",
+        "label": "Total Appointment Time (Hours)",
+        "type": "number",
+        "default": 3.5
+      },
+      {
+        "id": "target_hourly",
+        "label": "Target Net Hourly Labor Rate ($/\u00a3)",
+        "type": "number",
+        "default": 65
+      }
+    ],
+    "keywords": [
+      "balayage pricing",
+      "how to price balayage",
+      "hair salon product cost",
+      "color bowl waste"
+    ]
+  },
+  {
+    "id": "toner-ratio-calculator",
+    "name": "Hair Toner Ratio & Processing Timer",
+    "category": "hair-color",
+    "categoryName": "\ud83c\udfa8 Hair Color & Chemistry",
+    "icon": "\u23f1\ufe0f",
+    "badge": "Essential",
+    "description": "Calculate demi-permanent gloss ratios (1:1 vs 1:2) and optimal processing times for damp or dry toning.",
+    "intro": "Toning damp hair provides sheer, translucent results, while dry application yields maximum depth and longevity. This calculator gives you exact liquid gloss to dedicated processing lotion proportions.",
+    "formula_summary": "Standard Liquid Gloss Ratio: 1 part toner to 1 or 2 parts dedicated developer (5\u201310 Vol). Visual check every 5 minutes up to 20 minutes.",
+    "inputs": [
+      {
+        "id": "toner_ml",
+        "label": "Toner Color Amount",
+        "type": "number",
+        "default": 30,
+        "unit": "ml"
+      },
+      {
+        "id": "ratio",
+        "label": "Developer Ratio",
+        "type": "select",
+        "default": "1:1",
+        "options": [
+          {
+            "val": "1:1",
+            "text": "1:1 (Standard Demi)"
+          },
+          {
+            "val": "1:2",
+            "text": "1:2 (Sheer Gloss / Diluted)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "toner ratio",
+      "how to mix toner",
+      "hair toner timer",
+      "redken shades eq ratio"
+    ]
+  },
+  {
+    "id": "color-correction-time-estimator",
+    "name": "Color Correction Time & Quote Estimator",
+    "category": "hair-color",
+    "categoryName": "\ud83c\udfa8 Hair Color & Chemistry",
+    "icon": "\ud83e\ude84",
+    "badge": "Pro",
+    "description": "Estimate realistic appointment hours, color remover steps, and hourly pricing for multi-stage corrective color.",
+    "intro": "Color corrections are unpredictable. Charging a flat rate often results in working for below minimum wage. This calculator breaks down color extraction, test strands, re-pigmentation, and glossing into transparent hourly blocks.",
+    "formula_summary": "Color Correction Quote: Total Stages (Decap / Fill / Foil / Gloss) \u00d7 1.25 Hours/Stage \u00d7 Hourly Rate + Backbar Buffer.",
+    "inputs": [
+      {
+        "id": "stages",
+        "label": "Estimated Correction Stages",
+        "type": "number",
+        "default": 3
+      },
+      {
+        "id": "target_hourly",
+        "label": "Hourly Rate ($/\u00a3)",
+        "type": "number",
+        "default": 85
+      }
+    ],
+    "keywords": [
+      "color correction cost",
+      "how to charge for color correction",
+      "hair color remover time"
+    ]
+  },
+  {
+    "id": "foil-usage-placement-calculator",
+    "name": "Foil Usage & Placement Calculator",
+    "category": "hair-color",
+    "categoryName": "\ud83c\udfa8 Hair Color & Chemistry",
+    "icon": "\ud83d\udce6",
+    "badge": "Pro",
+    "description": "Calculate exact foil count, weave vs slice density, and box usage for full head, partial, and money piece services.",
+    "intro": "Eliminate pre-cut foil waste and streamline your setup. Estimate exact foil requirements for standard partials (30\u201345 foils) up to maximum-density platinum card sessions (120+ foils).",
+    "formula_summary": "Foil Guidelines: Money Piece (8\u201312 foils), Partial (35\u201350 foils), Full Head (70\u201390 foils), Platinum Card (110\u2013140 foils).",
+    "inputs": [
+      {
+        "id": "service_type",
+        "label": "Service Placement",
+        "type": "select",
+        "default": "full",
+        "options": [
+          {
+            "val": "partial",
+            "text": "Partial Highlight (35\u201345 foils)"
+          },
+          {
+            "val": "full",
+            "text": "Full Head Foil (70\u201390 foils)"
+          },
+          {
+            "val": "platinum",
+            "text": "Platinum Card (110\u2013140 foils)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "foil calculator",
+      "how many foils for full head",
+      "foil highlight placement",
+      "platinum card foils"
+    ]
+  },
+  {
+    "id": "perm-rod-timing-calculator",
+    "name": "Perm Rod Size & Curl Diameter Guide",
+    "category": "hair-color",
+    "categoryName": "\ud83c\udfa8 Hair Color & Chemistry",
+    "icon": "\ud83c\udf00",
+    "badge": "Classic",
+    "description": "Determine perm rod diameter (red, yellow, blue, white, purple) to match client target wave or curl pattern.",
+    "intro": "Perm rod selection determines the final curl diameter. Matching the rod size to the desired curl pattern (tight spiral vs beach wave) ensures optimal disulfide bond reformation without frizzy over-processing.",
+    "formula_summary": "Rod Color Chart: Red (4mm tight), Yellow (5mm), Blue (9mm standard), White (11mm full wave), Purple (14mm beach wave).",
+    "inputs": [
+      {
+        "id": "curl_type",
+        "label": "Desired Wave Pattern",
+        "type": "select",
+        "default": "beach",
+        "options": [
+          {
+            "val": "spiral",
+            "text": "Tight Spiral (Red/Yellow 4\u20135mm)"
+          },
+          {
+            "val": "standard",
+            "text": "Medium Volume Curl (Blue/Pink 9mm)"
+          },
+          {
+            "val": "beach",
+            "text": "Soft Beach Wave (Purple/Orange 14\u201316mm)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "perm rod sizes",
+      "perm curl diameter",
+      "perm timing calculator",
+      "beach wave perm rods"
+    ]
+  },
+  {
+    "id": "keratin-treatment-dosage-guide",
+    "name": "Keratin Treatment Dosage & Pass Guide",
+    "category": "hair-color",
+    "categoryName": "\ud83c\udfa8 Hair Color & Chemistry",
+    "icon": "\u2728",
+    "badge": "Pro",
+    "description": "Calculate exact ounce/ml product application and flat iron temperature passes based on hair texture and damage level.",
+    "intro": "Over-saturating keratin treatments leads to excessive smoke and wasted expensive product. This tool calculates exact fluid ounce requirements (1.5 oz fine to 3.0 oz thick/coarse) and iron heat passes.",
+    "formula_summary": "Dosage: Short/Fine (30\u201345ml / 1\u20131.5oz), Medium (45\u201360ml / 1.5\u20132oz), Long/Coarse (60\u201390ml / 2\u20133oz). Temperature: 380\u00b0F\u2013450\u00b0F.",
+    "inputs": [
+      {
+        "id": "hair_length",
+        "label": "Hair Length & Density",
+        "type": "select",
+        "default": "medium",
+        "options": [
+          {
+            "val": "short",
+            "text": "Short / Fine (30\u201340ml)"
+          },
+          {
+            "val": "medium",
+            "text": "Medium / Normal (45\u201360ml)"
+          },
+          {
+            "val": "long",
+            "text": "Long / Dense (75\u201390ml)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "keratin dosage",
+      "how much keratin treatment to use",
+      "keratin flat iron temperature",
+      "brazilian blowout ounces"
+    ]
+  },
+  {
+    "id": "lash-weight-safety-calculator",
+    "name": "Lash Fan Weight & Safe-Load Calculator",
+    "category": "lashes-brows",
+    "categoryName": "\ud83d\udc41\ufe0f Lashes, Brows & Nails",
+    "icon": "\ud83d\udc41\ufe0f",
+    "badge": "Popular",
+    "description": "Calculate mechanical fan weight (2D\u201310D) to match natural lash health and prevent follicle damage.",
+    "intro": "Lash health is a science of volume geometry. A 5D fan of 0.05mm extensions exerts the identical mechanical load as a single 0.15mm classic extension. Calculate safe fan diameters to prevent traction alopecia on fine client lashes.",
+    "formula_summary": "Safe Load Rule: 1D Classic (0.15mm) \u2248 3D (0.07mm) \u2248 5D (0.05mm) \u2248 10D Mega Volume (0.03mm ultra-fine).",
+    "inputs": [
+      {
+        "id": "natural_lash",
+        "label": "Natural Lash Condition",
+        "type": "select",
+        "default": "normal",
+        "options": [
+          {
+            "val": "fine",
+            "text": "Fine / Fragile Natural Lash"
+          },
+          {
+            "val": "normal",
+            "text": "Healthy Normal Natural Lash"
+          },
+          {
+            "val": "coarse",
+            "text": "Thick / Coarse Natural Lash"
+          }
+        ]
+      },
+      {
+        "id": "fan_dimension",
+        "label": "Desired Fan Dimension",
+        "type": "select",
+        "default": "5D",
+        "options": [
+          {
+            "val": "1D",
+            "text": "1D (Classic Single)"
+          },
+          {
+            "val": "3D",
+            "text": "3D (Light Volume)"
+          },
+          {
+            "val": "5D",
+            "text": "5D (Standard Volume)"
+          },
+          {
+            "val": "7D",
+            "text": "7D (Mega Volume)"
+          },
+          {
+            "val": "10D",
+            "text": "10D (Super Mega Volume)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "lash weight calculator",
+      "safe lash fan weight",
+      "0.03 vs 0.05 lash volume",
+      "lash extension safety"
+    ]
+  },
+  {
+    "id": "lash-mapping-blueprint-generator",
+    "name": "Lash Mapping Blueprint Generator",
+    "category": "lashes-brows",
+    "categoryName": "\ud83d\udc41\ufe0f Lashes, Brows & Nails",
+    "icon": "\ud83d\udcd0",
+    "badge": "Top Tool",
+    "description": "Generate millimeter length maps (Cat Eye, Doll Eye, Squirrel, Natural) tailored to specific client eye shapes.",
+    "intro": "Symmetrical lash sets require precise mapping. Choose your client's eye shape (Almond, Hooded, Deep Set, Round) and target style to generate an exact inner-to-outer corner millimeter transition map.",
+    "formula_summary": "Map Rules: Inner corners must never exceed 7\u20138mm to prevent eyelid irritation. Peak length placed at outer third for Cat Eye, center for Doll Eye.",
+    "inputs": [
+      {
+        "id": "eye_shape",
+        "label": "Client Eye Shape",
+        "type": "select",
+        "default": "Almond",
+        "options": [
+          {
+            "val": "Almond",
+            "text": "Almond Eyes"
+          },
+          {
+            "val": "Round",
+            "text": "Round / Prominent Eyes"
+          },
+          {
+            "val": "Hooded",
+            "text": "Hooded / Monolid Eyes"
+          },
+          {
+            "val": "DeepSet",
+            "text": "Deep Set Eyes"
+          }
+        ]
+      },
+      {
+        "id": "style",
+        "label": "Desired Mapping Style",
+        "type": "select",
+        "default": "cat_eye",
+        "options": [
+          {
+            "val": "cat_eye",
+            "text": "Cat Eye (Outer Sweep)"
+          },
+          {
+            "val": "doll_eye",
+            "text": "Doll Eye (Open Eye Center)"
+          },
+          {
+            "val": "squirrel",
+            "text": "Squirrel (High Arch Peak)"
+          },
+          {
+            "val": "natural",
+            "text": "Natural Gradient"
+          }
+        ]
+      },
+      {
+        "id": "max_length",
+        "label": "Maximum Peak Length (mm)",
+        "type": "range",
+        "min": 10,
+        "max": 16,
+        "step": 1,
+        "default": 13,
+        "unit": "mm"
+      }
+    ],
+    "keywords": [
+      "lash mapping chart",
+      "cat eye lash map",
+      "doll eye lash mapping",
+      "lash extension lengths"
+    ]
+  },
+  {
+    "id": "lash-adhesive-humidity-adjuster",
+    "name": "Lash Adhesive Humidity & Speed Adjuster",
+    "category": "lashes-brows",
+    "categoryName": "\ud83d\udc41\ufe0f Lashes, Brows & Nails",
+    "icon": "\ud83d\udca7",
+    "badge": "Pro",
+    "description": "Adjust glue cure speed and drying time based on salon room temperature and relative humidity.",
+    "intro": "Cyanoacrylate adhesive cures via moisture in the air. High humidity causes adhesive to set in 0.5s (causing shock polymerization), while low humidity slows drying time. Calculate adjustments for your salon humidity.",
+    "formula_summary": "Humidity Physics: 45%\u201360% RH is ideal (1\u20132s cure). >70% RH requires slower glue; <40% RH requires glue booster / nebulizer.",
+    "inputs": [
+      {
+        "id": "humidity_pct",
+        "label": "Current Salon Room Humidity (%)",
+        "type": "range",
+        "min": 20,
+        "max": 85,
+        "step": 5,
+        "default": 50,
+        "unit": "%"
+      }
+    ],
+    "keywords": [
+      "lash glue humidity",
+      "lash adhesive drying time",
+      "cyanoacrylate curing speed",
+      "lash room humidity"
+    ]
+  },
+  {
+    "id": "brow-tint-developer-ratio",
+    "name": "Brow Tint & Developer Ratio Calculator",
+    "category": "lashes-brows",
+    "categoryName": "\ud83d\udc41\ufe0f Lashes, Brows & Nails",
+    "icon": "\u2712\ufe0f",
+    "badge": "Essential",
+    "description": "Calculate exact drop-to-cream ratios for 3% (10 Vol) oxidant and brow tint shades.",
+    "intro": "Achieving consistent brow stains requires an exact 1:1 or 2:1 tint-to-developer ratio. This tool provides precise drop counts to eliminate runny mixes and uneven skin stains.",
+    "formula_summary": "Brow Formula: 2cm tint cream = 10 drops of 3% (10 Vol) developer liquid (or 1:1 for cream oxidant).",
+    "inputs": [
+      {
+        "id": "tint_cm",
+        "label": "Tint Cream Strip Length",
+        "type": "number",
+        "default": 2,
+        "unit": "cm"
+      }
+    ],
+    "keywords": [
+      "brow tint ratio",
+      "how many drops developer brow tint",
+      "brow oxidant mixing",
+      "refectocil ratio"
+    ]
+  },
+  {
+    "id": "brow-lamination-processing-timer",
+    "name": "Brow Lamination Processing Timer",
+    "category": "lashes-brows",
+    "categoryName": "\ud83d\udc41\ufe0f Lashes, Brows & Nails",
+    "icon": "\u23f3",
+    "badge": "Safety",
+    "description": "Determine Step 1 (Relaxing) and Step 2 (Neutralizing) timings based on hair thickness to prevent over-processing.",
+    "intro": "Over-processing brow lamination breaks the hair's outer cuticle, resulting in frizzy, singed brow hairs. Calculate exact step-by-step processing times based on client hair thickness.",
+    "formula_summary": "Step Timings: Fine brow hair (4\u20135 min Step 1), Medium hair (6\u20137 min Step 1), Coarse/Stubborn (8\u201310 min Step 1). Neutralize equal time.",
+    "inputs": [
+      {
+        "id": "hair_type",
+        "label": "Brow Hair Texture",
+        "type": "select",
+        "default": "medium",
+        "options": [
+          {
+            "val": "fine",
+            "text": "Fine / Thin Brow Hair (4\u20135 min)"
+          },
+          {
+            "val": "medium",
+            "text": "Medium Normal Brow Hair (6\u20137 min)"
+          },
+          {
+            "val": "coarse",
+            "text": "Thick / Coarse Stubborn Hair (8\u201310 min)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "brow lamination timer",
+      "brow lamination step 1 timing",
+      "how long to leave brow lamination"
+    ]
+  },
+  {
+    "id": "acrylic-monomer-ratio-calculator",
+    "name": "Acrylic Nail Monomer to Powder Ratio Guide",
+    "category": "lashes-brows",
+    "categoryName": "\ud83d\udc41\ufe0f Lashes, Brows & Nails",
+    "icon": "\ud83d\udc85",
+    "badge": "Pro",
+    "description": "Calculate wet vs medium vs dry acrylic bead ratios for flawless structural apex bead placement.",
+    "intro": "Incorrect monomer-to-powder ratios cause either brittle service breakdown (too dry) or contact dermatitis and lifting (too wet). Master bead consistency with this ratio guide.",
+    "formula_summary": "Ideal Bead: 1.5:1 liquid-to-powder for medium bead. Surface should look satin-smooth within 3 seconds of picking up powder.",
+    "inputs": [
+      {
+        "id": "bead_size",
+        "label": "Target Bead Application",
+        "type": "select",
+        "default": "medium",
+        "options": [
+          {
+            "val": "small",
+            "text": "Cuticle Zone 1 (Small Dry Bead)"
+          },
+          {
+            "val": "medium",
+            "text": "Apex Zone 2 (Medium Structural Bead)"
+          },
+          {
+            "val": "large",
+            "text": "Free Edge Zone 3 (Large Extension Bead)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "acrylic nail ratio",
+      "monomer to powder ratio",
+      "acrylic bead consistency",
+      "nail tech acrylic math"
+    ]
+  },
+  {
+    "id": "gel-nail-cure-lamp-wattage-calculator",
+    "name": "Gel Nail Cure Lamp Wattage & Time Calculator",
+    "category": "lashes-brows",
+    "categoryName": "\ud83d\udc41\ufe0f Lashes, Brows & Nails",
+    "icon": "\ud83d\udca1",
+    "badge": "Safety",
+    "description": "Determine safe curing seconds based on UV/LED lamp wattage (24W, 48W, 54W) and gel opacity.",
+    "intro": "Under-cured gel is a leading cause of HEMA allergies and premature chipping. Calculate exact cure times for base coats, builder gels, and opaque pigments based on your lamp specifications.",
+    "formula_summary": "Cure Times: 48W/54W LED = 30s color, 60s builder gel. Traditional 36W UV = 120s full cure.",
+    "inputs": [
+      {
+        "id": "lamp_wattage",
+        "label": "Lamp Wattage",
+        "type": "select",
+        "default": "48w",
+        "options": [
+          {
+            "val": "24w",
+            "text": "24W Compact LED (60\u201390s)"
+          },
+          {
+            "val": "48w",
+            "text": "48W Pro LED/UV (30\u201360s)"
+          },
+          {
+            "val": "54w",
+            "text": "54W Heavy Duty Pro (30\u201360s)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "gel curing time",
+      "uv led lamp wattage cure time",
+      "builder gel curing timer",
+      "how long to cure gel nails"
+    ]
+  },
+  {
+    "id": "spray-tan-dha-development-calculator",
+    "name": "Spray Tan DHA % & Development Calculator",
+    "category": "lashes-brows",
+    "categoryName": "\ud83d\udc41\ufe0f Lashes, Brows & Nails",
+    "icon": "\u2600\ufe0f",
+    "badge": "Popular",
+    "description": "Select DHA percentage (8%\u201314%) and rinse timers for Fitzpatrick skin types 1 through 6.",
+    "intro": "DHA (Dihydroxyacetone) reacts with amino acids in the stratum corneum. Applying 14% DHA to a Fitzpatrick Type 1 skin type causes orange streaking. Calculate the exact DHA percentage and rinse time.",
+    "formula_summary": "DHA Guidelines: Fitzpatrick 1\u20132 (8%\u20139% DHA), Fitzpatrick 3\u20134 (10%\u201312% DHA), Fitzpatrick 5\u20136 (14% DHA). Standard rinse: 8 hrs (or 2\u20134 hrs rapid).",
+    "inputs": [
+      {
+        "id": "skin_type",
+        "label": "Client Fitzpatrick Skin Type",
+        "type": "select",
+        "default": "type2",
+        "options": [
+          {
+            "val": "type1",
+            "text": "Type 1: Very Fair / Burns Easily (8% DHA)"
+          },
+          {
+            "val": "type2",
+            "text": "Type 2: Fair / Light (9%\u201310% DHA)"
+          },
+          {
+            "val": "type3",
+            "text": "Type 3: Medium / Olive (11%\u201312% DHA)"
+          },
+          {
+            "val": "type4",
+            "text": "Type 4: Dark / Deep (14% DHA)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "spray tan dha percentage",
+      "spray tan skin type",
+      "spray tan development time",
+      "rapid spray tan rinse timer"
+    ]
+  },
+  {
+    "id": "chemical-peel-acid-calculator",
+    "name": "Chemical Peel Acid % & pH Strength Guide",
+    "category": "lashes-brows",
+    "categoryName": "\ud83d\udc41\ufe0f Lashes, Brows & Nails",
+    "icon": "\ud83e\uddea",
+    "badge": "Pro",
+    "description": "Calculate free acid percentage based on concentration (20%\u201370%) and pH level for glycolic, salicylic, and lactic peels.",
+    "intro": "In chemical exfoliation, pH is as critical as acid percentage. A 30% glycolic peel at pH 2.0 has far higher bioavailability than at pH 3.5. Estimate free acid value and neutralizing protocol.",
+    "formula_summary": "Free Acid Formula: Henderson-Hasselbalch equation determines bioavailable active acid based on formula pKa and solution pH.",
+    "inputs": [
+      {
+        "id": "acid_pct",
+        "label": "Acid Concentration (%)",
+        "type": "number",
+        "default": 30,
+        "unit": "%"
+      },
+      {
+        "id": "ph_level",
+        "label": "Solution pH Level",
+        "type": "number",
+        "default": 2.5
+      }
+    ],
+    "keywords": [
+      "chemical peel calculator",
+      "free acid percentage peel",
+      "glycolic peel strength",
+      "salicylic acid ph calculator"
+    ]
+  },
+  {
+    "id": "chair-rental-profitability-calculator",
+    "name": "Booth Rent vs. Commission Profitability Calculator",
+    "category": "business-rental",
+    "categoryName": "\ud83d\udcbc Suite Rent & Pricing",
+    "icon": "\ud83d\udcba",
+    "badge": "Money Maker",
+    "description": "Compare weekly service revenue, 50% commission splits, flat booth rent, and supply expenses to calculate net gains.",
+    "intro": "Should you stay on a 50% commission split or rent your own private salon suite? Once you generate over $1,200/week in service sales, renting a booth ($250\u2013$350/wk) typically yields an extra $1,500 to $3,000+ in monthly net profit.",
+    "formula_summary": "Comparison Math: Commission Take-Home = Sales \u00d7 Split % | Suite Take-Home = Sales - Flat Rent - Supply Cost. Monthly Diff = (Suite Net - Comm Net) \u00d7 4.33.",
+    "inputs": [
+      {
+        "id": "weekly_sales",
+        "label": "Weekly Service Revenue ($/\u00a3)",
+        "type": "number",
+        "default": 1800
+      },
+      {
+        "id": "comm_split",
+        "label": "Current Salon Commission Split (%)",
+        "type": "number",
+        "default": 50,
+        "unit": "%"
+      },
+      {
+        "id": "booth_rent",
+        "label": "Weekly Suite / Booth Rent ($/\u00a3)",
+        "type": "number",
+        "default": 300
+      },
+      {
+        "id": "weekly_supplies",
+        "label": "Estimated Weekly Color & Backbar Cost ($/\u00a3)",
+        "type": "number",
+        "default": 150
+      }
+    ],
+    "keywords": [
+      "booth rent vs commission",
+      "chair rental calculator",
+      "salon suite profit calculator",
+      "is booth rent worth it"
+    ]
+  },
+  {
+    "id": "hairdresser-hourly-rate-calculator",
+    "name": "Hairdresser True Net Hourly Rate Calculator",
+    "category": "business-rental",
+    "categoryName": "\ud83d\udcbc Suite Rent & Pricing",
+    "icon": "\ud83d\udcb5",
+    "badge": "Essential",
+    "description": "Calculate real hourly earnings factoring in non-billable setup, sanitation, admin, and annual overhead expenses.",
+    "intro": "Charging $80 for a 1-hour haircut does not mean you make $80/hour. Once you subtract rent, backbar supplies, taxes, and 10 hours of unpaid cleaning/admin per week, your true take-home rate might only be $32/hour. Discover your real hourly rate.",
+    "formula_summary": "True Hourly Formula: (Annual Revenue - Annual Expenses) \u00f7 Total Working Hours (Chair Hours + Admin Hours \u00d7 Weeks Worked).",
+    "inputs": [
+      {
+        "id": "annual_revenue",
+        "label": "Gross Annual Revenue ($/\u00a3)",
+        "type": "number",
+        "default": 65000
+      },
+      {
+        "id": "annual_expenses",
+        "label": "Annual Business Expenses ($/\u00a3)",
+        "type": "number",
+        "default": 18000
+      },
+      {
+        "id": "client_hours_week",
+        "label": "Billable Client Chair Hours / Week",
+        "type": "number",
+        "default": 30
+      },
+      {
+        "id": "admin_hours_week",
+        "label": "Unpaid Sanitation / Admin Hours / Week",
+        "type": "number",
+        "default": 8
+      },
+      {
+        "id": "weeks_worked",
+        "label": "Weeks Worked per Year",
+        "type": "number",
+        "default": 48
+      }
+    ],
+    "keywords": [
+      "hairstylist hourly rate",
+      "how much should hair stylist charge",
+      "salon true hourly rate",
+      "hairstylist salary calculator"
+    ]
+  },
+  {
+    "id": "salon-suite-startup-budget-calculator",
+    "name": "Salon Suite Startup Cost & Break-Even Estimator",
+    "category": "business-rental",
+    "categoryName": "\ud83d\udcbc Suite Rent & Pricing",
+    "icon": "\ud83c\udfe2",
+    "badge": "Business",
+    "description": "Calculate security deposits, styling chair build-out, retail inventory, and client volume required to break even.",
+    "intro": "Starting your own private salon suite requires upfront capital for security deposits, styling chairs, retail stock, and liability insurance. Calculate your total initial startup budget and exact client break-even point.",
+    "formula_summary": "Break-Even Formula: Monthly Fixed Costs (Rent + Software + Insurance) \u00f7 Average Service Ticket = Clients Needed per Month.",
+    "inputs": [
+      {
+        "id": "first_last_rent",
+        "label": "First & Security Rent Deposit ($/\u00a3)",
+        "type": "number",
+        "default": 1200
+      },
+      {
+        "id": "decor_equipment",
+        "label": "Furniture & Tool Build-Out ($/\u00a3)",
+        "type": "number",
+        "default": 1500
+      },
+      {
+        "id": "initial_stock",
+        "label": "Initial Color & Product Inventory ($/\u00a3)",
+        "type": "number",
+        "default": 800
+      },
+      {
+        "id": "avg_ticket",
+        "label": "Average Client Ticket Price ($/\u00a3)",
+        "type": "number",
+        "default": 95
+      }
+    ],
+    "keywords": [
+      "salon suite startup cost",
+      "how much to start a salon suite",
+      "salon suite break even",
+      "booth rental budget"
+    ]
+  },
+  {
+    "id": "self-employed-beauty-tax-calculator",
+    "name": "Self-Employed Beauty Pro Tax & Tip Estimator",
+    "category": "business-rental",
+    "categoryName": "\ud83d\udcbc Suite Rent & Pricing",
+    "icon": "\ud83d\udcca",
+    "badge": "Taxes",
+    "description": "Estimate quarterly tax set-asides from card sales, cash tips, and write-off deductions.",
+    "intro": "Independent beauty pros often get hit with unexpected tax bills. Use this estimator to calculate the exact 20%\u201330% quarterly tax set-aside from your service revenue and tip income.",
+    "formula_summary": "Tax Estimation: Net Taxable Profit = Gross Sales + Tips - Deductible Supplies/Rent. Recommended Quarterly Set-Aside = 25%\u201330% of Net.",
+    "inputs": [
+      {
+        "id": "weekly_gross",
+        "label": "Weekly Gross Revenue ($/\u00a3)",
+        "type": "number",
+        "default": 1500
+      },
+      {
+        "id": "weekly_tips",
+        "label": "Weekly Tips ($/\u00a3)",
+        "type": "number",
+        "default": 250
+      },
+      {
+        "id": "weekly_expenses",
+        "label": "Weekly Deductible Expenses ($/\u00a3)",
+        "type": "number",
+        "default": 400
+      }
+    ],
+    "keywords": [
+      "stylist tax calculator",
+      "booth renter taxes",
+      "how much tax to save hairstylist",
+      "self employed beauty taxes"
+    ]
+  },
+  {
+    "id": "retail-product-markup-calculator",
+    "name": "Retail Product Markup & Profit Margin Calculator",
+    "category": "business-rental",
+    "categoryName": "\ud83d\udcbc Suite Rent & Pricing",
+    "icon": "\ud83d\udecd\ufe0f",
+    "badge": "Money Maker",
+    "description": "Calculate wholesale keystone markup (100%), profit per bottle, and monthly retail revenue goals.",
+    "intro": "Retail sales are the highest-margin income in a salon suite. Using standard keystone markup (100%), selling just 2 bottles of shampoo per day adds $600 to $1,000+ in pure net monthly profit.",
+    "formula_summary": "Keystone Formula: Retail Price = Wholesale Cost \u00d7 2.0 (100% markup). Profit Margin = 50%.",
+    "inputs": [
+      {
+        "id": "wholesale_cost",
+        "label": "Wholesale Cost per Bottle ($/\u00a3)",
+        "type": "number",
+        "default": 14
+      },
+      {
+        "id": "markup_pct",
+        "label": "Markup Percentage (%)",
+        "type": "number",
+        "default": 100,
+        "unit": "%"
+      },
+      {
+        "id": "bottles_week",
+        "label": "Bottles Sold per Week",
+        "type": "number",
+        "default": 10
+      }
+    ],
+    "keywords": [
+      "salon retail markup",
+      "keystone markup salon",
+      "product profit margin salon",
+      "how to price retail shampoo"
+    ]
+  },
+  {
+    "id": "salon-software-cost-comparison",
+    "name": "Salon Booking Software Fee Comparison",
+    "category": "business-rental",
+    "categoryName": "\ud83d\udcbc Suite Rent & Pricing",
+    "icon": "\ud83d\udcf1",
+    "badge": "Save Money",
+    "description": "Compare monthly software subscriptions and credit card processing rates across Square, GlossGenius, Vagaro, and Fresha.",
+    "intro": "Paying $40/month plus 2.9% + 30\u00a2 in card fees adds up to thousands of dollars in hidden costs per year. Compare true annual costs across top solo booking platforms.",
+    "formula_summary": "Annual Software Cost = (Monthly Fee \u00d7 12) + (Annual Card Volume \u00d7 Card Processing Fee %).",
+    "inputs": [
+      {
+        "id": "monthly_card_vol",
+        "label": "Monthly Card Processing Volume ($/\u00a3)",
+        "type": "number",
+        "default": 6000
+      }
+    ],
+    "keywords": [
+      "square appointments vs glossgenius",
+      "salon booking software cost",
+      "fresha vs vagaro pricing",
+      "cheapest salon software"
+    ]
+  },
+  {
+    "id": "salon-profit-margin-calculator",
+    "name": "Salon Net Profit Margin Calculator",
+    "category": "business-rental",
+    "categoryName": "\ud83d\udcbc Suite Rent & Pricing",
+    "icon": "\ud83d\udcc8",
+    "badge": "Finance",
+    "description": "Calculate overall net profit margins and identify expense leaks in rent, color inventory, and marketing.",
+    "intro": "Healthy independent salon suites operate at 45% to 65% net profit margins. Calculate your overall business margin to ensure you aren't overspending on backbar stock.",
+    "formula_summary": "Net Margin Formula: (Total Revenue - Total Overhead - Backbar Stock - Taxes) \u00f7 Total Revenue \u00d7 100.",
+    "inputs": [
+      {
+        "id": "total_rev",
+        "label": "Total Monthly Revenue ($/\u00a3)",
+        "type": "number",
+        "default": 7500
+      },
+      {
+        "id": "total_cost",
+        "label": "Total Monthly Expenses ($/\u00a3)",
+        "type": "number",
+        "default": 2800
+      }
+    ],
+    "keywords": [
+      "salon profit margin",
+      "healthy salon profit percentage",
+      "booth rental net margin",
+      "how profitable is a salon suite"
+    ]
+  },
+  {
+    "id": "fade-clipper-guard-guide",
+    "name": "Fade & Clipper Guard Transition Guide",
+    "category": "barbering",
+    "categoryName": "\ud83d\udc88 Barbering & Grooming",
+    "icon": "\ud83d\udc88",
+    "badge": "Popular",
+    "description": "Visual guard transitions and lever adjustments (Open, Half, Closed) from skin (#00000) up to guard #8.",
+    "intro": "A seamless blur fade requires systematic lever work. Transition cleanly between zero blade (0.5mm), guard #0.5 (1.5mm), guard #1 (3mm), and guard #1.5 (4.5mm) with this step-by-step guideline.",
+    "formula_summary": "Guard Progression: Closed Blade (0.5mm) \u2794 Open Blade (1.2mm) \u2794 #0.5 Open (2.4mm) \u2794 #1 Closed (3mm) \u2794 #1.5 (4.5mm) \u2794 #2 (6mm).",
+    "inputs": [
+      {
+        "id": "fade_type",
+        "label": "Target Fade Style",
+        "type": "select",
+        "default": "mid_skin",
+        "options": [
+          {
+            "val": "low_taper",
+            "text": "Low Taper Fade"
+          },
+          {
+            "val": "mid_skin",
+            "text": "Mid Skin Fade (#00000 base)"
+          },
+          {
+            "val": "high_drop",
+            "text": "High Drop Fade"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "clipper guard sizes",
+      "fade clipper steps",
+      "how to blend guard 1 to 2",
+      "skin fade guard guide"
+    ]
+  },
+  {
+    "id": "beard-oil-carrier-ratio-calculator",
+    "name": "Beard Oil Carrier & Essential Oil Ratio Calculator",
+    "category": "barbering",
+    "categoryName": "\ud83d\udc88 Barbering & Grooming",
+    "icon": "\ud83e\uddd4",
+    "badge": "Pro",
+    "description": "Formulate custom 30ml / 1oz beard oil recipes with exact carrier oil ratios (Jojoba, Argan) and 1% fragrance safety drops.",
+    "intro": "Creating your own signature station beard oil? Formulate balanced carrier recipes (60% Jojoba, 30% Argan, 10% Castor) with a safe 1% essential oil scent load (6 drops per 30ml bottle).",
+    "formula_summary": "Beard Oil Recipe (30ml / 1oz): 18ml Jojoba Oil + 9ml Argan Oil + 3ml Castor Oil + 6 Drops Essential Oils (1% fragrance load).",
+    "inputs": [
+      {
+        "id": "bottle_size_ml",
+        "label": "Bottle Size Needed",
+        "type": "number",
+        "default": 30,
+        "unit": "ml"
+      }
+    ],
+    "keywords": [
+      "beard oil recipe calculator",
+      "beard oil ratio",
+      "how to make beard oil",
+      "carrier oil ratio beard"
+    ]
+  },
+  {
+    "id": "hot-towel-shave-protocol-timer",
+    "name": "Hot Towel Shave Protocol & Steaming Timer",
+    "category": "barbering",
+    "categoryName": "\ud83d\udc88 Barbering & Grooming",
+    "icon": "\ud83e\uddd6\u200d\u2642\ufe0f",
+    "badge": "Classic",
+    "description": "Optimal pre-shave oil absorption, steam towel temperature, and straight razor pass timings.",
+    "intro": "The traditional straight razor hot towel service requires precise timing to soften coarse beard whiskers without causing razor burn. Follow the professional 5-step hot towel protocol.",
+    "formula_summary": "Protocol: 2 min Pre-shave oil massage + 3 min Hot Towel (130\u00b0F/54\u00b0C) + First Pass with Grain + 2 min Second Towel + Against Grain Pass.",
+    "inputs": [
+      {
+        "id": "beard_density",
+        "label": "Client Beard Density",
+        "type": "select",
+        "default": "coarse",
+        "options": [
+          {
+            "val": "light",
+            "text": "Light Stubble (2 min steam)"
+          },
+          {
+            "val": "coarse",
+            "text": "Coarse / Thick Beard (3\u20134 min steam)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "hot towel shave timing",
+      "straight razor shave protocol",
+      "hot towel temperature barber",
+      "pre shave oil timing"
+    ]
+  },
+  {
+    "id": "essential-oil-dilution-calculator",
+    "name": "Essential Oil Dilution & Drop Calculator",
+    "category": "spa-massage",
+    "categoryName": "\ud83e\uddd6 Spa & Aromatherapy",
+    "icon": "\ud83c\udf3f",
+    "badge": "Popular",
+    "description": "Calculate exact safe essential oil drops for 0.5%, 1%, 2%, 3%, and 5% dilution in carrier oils (30ml, 60ml, 100ml).",
+    "intro": "Essential oils are highly concentrated phytochemicals. Applying them undiluted can cause chemical sensitization. Calculate exact drop counts for facial massage (0.5%\u20131%), full body massage (2%), or acute pain relief (3%\u20135%).",
+    "formula_summary": "Dilution Rules: 1 ml \u2248 20 drops. 1 fl oz (30ml) carrier @ 1% = 6 drops | @ 2% = 12 drops | @ 3% = 18 drops.",
+    "inputs": [
+      {
+        "id": "carrier_ml",
+        "label": "Carrier Oil Amount",
+        "type": "number",
+        "default": 30,
+        "unit": "ml"
+      },
+      {
+        "id": "dilution_pct",
+        "label": "Target Dilution Percentage (%)",
+        "type": "select",
+        "default": "2",
+        "options": [
+          {
+            "val": "0.5",
+            "text": "0.5% (Sensitive / Facial / Children)"
+          },
+          {
+            "val": "1",
+            "text": "1.0% (Daily Facial / Sensitive Skin)"
+          },
+          {
+            "val": "2",
+            "text": "2.0% (Standard Full Body Massage)"
+          },
+          {
+            "val": "3",
+            "text": "3.0% (Localized Muscle Relief)"
+          },
+          {
+            "val": "5",
+            "text": "5.0% (Acute Short-Term Application)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "essential oil dilution calculator",
+      "drops per ml essential oil",
+      "essential oil percentage chart",
+      "massage oil dilution"
+    ]
+  },
+  {
+    "id": "massage-oil-coverage-cost-calculator",
+    "name": "Massage Oil Coverage & Cost per Treatment",
+    "category": "spa-massage",
+    "categoryName": "\ud83e\uddd6 Spa & Aromatherapy",
+    "icon": "\ud83d\udc86\u200d\u2640\ufe0f",
+    "badge": "Finance",
+    "description": "Estimate fluid ounce/ml usage per 60-min and 90-min session and calculate backbar oil cost per client.",
+    "intro": "A standard 60-minute full body massage requires 20ml to 30ml (0.7 to 1.0 fl oz) of carrier oil. Calculate your exact backbar expense per treatment to ensure your pricing accounts for premium organic oils.",
+    "formula_summary": "Cost Formula: (Carrier Volume Used \u00d7 Cost/ml) + (Essential Drops \u00d7 Cost/drop) = Backbar Expense per Client.",
+    "inputs": [
+      {
+        "id": "session_len",
+        "label": "Session Length",
+        "type": "select",
+        "default": "60",
+        "options": [
+          {
+            "val": "60",
+            "text": "60-Minute Full Body (25ml / 0.85 oz)"
+          },
+          {
+            "val": "90",
+            "text": "90-Minute Full Body (40ml / 1.35 oz)"
+          }
+        ]
+      },
+      {
+        "id": "oil_bottle_cost",
+        "label": "Cost of 1 Liter (33.8 oz) Carrier Oil ($/\u00a3)",
+        "type": "number",
+        "default": 24
+      }
+    ],
+    "keywords": [
+      "massage oil usage per client",
+      "cost per massage treatment",
+      "how much massage oil for 60 min",
+      "massage backbar cost"
+    ]
+  },
+  {
+    "id": "hot-stone-temp-placement-guide",
+    "name": "Hot Stone Temperature & Placement Guide",
+    "category": "spa-massage",
+    "categoryName": "\ud83e\uddd6 Spa & Aromatherapy",
+    "icon": "\ud83e\udea8",
+    "badge": "Safety",
+    "description": "Safe water bath temperature standards (120\u00b0F\u2013130\u00b0F / 49\u00b0C\u201354\u00b0C) and basalt stone placement map.",
+    "intro": "Basalt hot stones retain thermal energy deep into muscular tissue. Maintaining proper water bath temperatures (120\u00b0F\u2013130\u00b0F) prevents thermal burns while maximizing parasympathetic nervous system relaxation.",
+    "formula_summary": "Thermal Safety: Water heater bath must be 120\u00b0F\u2013130\u00b0F (49\u00b0C\u201354\u00b0C). Always test stones on therapist inner forearm before client placement.",
+    "inputs": [
+      {
+        "id": "stone_type",
+        "label": "Stone Placement Protocol",
+        "type": "select",
+        "default": "back",
+        "options": [
+          {
+            "val": "back",
+            "text": "Paraspinal & Sacral Placement (125\u00b0F)"
+          },
+          {
+            "val": "toes",
+            "text": "Interdigital Toe & Palm Stones (115\u00b0F)"
+          }
+        ]
+      }
+    ],
+    "keywords": [
+      "hot stone temperature",
+      "hot stone massage temperature guide",
+      "how hot should hot stones be",
+      "basalt stone placement"
+    ]
+  }
+]
