@@ -117,7 +117,7 @@
             <button class="unit-toggle-btn" id="page-unit-imperial" onclick="setPageUnit('imperial')">🇺🇸 Imperial</button>
           </div>
         </li>
-        <li><a href="/">&larr; Back to All 130+ Free Stylist Tools</a></li>
+        <li><a href="/">&larr; Back to All 32 Free Stylist Tools</a></li>
       </ul>
     </div>
   </nav>
@@ -280,7 +280,7 @@
         <strong>Safety Note:</strong> Tool results are estimates for licensed beauty professionals. Always follow manufacturer directions and perform 48-hour client skin allergy patch tests. <a href="/legal/disclaimer.html" style="color: #D4AF37; text-decoration: underline;">Read Full Disclaimer</a>
       </div>
       <p style="margin-bottom: 12px; color: #BDB7AF;">&copy; 2026 TheSalonSuite.com &bull; Free Professional Beauty Calculators</p>
-      <a href="/" style="color: #D4AF37; font-weight: 600;">&larr; Return to All 130+ Free Salon Calculators (A–Z)</a>
+      <a href="/" style="color: #D4AF37; font-weight: 600;">&larr; Return to All 32 Free Salon Calculators (A–Z)</a>
     </div>
   </footer>
 
@@ -346,18 +346,62 @@
         res = SalonMath.calcGreyCoverage(vals.grey_pct, vals.total_color_grams, isImp);
       } else if (currentToolId === 'balayage-pricing-product-calculator') {
         res = SalonMath.calcBalayagePricing(vals.bowls_bleach, vals.cost_per_bowl, vals.toner_bowls, vals.bond_builder, vals.service_hours, vals.target_hourly, currency);
+      } else if (currentToolId === 'toner-ratio-calculator') {
+        res = SalonMath.calcTonerRatio(vals.toner_ml, vals.ratio, isImp);
+      } else if (currentToolId === 'color-correction-time-estimator') {
+        res = SalonMath.calcColorCorrection(vals.stages, vals.target_hourly, currency);
+      } else if (currentToolId === 'foil-usage-placement-calculator') {
+        res = SalonMath.calcFoilUsage(vals.service_type);
+      } else if (currentToolId === 'perm-rod-timing-calculator') {
+        res = SalonMath.calcPermRod(vals.curl_type);
+      } else if (currentToolId === 'keratin-treatment-dosage-guide') {
+        res = SalonMath.calcKeratinDosage(vals.hair_length, isImp);
       } else if (currentToolId === 'lash-weight-safety-calculator') {
         res = SalonMath.calcLashWeight(vals.natural_lash, vals.fan_dimension);
       } else if (currentToolId === 'lash-mapping-blueprint-generator') {
         res = SalonMath.calcLashMapping(vals.eye_shape, vals.style, vals.max_length);
+      } else if (currentToolId === 'lash-adhesive-humidity-adjuster') {
+        res = SalonMath.calcLashHumidity(vals.humidity_pct);
+      } else if (currentToolId === 'brow-tint-developer-ratio') {
+        res = SalonMath.calcBrowTint(vals.tint_cm, isImp);
+      } else if (currentToolId === 'brow-lamination-processing-timer') {
+        res = SalonMath.calcBrowLamination(vals.hair_type);
+      } else if (currentToolId === 'acrylic-monomer-ratio-calculator') {
+        res = SalonMath.calcAcrylicMonomer(vals.bead_size);
+      } else if (currentToolId === 'gel-nail-cure-lamp-wattage-calculator') {
+        res = SalonMath.calcGelCure(vals.lamp_wattage);
+      } else if (currentToolId === 'spray-tan-dha-development-calculator') {
+        res = SalonMath.calcSprayTanDha(vals.skin_type);
+      } else if (currentToolId === 'chemical-peel-acid-calculator') {
+        res = SalonMath.calcChemicalPeel(vals.acid_pct, vals.ph_level);
       } else if (currentToolId === 'chair-rental-profitability-calculator') {
         res = SalonMath.calcBoothRentVsComm(vals.weekly_sales, vals.comm_split, vals.booth_rent, vals.weekly_supplies, currency);
       } else if (currentToolId === 'hairdresser-hourly-rate-calculator') {
         res = SalonMath.calcHourlyRate(vals.annual_revenue, vals.annual_expenses, vals.client_hours_week, vals.admin_hours_week, vals.weeks_worked, currency);
+      } else if (currentToolId === 'salon-suite-startup-budget-calculator') {
+        res = SalonMath.calcSuiteStartup(vals.first_last_rent, vals.decor_equipment, vals.initial_stock, vals.avg_ticket, currency);
+      } else if (currentToolId === 'self-employed-beauty-tax-calculator') {
+        res = SalonMath.calcSelfEmployedTax(vals.weekly_gross, vals.weekly_tips, vals.weekly_expenses, currency);
+      } else if (currentToolId === 'retail-product-markup-calculator') {
+        res = SalonMath.calcRetailMarkup(vals.wholesale_cost, vals.markup_pct, vals.bottles_week, currency);
+      } else if (currentToolId === 'salon-software-cost-comparison') {
+        res = SalonMath.calcSoftwareCost(vals.monthly_card_vol, currency);
+      } else if (currentToolId === 'salon-profit-margin-calculator') {
+        res = SalonMath.calcProfitMargin(vals.total_rev, vals.total_cost, currency);
+      } else if (currentToolId === 'fade-clipper-guard-guide') {
+        res = SalonMath.calcFadeGuards(vals.fade_type);
+      } else if (currentToolId === 'beard-oil-carrier-ratio-calculator') {
+        res = SalonMath.calcBeardOil(vals.bottle_size_ml, isImp);
+      } else if (currentToolId === 'hot-towel-shave-protocol-timer') {
+        res = SalonMath.calcHotTowelShave(vals.beard_density);
       } else if (currentToolId === 'essential-oil-dilution-calculator') {
         res = SalonMath.calcEssentialOilDilution(vals.carrier_ml, vals.dilution_pct, isImp);
+      } else if (currentToolId === 'massage-oil-coverage-cost-calculator') {
+        res = SalonMath.calcMassageOilCost(vals.session_len, vals.oil_bottle_cost, currency);
+      } else if (currentToolId === 'hot-stone-temp-placement-guide') {
+        res = SalonMath.calcHotStone(vals.stone_type);
       } else {
-        res = { main: "Formula Verified", details: "Calculation adhering to professional beauty standards.", rawFormula: "Verified formula on TheSalonSuite.com" };
+        res = { main: "Unable to calculate", details: "Tool not wired: " + currentToolId, rawFormula: "" };
       }
 
       lastRawFormula = res.rawFormula || res.main;

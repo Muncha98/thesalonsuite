@@ -299,21 +299,65 @@ function runCalculation(tool) {
     res = SalonMath.calcGreyCoverage(vals.grey_pct, vals.total_color_grams, isImp);
   } else if (tool.id === 'balayage-pricing-product-calculator') {
     res = SalonMath.calcBalayagePricing(vals.bowls_bleach, vals.cost_per_bowl, vals.toner_bowls, vals.bond_builder, vals.service_hours, vals.target_hourly, currency);
+  } else if (tool.id === 'toner-ratio-calculator') {
+    res = SalonMath.calcTonerRatio(vals.toner_ml, vals.ratio, isImp);
+  } else if (tool.id === 'color-correction-time-estimator') {
+    res = SalonMath.calcColorCorrection(vals.stages, vals.target_hourly, currency);
+  } else if (tool.id === 'foil-usage-placement-calculator') {
+    res = SalonMath.calcFoilUsage(vals.service_type);
+  } else if (tool.id === 'perm-rod-timing-calculator') {
+    res = SalonMath.calcPermRod(vals.curl_type);
+  } else if (tool.id === 'keratin-treatment-dosage-guide') {
+    res = SalonMath.calcKeratinDosage(vals.hair_length, isImp);
   } else if (tool.id === 'lash-weight-safety-calculator') {
     res = SalonMath.calcLashWeight(vals.natural_lash, vals.fan_dimension);
   } else if (tool.id === 'lash-mapping-blueprint-generator') {
     res = SalonMath.calcLashMapping(vals.eye_shape, vals.style, vals.max_length);
+  } else if (tool.id === 'lash-adhesive-humidity-adjuster') {
+    res = SalonMath.calcLashHumidity(vals.humidity_pct);
+  } else if (tool.id === 'brow-tint-developer-ratio') {
+    res = SalonMath.calcBrowTint(vals.tint_cm, isImp);
+  } else if (tool.id === 'brow-lamination-processing-timer') {
+    res = SalonMath.calcBrowLamination(vals.hair_type);
+  } else if (tool.id === 'acrylic-monomer-ratio-calculator') {
+    res = SalonMath.calcAcrylicMonomer(vals.bead_size);
+  } else if (tool.id === 'gel-nail-cure-lamp-wattage-calculator') {
+    res = SalonMath.calcGelCure(vals.lamp_wattage);
+  } else if (tool.id === 'spray-tan-dha-development-calculator') {
+    res = SalonMath.calcSprayTanDha(vals.skin_type);
+  } else if (tool.id === 'chemical-peel-acid-calculator') {
+    res = SalonMath.calcChemicalPeel(vals.acid_pct, vals.ph_level);
   } else if (tool.id === 'chair-rental-profitability-calculator') {
     res = SalonMath.calcBoothRentVsComm(vals.weekly_sales, vals.comm_split, vals.booth_rent, vals.weekly_supplies, currency);
   } else if (tool.id === 'hairdresser-hourly-rate-calculator') {
     res = SalonMath.calcHourlyRate(vals.annual_revenue, vals.annual_expenses, vals.client_hours_week, vals.admin_hours_week, vals.weeks_worked, currency);
+  } else if (tool.id === 'salon-suite-startup-budget-calculator') {
+    res = SalonMath.calcSuiteStartup(vals.first_last_rent, vals.decor_equipment, vals.initial_stock, vals.avg_ticket, currency);
+  } else if (tool.id === 'self-employed-beauty-tax-calculator') {
+    res = SalonMath.calcSelfEmployedTax(vals.weekly_gross, vals.weekly_tips, vals.weekly_expenses, currency);
+  } else if (tool.id === 'retail-product-markup-calculator') {
+    res = SalonMath.calcRetailMarkup(vals.wholesale_cost, vals.markup_pct, vals.bottles_week, currency);
+  } else if (tool.id === 'salon-software-cost-comparison') {
+    res = SalonMath.calcSoftwareCost(vals.monthly_card_vol, currency);
+  } else if (tool.id === 'salon-profit-margin-calculator') {
+    res = SalonMath.calcProfitMargin(vals.total_rev, vals.total_cost, currency);
+  } else if (tool.id === 'fade-clipper-guard-guide') {
+    res = SalonMath.calcFadeGuards(vals.fade_type);
+  } else if (tool.id === 'beard-oil-carrier-ratio-calculator') {
+    res = SalonMath.calcBeardOil(vals.bottle_size_ml, isImp);
+  } else if (tool.id === 'hot-towel-shave-protocol-timer') {
+    res = SalonMath.calcHotTowelShave(vals.beard_density);
   } else if (tool.id === 'essential-oil-dilution-calculator') {
     res = SalonMath.calcEssentialOilDilution(vals.carrier_ml, vals.dilution_pct, isImp);
+  } else if (tool.id === 'massage-oil-coverage-cost-calculator') {
+    res = SalonMath.calcMassageOilCost(vals.session_len, vals.oil_bottle_cost, currency);
+  } else if (tool.id === 'hot-stone-temp-placement-guide') {
+    res = SalonMath.calcHotStone(vals.stone_type);
   } else {
     res = {
-      main: "Formula Verified",
-      details: "Calculations adhering to professional beauty standards.",
-      rawFormula: "Formula calculated on TheSalonSuite.com"
+      main: "Unable to calculate",
+      details: "This tool is not wired to SalonMath. Please report this ID: " + tool.id,
+      rawFormula: ""
     };
   }
 
