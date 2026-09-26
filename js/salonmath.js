@@ -5,62 +5,277 @@
  */
 
 const SalonMath = {
+  currentRegion: 'US',   // 'US' | 'UK'
+  currentCurrency: 'USD', // 'USD' | 'GBP'
   currentUnit: 'metric', // 'metric' | 'imperial'
-  currentCurrency: '$',  // '$' | '£'
 
-  setUnit: function(unit) {
-    this.currentUnit = unit;
-    this.currentCurrency = (unit === 'metric') ? '£' : '$';
+  setPreferences: function(prefs) {
+    if (!prefs) return;
+    if (prefs.region) this.currentRegion = String(prefs.region).toUpperCase();
+    if (prefs.currency) this.currentCurrency = String(prefs.currency).toUpperCase();
+    if (prefs.unit) this.currentUnit = String(prefs.unit).toLowerCase();
   },
 
-  // 1. Developer Volume Mixing
-  calcDeveloperMixing: function(d1, d2, target, totalAmount, isImperial) {
-    d1 = Number(d1);
-    d2 = Number(d2);
-    target = Number(target);
-    totalAmount = Number(totalAmount) || (isImperial ? 2.0 : 60);
+  setUnit: function(unit) {
+    this.currentUnit = String(unit).toLowerCase();
+  },
 
-    const unitLabel = isImperial ? 'fl oz' : 'ml';
+  setCurrency: function(curr) {
+    this.currentCurrency = String(curr).toUpperCase();
+  },
 
-    if (target <= d1) {
-      return {
-        main: `100% ${d1} Vol`,
-        details: `Use ${totalAmount}${unitLabel} of ${d1} Volume developer alone (no mixing required).`,
-        rawFormula: `${totalAmount}${unitLabel} of ${d1} Vol Developer`
-      };
+  setRegion: function(reg) {
+    this.currentRegion = String(reg).toUpperCase();
+  },
+
+
+  // Shared numeric validation micro-kernel
+  _validateNumeric: function(fields) {
+    const errors = {};
+    for (const [name, val, opts] of fields) {
+      if (val === '' || val === null || val === undefined) {
+        errors[name] = name.replace(/_/g, ' ') + ' is required.';
+        continue;
+      }
+      const n = Number(val);
+      if (!Number.isFinite(n)) {
+        errors[name] = name.replace(/_/g, ' ') + ' must be a valid number.';
+        continue;
+      }
+      if (opts && opts.min !== undefined && n < opts.min) {
+        errors[name] = name.replace(/_/g, ' ') + ' must be at least ' + opts.min + '.';
+      }
+      if (opts && opts.positive && n <= 0) {
+        errors[name] = name.replace(/_/g, ' ') + ' must be greater than zero.';
+      }
     }
-    if (target >= d2) {
-      return {
-        main: `100% ${d2} Vol`,
-        details: `Use ${totalAmount}${unitLabel} of ${d2} Volume developer alone (no mixing required).`,
-        rawFormula: `${totalAmount}${unitLabel} of ${d2} Vol Developer`
-      };
+    if (Object.keys(errors).length > 0) {
+      return { isValid: false, errors, firstError: Object.values(errors)[0] };
+    }
+    return { isValid: true };
+  },
+
+  _errorResult: function(msg) {
+    return {
+      isValid: false,
+      error: msg,
+      main: 'Cannot Calculate',
+      details: msg,
+      rawFormula: ''
+    };
+  },
+
+  // Validation Layer for Developer Mixing
+  validateDeveloperMixing: function(d1, d2, target, totalAmount) {
+    const errors = {};
+
+    // 1. Blank, null or undefined checks
+    if (d1 === '' || d1 === null || d1 === undefined) errors.dev1 = 'Low developer volume is required.';
+    if (d2 === '' || d2 === null || d2 === undefined) errors.dev2 = 'High developer volume is required.';
+    if (target === '' || target === null || target === undefined) errors.target_vol = 'Target developer volume is required.';
+    if (totalAmount === '' || totalAmount === null || totalAmount === undefined) errors.total_ml = 'Total batch quantity is required.';
+
+    if (Object.keys(errors).length > 0) {
+      return { isValid: false, errors, firstError: Object.values(errors)[0] };
     }
 
-    const partsLow = d2 - target;
-    const partsHigh = target - d1;
-    const totalParts = partsLow + partsHigh;
+    // 2. Numeric and finiteness checks
+    const nD1 = Number(d1);
+    const nD2 = Number(d2);
+    const nTarget = Number(target);
+    const nTotal = Number(totalAmount);
 
-    let amountLow, amountHigh;
-    if (isImperial) {
-      amountLow = ((partsLow / totalParts) * totalAmount).toFixed(1);
-      amountHigh = (totalAmount - amountLow).toFixed(1);
-    } else {
-      amountLow = Math.round((partsLow / totalParts) * totalAmount);
-      amountHigh = totalAmount - amountLow;
+    if (isNaN(nD1) || !isFinite(nD1)) errors.dev1 = 'Low developer volume must be a valid number.';
+    if (isNaN(nD2) || !isFinite(nD2)) errors.dev2 = 'High developer volume must be a valid number.';
+    if (isNaN(nTarget) || !isFinite(nTarget)) errors.target_vol = 'Target developer volume must be a valid number.';
+    if (isNaN(nTotal) || !isFinite(nTotal)) errors.total_ml = 'Total batch quantity must be a valid number.';
+
+    if (Object.keys(errors).length > 0) {
+      return { isValid: false, errors, firstError: Object.values(errors)[0] };
+    }
+
+    // 3. Positivity & non-negative bounds
+    if (nD1 < 0) errors.dev1 = 'Low developer volume cannot be negative.';
+    if (nD2 <= 0) errors.dev2 = 'High developer volume must be greater than zero.';
+    if (nTarget <= 0) errors.target_vol = 'Target developer volume must be greater than zero.';
+    if (nTotal <= 0) errors.total_ml = 'Total batch quantity must be greater than zero.';
+    else if (nTotal < 0.1) errors.total_ml = 'Total batch quantity must be at least 0.1 for measurable salon dispensing.';
+
+    if (Object.keys(errors).length > 0) {
+      return { isValid: false, errors, firstError: Object.values(errors)[0] };
+    }
+
+    // 4. Low developer must be strictly less than high developer
+    if (nD1 >= nD2) {
+      errors.dev1 = `Low developer (${nD1} Vol) must be strictly less than high developer (${nD2} Vol).`;
+      return { isValid: false, errors, firstError: errors.dev1 };
+    }
+
+    // 5. Target developer must be within the span [nD1, nD2]
+    if (nTarget < nD1) {
+      errors.target_vol = `Target volume (${nTarget} Vol) cannot be lower than your lowest developer (${nD1} Vol).`;
+      return { isValid: false, errors, firstError: errors.target_vol };
+    }
+    if (nTarget > nD2) {
+      errors.target_vol = `Target volume (${nTarget} Vol) cannot exceed your highest developer (${nD2} Vol).`;
+      return { isValid: false, errors, firstError: errors.target_vol };
     }
 
     return {
-      main: `${amountLow}${unitLabel} ${d1} Vol + ${amountHigh}${unitLabel} ${d2} Vol`,
-      details: `Mixing ${amountLow}${unitLabel} of ${d1} Vol and ${amountHigh}${unitLabel} of ${d2} Vol produces exactly ${totalAmount}${unitLabel} of ${target} Vol developer.`,
-      rawFormula: `Formula: ${amountLow}${unitLabel} ${d1} Vol + ${amountHigh}${unitLabel} ${d2} Vol = ${totalAmount}${unitLabel} ${target} Vol Developer`
+      isValid: true,
+      values: { d1: nD1, d2: nD2, target: nTarget, totalAmount: nTotal }
+    };
+  },
+
+  // 1. Developer Volume Mixing
+  calcDeveloperMixing: function(d1, d2, target, totalAmount, options) {
+    let isImperial = false;
+    let unitLabel = 'ml';
+
+    if (typeof options === 'boolean') {
+      isImperial = options;
+      unitLabel = isImperial ? 'fl oz' : 'ml';
+    } else if (options && typeof options === 'object') {
+      isImperial = options.unit === 'imperial' || options.isImperial === true;
+      unitLabel = options.unitLabel || (isImperial ? 'fl oz' : 'ml');
+    } else {
+      isImperial = (this.currentUnit === 'imperial');
+      unitLabel = isImperial ? 'fl oz' : 'ml';
+    }
+
+    // Defensive input validation
+    const validation = this.validateDeveloperMixing(d1, d2, target, totalAmount);
+    if (!validation.isValid) {
+      return {
+        isValid: false,
+        error: validation.firstError,
+        errors: validation.errors,
+        main: "Cannot Calculate",
+        details: validation.firstError,
+        rawFormula: ""
+      };
+    }
+
+    const { d1: nD1, d2: nD2, target: nTarget, totalAmount: nTotal } = validation.values;
+
+    // Edge case: target equals lowest developer
+    if (nTarget === nD1) {
+      return {
+        isValid: true,
+        main: `100% ${nD1} Vol`,
+        details: `Use ${nTotal}${unitLabel} of ${nD1} Volume developer alone (no mixing required).`,
+        rawFormula: `${nTotal}${unitLabel} of ${nD1} Vol Developer`,
+        data: {
+          d1: nD1,
+          d2: nD2,
+          target: nTarget,
+          totalAmount: nTotal,
+          unitLabel: unitLabel,
+          amountLow: nTotal,
+          amountHigh: 0,
+          partsLow: 1,
+          partsHigh: 0,
+          ratioString: "100% Low"
+        }
+      };
+    }
+
+    // Edge case: target equals highest developer
+    if (nTarget === nD2) {
+      return {
+        isValid: true,
+        main: `100% ${nD2} Vol`,
+        details: `Use ${nTotal}${unitLabel} of ${nD2} Volume developer alone (no mixing required).`,
+        rawFormula: `${nTotal}${unitLabel} of ${nD2} Vol Developer`,
+        data: {
+          d1: nD1,
+          d2: nD2,
+          target: nTarget,
+          totalAmount: nTotal,
+          unitLabel: unitLabel,
+          amountLow: 0,
+          amountHigh: nTotal,
+          partsLow: 0,
+          partsHigh: 1,
+          ratioString: "100% High"
+        }
+      };
+    }
+
+    // Pearson's Alligation Alternate formula
+    const partsLow = nD2 - nTarget;
+    const partsHigh = nTarget - nD1;
+    const totalParts = partsLow + partsHigh;
+
+    // Preserve exact unrounded calculation values for consumers
+    const rawAmountLow = (partsLow / totalParts) * nTotal;
+    const rawAmountHigh = (partsHigh / totalParts) * nTotal;
+
+    // Supported precision: salon equipment measures 1 ml / 0.1 ml (or 0.01 ml / 0.01 oz on digital scales)
+    const countDecimals = (num) => {
+      const str = String(num);
+      const dot = str.indexOf('.');
+      return dot === -1 ? 0 : str.length - dot - 1;
+    };
+
+    const hasFractions = (rawAmountLow % 1 !== 0) || (rawAmountHigh % 1 !== 0) || (nTotal % 1 !== 0);
+    // Precision resolution: 0 for clean integers; otherwise dynamically support input decimals up to 2 decimal places (min 1)
+    const precision = hasFractions ? Math.min(2, Math.max(isImperial ? 1 : 1, countDecimals(nTotal))) : 0;
+
+    const amountLow = Number(rawAmountLow.toFixed(precision));
+    const amountHigh = Number((nTotal - amountLow).toFixed(precision));
+
+    // Zero-component defense: if either required developer rounds to 0 at supported precision, reject
+    if (amountLow <= 0 || amountHigh <= 0) {
+      const err = `Total batch quantity (${nTotal}${unitLabel}) is too small to dispense both ${nD1} Vol and ${nD2} Vol components at supported measuring precision. Increase batch size.`;
+      return {
+        isValid: false,
+        error: err,
+        errors: { total_ml: err },
+        main: "Cannot Calculate",
+        details: err,
+        rawFormula: ""
+      };
+    }
+
+    const actualTotal = Number((amountLow + amountHigh).toFixed(precision));
+    const isExact = (actualTotal === nTotal);
+    const descText = isExact
+      ? `produces ${nTotal}${unitLabel} of ${nTarget} Vol developer.`
+      : `produces approximately ${actualTotal}${unitLabel} of ${nTarget} Vol developer (rounded from ${nTotal}${unitLabel} requested).`;
+
+    return {
+      isValid: true,
+      main: `${amountLow}${unitLabel} ${nD1} Vol + ${amountHigh}${unitLabel} ${nD2} Vol`,
+      details: `Mixing ${amountLow}${unitLabel} of ${nD1} Vol and ${amountHigh}${unitLabel} of ${nD2} Vol ${descText}`,
+      rawFormula: `Formula: ${amountLow}${unitLabel} ${nD1} Vol + ${amountHigh}${unitLabel} ${nD2} Vol = ${actualTotal}${unitLabel} ${nTarget} Vol Developer`,
+      data: {
+        d1: nD1,
+        d2: nD2,
+        target: nTarget,
+        totalAmount: nTotal,
+        unitLabel: unitLabel,
+        amountLow: amountLow,
+        amountHigh: amountHigh,
+        rawAmountLow: rawAmountLow,
+        rawAmountHigh: rawAmountHigh,
+        rawTotal: nTotal,
+        actualTotal: actualTotal,
+        isExact: isExact,
+        partsLow: partsLow,
+        partsHigh: partsHigh,
+        totalParts: totalParts,
+        ratioString: `${partsLow}:${partsHigh}`
+      }
     };
   },
 
   // 2. Bleach to Developer Ratio
   calcBleachRatio: function(powderAmount, ratioStr, isImperial) {
     const unitLabel = isImperial ? 'oz' : 'g';
-    powderAmount = Number(powderAmount) || (isImperial ? 1.0 : 30);
+    const v = this._validateNumeric([['powder_amount', powderAmount, { positive: true }]]);
+    if (!v.isValid) return this._errorResult(v.firstError);
+    powderAmount = Number(powderAmount);
     
     let multiplier = 2;
     if (ratioStr === '1:1') multiplier = 1;
@@ -78,6 +293,7 @@ const SalonMath = {
     }
 
     return {
+      isValid: true,
       main: `${devAmount}${unitLabel} Developer (${powderAmount}${unitLabel} Powder)`,
       details: `Total bowl weight: ${totalWeight}${unitLabel}. For a ${ratioStr} ratio, tare your digital scale and pour developer until scale reaches ${totalWeight}${unitLabel}.`,
       rawFormula: `Bleach Formula (${ratioStr}): ${powderAmount}${unitLabel} Powder + ${devAmount}${unitLabel} Developer = ${totalWeight}${unitLabel} Total`
@@ -102,6 +318,7 @@ const SalonMath = {
 
     const info = data[level] || data[8];
     return {
+      isValid: true,
       main: `Exposed: ${info.undertone} ➔ Neutralize with: ${info.neutralizer}`,
       details: `Target Neutralizing Pigment: ${info.toneExample}. Use with 5–10 Vol developer on damp, towel-dried hair for 10–20 minutes.`,
       rawFormula: `Level ${level} Exposed Pigment: ${info.undertone} | Neutralizer: ${info.neutralizer} (${info.toneExample})`
@@ -110,9 +327,14 @@ const SalonMath = {
 
   // 4. Grey Coverage Formulation
   calcGreyCoverage: function(greyPct, totalAmount, isImperial) {
+    const v = this._validateNumeric([
+      ['grey_percentage', greyPct, { min: 0 }],
+      ['total_amount', totalAmount, { positive: true }]
+    ]);
+    if (!v.isValid) return this._errorResult(v.firstError);
     greyPct = Number(greyPct);
     const unitLabel = isImperial ? 'oz' : 'g';
-    totalAmount = Number(totalAmount) || (isImperial ? 2.0 : 60);
+    totalAmount = Number(totalAmount);
 
     let basePct = 0;
     if (greyPct <= 25) basePct = 0.25;
@@ -130,6 +352,7 @@ const SalonMath = {
     }
 
     return {
+      isValid: true,
       main: `${baseAmount}${unitLabel} Base (N) + ${fashionAmount}${unitLabel} Fashion Shade`,
       details: `For ${greyPct}% grey hair, use 20 Volume (6%) developer at 1:1 or 1:1.5 ratio. Process for a full 45 minutes for resistant cuticles.`,
       rawFormula: `Grey Formula (${greyPct}% grey): ${baseAmount}${unitLabel} Natural Base (N) + ${fashionAmount}${unitLabel} Fashion Target Shade`
@@ -150,6 +373,7 @@ const SalonMath = {
     const recommendedPrice = Math.round(productCost + laborCost);
 
     return {
+      isValid: true,
       main: `Recommended Quote: ${curr}${recommendedPrice}`,
       details: `Product Backbar Cost: ${curr}${productCost.toFixed(2)} | Labor (${hours}h @ ${curr}${hourlyRate}/h): ${curr}${laborCost.toFixed(2)}. Profit Margin: ~${Math.round((laborCost/recommendedPrice)*100)}%.`,
       rawFormula: `Balayage Quote: ${curr}${recommendedPrice} (${hours}h service + ${curr}${productCost.toFixed(2)} backbar stock)`
@@ -168,6 +392,7 @@ const SalonMath = {
 
     const conf = weights[fanDimension] || weights["5D"];
     return {
+      isValid: true,
       main: `Safe Fan Diameter: ${conf.safeDia}`,
       details: `${conf.note} Natural lash condition: ${naturalLash}. Never apply fan weights that exceed the natural lash load limit.`,
       rawFormula: `Safe Lash Fan: ${fanDimension} using ${conf.safeDia} diameter for ${naturalLash} lash`
@@ -185,6 +410,7 @@ const SalonMath = {
     };
 
     return {
+      isValid: true,
       main: `${style.replace('_', ' ').toUpperCase()}: ${maps[style] || maps.squirrel}`,
       details: `Ideal for ${eyeShape} eyes. Inner corners: keep lengths 7–8mm to prevent eyelid irritation and premature shedding.`,
       rawFormula: `Lash Map (${style} on ${eyeShape} eyes): ${maps[style] || maps.squirrel}`
@@ -204,6 +430,7 @@ const SalonMath = {
     const diff = boothTakeHome - commTakeHome;
 
     return {
+      isValid: true,
       main: diff >= 0 ? `Booth Rent Yields +${curr}${Math.round(diff)}/week More Take-Home` : `Commission Yields +${curr}${Math.round(Math.abs(diff))}/week More`,
       details: `Suite Rental Net: ${curr}${Math.round(boothTakeHome)}/wk (${curr}${Math.round(boothTakeHome*4.33)}/mo) vs. Commission Net: ${curr}${Math.round(commTakeHome)}/wk (${curr}${Math.round(commTakeHome*4.33)}/mo). Annual Difference: ${curr}${Math.round(diff * 50)}/year.`,
       rawFormula: `Booth Rent Net: ${curr}${Math.round(boothTakeHome)}/wk vs Commission Net: ${curr}${Math.round(commTakeHome)}/wk (Annual Difference: ${curr}${Math.round(diff * 50)}/yr)`
@@ -227,6 +454,7 @@ const SalonMath = {
     const chairHourly = netIncome / clientHoursPerYear;
 
     return {
+      isValid: true,
       main: `True Net Rate: ${curr}${realHourly.toFixed(2)} / hr (All working time)`,
       details: `Chair-Only Rate: ${curr}${chairHourly.toFixed(2)}/hr. Annual Net Profit: ${curr}${Math.round(netIncome)}. Total hours worked per year: ${totalHoursPerYear} hours.`,
       rawFormula: `True Hourly Net Rate: ${curr}${realHourly.toFixed(2)}/hr (${totalHoursPerYear} hrs/yr on ${curr}${Math.round(netIncome)} net profit)`
@@ -244,6 +472,7 @@ const SalonMath = {
     const unitLabel = isImperial ? 'fl oz' : 'ml';
 
     return {
+      isValid: true,
       main: `${essentialDrops} Drops of Essential Oil for ${carrierAmount}${unitLabel}`,
       details: `For a ${pct}% dilution in ${carrierAmount}${unitLabel} of carrier oil (Jojoba/Sweet Almond), add exactly ${essentialDrops} drops of essential oil.`,
       rawFormula: `Essential Oil Dilution (${pct}%): Add ${essentialDrops} drops to ${carrierAmount}${unitLabel} carrier oil`
@@ -270,6 +499,7 @@ const SalonMath = {
       : 'Standard demi: visual check at 5 and 10 minutes, process up to 20 minutes.';
 
     return {
+      isValid: true,
       main: `${tonerMl}${unitLabel} Toner + ${developer}${unitLabel} Developer (${ratioStr})`,
       details: `Total mix: ${total}${unitLabel}. Use 5–10 Vol dedicated toner developer. ${processNote}`,
       rawFormula: `Toner (${ratioStr}): ${tonerMl}${unitLabel} color + ${developer}${unitLabel} developer = ${total}${unitLabel}`
@@ -288,6 +518,7 @@ const SalonMath = {
     const quote = Math.round(labor + backbar);
 
     return {
+      isValid: true,
       main: `Quote: ${curr}${quote} (~${totalHours.toFixed(1)} hrs)`,
       details: `${stages} stage(s) × ${hoursPerStage}h = ${totalHours.toFixed(1)}h labor @ ${curr}${hourlyRate}/h (${curr}${Math.round(labor)}) + ~${curr}${backbar} backbar buffer.`,
       rawFormula: `Color Correction: ${stages} stages × ${hoursPerStage}h × ${curr}${hourlyRate} + ${curr}${backbar} backbar = ${curr}${quote}`
@@ -303,6 +534,7 @@ const SalonMath = {
     };
     const conf = map[serviceType] || map.full;
     return {
+      isValid: true,
       main: `Estimated Foils: ${conf.foils}`,
       details: conf.note,
       rawFormula: `Foil Placement (${serviceType}): ${conf.foils} foils`
@@ -318,6 +550,7 @@ const SalonMath = {
     };
     const conf = map[curlType] || map.beach;
     return {
+      isValid: true,
       main: `Rod Choice: ${conf.rods}`,
       details: `${conf.note} Timing: ${conf.process}. Always perform a test curl before neutralizing.`,
       rawFormula: `Perm Rod (${curlType}): ${conf.rods} | ${conf.process}`
@@ -339,6 +572,7 @@ const SalonMath = {
       : conf.range;
 
     return {
+      isValid: true,
       main: `Dose: ~${amount}${unitLabel} (${rangeLabel})`,
       details: `Apply thin even layers mid-lengths to ends, then roots last. Flat iron: ${conf.passes} at ${conf.temp}. Follow brand-specific wash wait time.`,
       rawFormula: `Keratin Dosage (${hairLength}): ${rangeLabel} | ${conf.passes} @ ${conf.temp}`
@@ -367,6 +601,7 @@ const SalonMath = {
       cure = '3–5s';
     }
     return {
+      isValid: true,
       main: `${humidityPct}% RH → ${glue}`,
       details: `Expected cure: ${cure}. ${tip}`,
       rawFormula: `Lash Adhesive @ ${humidityPct}% RH: ${glue} (cure ~${cure})`
@@ -383,6 +618,7 @@ const SalonMath = {
       : `${Math.round(tintCm * 0.5)}ml cream oxidant (approx 1:1 by volume)`;
 
     return {
+      isValid: true,
       main: `${tintCm}cm Tint → ${drops} Drops of 10 Vol (3%) Developer`,
       details: `Liquid oxidant: ${drops} drops. Or use cream oxidant ~${creamOxidant}. Process 5–10 minutes; patch-test first.`,
       rawFormula: `Brow Tint: ${tintCm}cm cream + ${drops} drops 10 Vol developer`
@@ -398,6 +634,7 @@ const SalonMath = {
     };
     const conf = map[hairType] || map.medium;
     return {
+      isValid: true,
       main: `Step 1 (Lift): ${conf.step1} → Step 2 (Set): ${conf.step2}`,
       details: `${conf.note} Neutralize for equal time to Step 1. Finish with nourishing oil after full process.`,
       rawFormula: `Brow Lamination (${hairType}): Step1 ${conf.step1} | Step2 ${conf.step2}`
@@ -413,6 +650,7 @@ const SalonMath = {
     };
     const conf = map[beadSize] || map.medium;
     return {
+      isValid: true,
       main: `${conf.zone}: ${conf.ratio}`,
       details: conf.note,
       rawFormula: `Acrylic Bead (${beadSize} / ${conf.zone}): ${conf.ratio}`
@@ -428,6 +666,7 @@ const SalonMath = {
     };
     const conf = map[lampWattage] || map['48w'];
     return {
+      isValid: true,
       main: `Color Gel: ${conf.color} | Builder: ${conf.builder}`,
       details: `${conf.note} Always match lamp wavelength to gel brand recommendations.`,
       rawFormula: `Gel Cure (${lampWattage}): color ${conf.color}, builder ${conf.builder}`
@@ -444,6 +683,7 @@ const SalonMath = {
     };
     const conf = map[skinType] || map.type2;
     return {
+      isValid: true,
       main: `Solution: ${conf.dha}`,
       details: `Rinse window: ${conf.rinse}. ${conf.note}`,
       rawFormula: `Spray Tan (${skinType}): ${conf.dha}, rinse ${conf.rinse}`
@@ -452,8 +692,13 @@ const SalonMath = {
 
   // 22. Chemical Peel Acid Strength (simplified free-acid estimate)
   calcChemicalPeel: function(acidPct, phLevel) {
-    acidPct = Number(acidPct) || 30;
-    phLevel = Number(phLevel) || 2.5;
+    const v = this._validateNumeric([
+      ['acid_percentage', acidPct, { positive: true }],
+      ['ph_level', phLevel, { min: 0 }]
+    ]);
+    if (!v.isValid) return this._errorResult(v.firstError);
+    acidPct = Number(acidPct);
+    phLevel = Number(phLevel);
     // Approximate free acid using Henderson–Hasselbalch with typical AHA pKa ≈ 3.5
     const pKa = 3.5;
     const freeFrac = 1 / (1 + Math.pow(10, phLevel - pKa));
@@ -465,6 +710,7 @@ const SalonMath = {
     else strength = 'Aggressive — advanced use only';
 
     return {
+      isValid: true,
       main: `~${freeAcid.toFixed(1)}% Free Acid (${strength})`,
       details: `Nominal ${acidPct}% at pH ${phLevel} (pKa≈${pKa}) → free acid ≈ ${freeAcid.toFixed(1)}%. Lower pH increases bioavailability. Patch-test; follow brand protocols.`,
       rawFormula: `Peel Free Acid ≈ ${acidPct}% × 1/(1+10^(${phLevel}-${pKa})) = ${freeAcid.toFixed(1)}%`
@@ -485,6 +731,7 @@ const SalonMath = {
     const clientsToRecoupStartup = Math.ceil(startupTotal / avgTicket);
 
     return {
+      isValid: true,
       main: `Startup Total: ${curr}${startupTotal.toLocaleString()} | Break-even ≈ ${clientsToBreakEvenMonth} clients/mo`,
       details: `Deposit/rent block ${curr}${firstLastRent} + build-out ${curr}${decorEquipment} + stock ${curr}${initialStock}. Est. monthly fixed ~${curr}${monthlyFixed}. Clients to recoup startup: ~${clientsToRecoupStartup} @ ${curr}${avgTicket}/ticket.`,
       rawFormula: `Suite Startup: ${curr}${startupTotal}; monthly BE ≈ ${clientsToBreakEvenMonth} clients @ ${curr}${avgTicket}`
@@ -504,6 +751,7 @@ const SalonMath = {
     const annualSetAside = weeklySetAside * 52;
 
     return {
+      isValid: true,
       main: `Set Aside ~${curr}${Math.round(weeklySetAside)}/wk (28% of net)`,
       details: `Weekly taxable net: ${curr}${Math.round(weeklyNet)} (gross ${curr}${weeklyGross} + tips ${curr}${weeklyTips} − expenses ${curr}${weeklyExpenses}). Annual net ≈ ${curr}${Math.round(annualNet)}; annual tax reserve ≈ ${curr}${Math.round(annualSetAside)}. Confirm with a tax professional.`,
       rawFormula: `Tax Reserve: 28% × ${curr}${Math.round(weeklyNet)}/wk = ${curr}${Math.round(weeklySetAside)}/wk`
@@ -522,6 +770,7 @@ const SalonMath = {
     const weeklyProfit = profitPerBottle * bottlesWeek;
 
     return {
+      isValid: true,
       main: `Retail ${curr}${retail.toFixed(2)} | Margin ${marginPct.toFixed(0)}% | ${curr}${weeklyProfit.toFixed(0)}/wk profit`,
       details: `Wholesale ${curr}${wholesaleCost.toFixed(2)} + ${markupPct}% markup → ${curr}${retail.toFixed(2)}. Profit/bottle ${curr}${profitPerBottle.toFixed(2)}. At ${bottlesWeek}/wk ≈ ${curr}${weeklyProfit.toFixed(2)} weekly retail profit.`,
       rawFormula: `Retail = ${curr}${wholesaleCost} × (1+${markupPct}/100) = ${curr}${retail.toFixed(2)}`
@@ -546,6 +795,7 @@ const SalonMath = {
       return `${p.name}: ~${curr}${Math.round(p.monthly + processing)}/mo (~${curr}${Math.round(annual)}/yr)`;
     });
     return {
+      isValid: true,
       main: `At ${curr}${monthlyCardVol.toLocaleString()}/mo card volume`,
       details: lines.join(' · ') + '. Compare your contract’s monthly SaaS fee + card %; cancel unused seats.',
       rawFormula: `Software Cost ≈ (Monthly SaaS × 12) + (Card Volume × fee%)`
@@ -566,6 +816,7 @@ const SalonMath = {
     else band = 'Loss';
 
     return {
+      isValid: true,
       main: `Net Margin: ${margin.toFixed(1)}% (${band}) — ${curr}${Math.round(net)}`,
       details: `Revenue ${curr}${Math.round(totalRev)} − expenses ${curr}${Math.round(totalCost)} = ${curr}${Math.round(net)} net. Target 15–25%+ after backbar and owner pay.`,
       rawFormula: `Net Margin = (${curr}${Math.round(totalRev)} − ${curr}${Math.round(totalCost)}) / ${curr}${Math.round(totalRev)} × 100 = ${margin.toFixed(1)}%`
@@ -590,6 +841,7 @@ const SalonMath = {
     };
     const conf = map[fadeType] || map.mid_skin;
     return {
+      isValid: true,
       main: conf.main,
       details: conf.details + ' Stretch each band; detail with trimmer/shader.',
       rawFormula: `Fade Guards (${fadeType}): ${conf.main}`
@@ -609,6 +861,7 @@ const SalonMath = {
     const fmt = (v) => isImperial ? (v / 30).toFixed(2) : String(Math.round(v));
 
     return {
+      isValid: true,
       main: `${fmt(jojoba)}${unit} Jojoba + ${fmt(argan)}${unit} Argan + ${fmt(castor)}${unit} Castor + ${eoDrops} EO drops`,
       details: `60/30/10 carrier split for ${isImperial ? bottleSizeMl + ' fl oz' : ml + 'ml'} bottle with ~1% essential-oil load (${eoDrops} drops). Shake before use.`,
       rawFormula: `Beard Oil ${isImperial ? bottleSizeMl + 'fl oz' : ml + 'ml'}: 60% jojoba / 30% argan / 10% castor + ${eoDrops} EO drops`
@@ -623,6 +876,7 @@ const SalonMath = {
     };
     const conf = map[beardDensity] || map.coarse;
     return {
+      isValid: true,
       main: `Steam ${conf.steam} @ ~130°F / 54°C`,
       details: `Protocol: 2 min pre-shave oil → hot towel (${conf.steam}) → first pass with grain → 2 min second towel → against-grain / cross-grain as tolerated. ${conf.note}`,
       rawFormula: `Hot Towel Shave (${beardDensity}): steam ${conf.steam}; oil → towel → with-grain → towel → against-grain`
@@ -639,6 +893,7 @@ const SalonMath = {
     const cost = costPerMl * mlUsed;
 
     return {
+      isValid: true,
       main: `${mlUsed}ml used → ${curr}${cost.toFixed(2)} backbar / session`,
       details: `1 L bottle @ ${curr}${oilBottleCost.toFixed(2)} → ${curr}${costPerMl.toFixed(4)}/ml. ${sessionLen}-minute session uses ~${mlUsed}ml (~${(mlUsed/30).toFixed(2)} fl oz).`,
       rawFormula: `Massage Oil Cost: ${mlUsed}ml × (${curr}${oilBottleCost}/1000ml) = ${curr}${cost.toFixed(2)}`
@@ -653,9 +908,18 @@ const SalonMath = {
     };
     const conf = map[stoneType] || map.back;
     return {
+      isValid: true,
       main: `${conf.place}: ${conf.tempF}`,
       details: `Heater bath target 120–130°F (49–54°C). Placement temp: ${conf.tempF} (${conf.tempC}). ${conf.note}`,
       rawFormula: `Hot Stone (${stoneType}): ${conf.place} @ ${conf.tempF}`
     };
   }
 };
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = SalonMath;
+}
+if (typeof window !== 'undefined') {
+  window.SalonMath = SalonMath;
+}
+
