@@ -417,9 +417,18 @@ const SalonMath = {
       "7D": { safeDia: "0.04mm – 0.05mm", note: "Mega volume fan. Lightweight base." },
       "10D": { safeDia: "0.03mm Ultra-Fine", note: "Super mega volume. Must use 0.03mm only to protect lash follicle." }
     };
+    const validLash = ['fine', 'normal', 'coarse'];
 
-    const conf = weights[fanDimension] || weights["5D"];
+    if (!validLash.includes(naturalLash)) {
+      return { isValid: false, error: 'Please select a valid natural lash condition.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (!Object.prototype.hasOwnProperty.call(weights, fanDimension)) {
+      return { isValid: false, error: 'Please select a valid fan dimension.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    const conf = weights[fanDimension];
     return {
+      isValid: true,
       main: `Safe Fan Diameter: ${conf.safeDia}`,
       details: `${conf.note} Natural lash condition: ${naturalLash}. Never apply fan weights that exceed the natural lash load limit.`,
       rawFormula: `Safe Lash Fan: ${fanDimension} using ${conf.safeDia} diameter for ${naturalLash} lash`
@@ -428,18 +437,38 @@ const SalonMath = {
 
   // 7. Lash Mapping Blueprint
   calcLashMapping: function(eyeShape, style, maxLen) {
-    maxLen = Number(maxLen) || 13;
-    const maps = {
-      "cat_eye": `8mm ➔ 9mm ➔ 10mm ➔ 11mm ➔ 12mm ➔ ${maxLen}mm ➔ ${maxLen-1}mm at outer tip`,
-      "doll_eye": `8mm ➔ 10mm ➔ 12mm ➔ ${maxLen}mm (center) ➔ 12mm ➔ 10mm ➔ 8mm`,
-      "squirrel": `8mm ➔ 9mm ➔ 11mm ➔ 12mm ➔ ${maxLen}mm (arch peak) ➔ 11mm ➔ 10mm`,
-      "natural": `7mm ➔ 8mm ➔ 9mm ➔ 10mm ➔ ${maxLen}mm ➔ 11mm ➔ 9mm`
-    };
+    const validEyeShapes = ['Almond', 'Round', 'Hooded', 'DeepSet'];
+    if (!validEyeShapes.includes(eyeShape)) {
+      return { isValid: false, error: 'Please select a valid eye shape.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
 
+    const maps = {
+      "cat_eye": (m) => `8mm ➔ 9mm ➔ 10mm ➔ 11mm ➔ 12mm ➔ ${m}mm ➔ ${m-1}mm at outer tip`,
+      "doll_eye": (m) => `8mm ➔ 10mm ➔ 12mm ➔ ${m}mm (center) ➔ 12mm ➔ 10mm ➔ 8mm`,
+      "squirrel": (m) => `8mm ➔ 9mm ➔ 11mm ➔ 12mm ➔ ${m}mm (arch peak) ➔ 11mm ➔ 10mm`,
+      "natural": (m) => `7mm ➔ 8mm ➔ 9mm ➔ 10mm ➔ ${m}mm ➔ 11mm ➔ 9mm`
+    };
+    if (!Object.prototype.hasOwnProperty.call(maps, style)) {
+      return { isValid: false, error: 'Please select a valid mapping style.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    if (maxLen === '' || maxLen === null || maxLen === undefined) {
+      return { isValid: false, error: 'Maximum peak length is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nMax = Number(maxLen);
+    if (!Number.isFinite(nMax)) {
+      return { isValid: false, error: 'Maximum peak length must be a valid number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nMax < 10 || nMax > 16) {
+      return { isValid: false, error: 'Maximum peak length must be between 10mm and 16mm.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    const mapText = maps[style](nMax);
     return {
-      main: `${style.replace('_', ' ').toUpperCase()}: ${maps[style] || maps.squirrel}`,
+      isValid: true,
+      main: `${style.replace('_', ' ').toUpperCase()}: ${mapText}`,
       details: `Ideal for ${eyeShape} eyes. Inner corners: keep lengths 7–8mm to prevent eyelid irritation and premature shedding.`,
-      rawFormula: `Lash Map (${style} on ${eyeShape} eyes): ${maps[style] || maps.squirrel}`
+      rawFormula: `Lash Map (${style} on ${eyeShape} eyes): ${mapText}`
     };
   },
 
@@ -650,7 +679,17 @@ const SalonMath = {
 
   // 16. Lash Adhesive Humidity Adjuster
   calcLashHumidity: function(humidityPct) {
-    humidityPct = Number(humidityPct) || 50;
+    if (humidityPct === '' || humidityPct === null || humidityPct === undefined) {
+      return { isValid: false, error: 'Current salon room humidity is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nHumidity = Number(humidityPct);
+    if (!Number.isFinite(nHumidity)) {
+      return { isValid: false, error: 'Humidity must be a valid number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nHumidity < 0 || nHumidity > 100) {
+      return { isValid: false, error: 'Humidity must be between 0% and 100%.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    humidityPct = nHumidity;
     let glue, tip, cure;
     if (humidityPct < 40) {
       glue = 'Fast adhesive (0.5–1s) + humidity booster / nebulizer';
@@ -670,6 +709,7 @@ const SalonMath = {
       cure = '3–5s';
     }
     return {
+      isValid: true,
       main: `${humidityPct}% RH → ${glue}`,
       details: `Expected cure: ${cure}. ${tip}`,
       rawFormula: `Lash Adhesive @ ${humidityPct}% RH: ${glue} (cure ~${cure})`
@@ -678,17 +718,30 @@ const SalonMath = {
 
   // 17. Brow Tint Developer Ratio
   calcBrowTint: function(tintCm, isImperial) {
-    tintCm = Number(tintCm) || 2;
+    if (tintCm === '' || tintCm === null || tintCm === undefined) {
+      return { isValid: false, error: 'Tint cream strip length is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nTint = Number(tintCm);
+    if (!Number.isFinite(nTint)) {
+      return { isValid: false, error: 'Tint cream strip length must be a valid number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nTint <= 0) {
+      return { isValid: false, error: 'Tint cream strip length must be greater than zero.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nTint > 20) {
+      return { isValid: false, error: 'Tint cream strip length cannot exceed 20cm (this calculator is for single-client use).', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
     // 2cm tint cream ≈ 10 drops of 3% (10 Vol) liquid developer
-    const drops = Math.round((tintCm / 2) * 10);
+    const drops = Math.round((nTint / 2) * 10);
     const creamOxidant = isImperial
-      ? `${(tintCm * 0.03).toFixed(2)} fl oz cream oxidant (1:1)`
-      : `${Math.round(tintCm * 0.5)}ml cream oxidant (approx 1:1 by volume)`;
+      ? `${(nTint * 0.03).toFixed(2)} fl oz cream oxidant (1:1)`
+      : `${Math.round(nTint * 0.5)}ml cream oxidant (approx 1:1 by volume)`;
 
     return {
-      main: `${tintCm}cm Tint → ${drops} Drops of 10 Vol (3%) Developer`,
+      isValid: true,
+      main: `${nTint}cm Tint → ${drops} Drops of 10 Vol (3%) Developer`,
       details: `Liquid oxidant: ${drops} drops. Or use cream oxidant ~${creamOxidant}. Process 5–10 minutes; patch-test first.`,
-      rawFormula: `Brow Tint: ${tintCm}cm cream + ${drops} drops 10 Vol developer`
+      rawFormula: `Brow Tint: ${nTint}cm cream + ${drops} drops 10 Vol developer`
     };
   },
 
@@ -699,8 +752,12 @@ const SalonMath = {
       medium: { step1: '6–7 min', step2: '6–7 min', note: 'Medium texture: standard lamination window.' },
       coarse: { step1: '8–10 min', step2: '8–10 min', note: 'Coarse / stubborn hairs need full Step 1 window; do not exceed brand max.' }
     };
-    const conf = map[hairType] || map.medium;
+    if (!Object.prototype.hasOwnProperty.call(map, hairType)) {
+      return { isValid: false, error: 'Please select a valid brow hair texture.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const conf = map[hairType];
     return {
+      isValid: true,
       main: `Step 1 (Lift): ${conf.step1} → Step 2 (Set): ${conf.step2}`,
       details: `${conf.note} Neutralize for equal time to Step 1. Finish with nourishing oil after full process.`,
       rawFormula: `Brow Lamination (${hairType}): Step1 ${conf.step1} | Step2 ${conf.step2}`
@@ -714,8 +771,12 @@ const SalonMath = {
       medium: { ratio: '~1.5:1 liquid:powder', zone: 'Apex Zone 2', note: 'Medium structural bead. Surface should satin-smooth within ~3 seconds of powder pickup.' },
       large: { ratio: '~2:1 liquid:powder (wetter bead)', zone: 'Free Edge Zone 3', note: 'Large wetter bead for extension / sculpting free edge before shaping.' }
     };
-    const conf = map[beadSize] || map.medium;
+    if (!Object.prototype.hasOwnProperty.call(map, beadSize)) {
+      return { isValid: false, error: 'Please select a valid target bead application.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const conf = map[beadSize];
     return {
+      isValid: true,
       main: `${conf.zone}: ${conf.ratio}`,
       details: conf.note,
       rawFormula: `Acrylic Bead (${beadSize} / ${conf.zone}): ${conf.ratio}`
@@ -729,8 +790,12 @@ const SalonMath = {
       '48w': { color: '30–60s', builder: '60s', note: '48W pro LED/UV — standard salon cure times for most gel systems.' },
       '54w': { color: '30–45s', builder: '30–60s', note: '54W heavy-duty — follow brand max to avoid overcure heat spikes.' }
     };
-    const conf = map[lampWattage] || map['48w'];
+    if (!Object.prototype.hasOwnProperty.call(map, lampWattage)) {
+      return { isValid: false, error: 'Please select a valid lamp wattage.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const conf = map[lampWattage];
     return {
+      isValid: true,
       main: `Color Gel: ${conf.color} | Builder: ${conf.builder}`,
       details: `${conf.note} Always match lamp wavelength to gel brand recommendations.`,
       rawFormula: `Gel Cure (${lampWattage}): color ${conf.color}, builder ${conf.builder}`
@@ -745,8 +810,12 @@ const SalonMath = {
       type3: { dha: '11%–12% DHA', rinse: '8–10 hrs', note: 'Medium / olive — deeper develop; moisturize after rinse.' },
       type4: { dha: '14% DHA', rinse: '8–12 hrs', note: 'Dark / deep — high DHA; patch-test for evenness.' }
     };
-    const conf = map[skinType] || map.type2;
+    if (!Object.prototype.hasOwnProperty.call(map, skinType)) {
+      return { isValid: false, error: 'Please select a valid Fitzpatrick skin type.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const conf = map[skinType];
     return {
+      isValid: true,
       main: `Solution: ${conf.dha}`,
       details: `Rinse window: ${conf.rinse}. ${conf.note}`,
       rawFormula: `Spray Tan (${skinType}): ${conf.dha}, rinse ${conf.rinse}`
@@ -755,12 +824,26 @@ const SalonMath = {
 
   // 22. Chemical Peel Acid Strength (simplified free-acid estimate)
   calcChemicalPeel: function(acidPct, phLevel) {
-    acidPct = Number(acidPct) || 30;
-    phLevel = Number(phLevel) || 2.5;
+    if (acidPct === '' || acidPct === null || acidPct === undefined) {
+      return { isValid: false, errors: { acid_pct: 'Acid concentration is required.' }, error: 'Acid concentration is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nAcid = Number(acidPct);
+    if (!Number.isFinite(nAcid) || nAcid <= 0 || nAcid > 100) {
+      return { isValid: false, errors: { acid_pct: 'Acid concentration must be between 0 and 100%.' }, error: 'Acid concentration must be between 0 and 100%.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    if (phLevel === '' || phLevel === null || phLevel === undefined) {
+      return { isValid: false, errors: { ph_level: 'Solution pH level is required.' }, error: 'Solution pH level is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nPh = Number(phLevel);
+    if (!Number.isFinite(nPh) || nPh < 0 || nPh > 14) {
+      return { isValid: false, errors: { ph_level: 'pH level must be between 0 and 14.' }, error: 'pH level must be between 0 and 14.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
     // Approximate free acid using Henderson–Hasselbalch with typical AHA pKa ≈ 3.5
     const pKa = 3.5;
-    const freeFrac = 1 / (1 + Math.pow(10, phLevel - pKa));
-    const freeAcid = acidPct * freeFrac;
+    const freeFrac = 1 / (1 + Math.pow(10, nPh - pKa));
+    const freeAcid = nAcid * freeFrac;
     let strength;
     if (freeAcid < 10) strength = 'Mild / Lunchtime';
     else if (freeAcid < 20) strength = 'Moderate';
@@ -768,9 +851,10 @@ const SalonMath = {
     else strength = 'Aggressive — advanced use only';
 
     return {
+      isValid: true,
       main: `~${freeAcid.toFixed(1)}% Free Acid (${strength})`,
-      details: `Nominal ${acidPct}% at pH ${phLevel} (pKa≈${pKa}) → free acid ≈ ${freeAcid.toFixed(1)}%. Lower pH increases bioavailability. Patch-test; follow brand protocols.`,
-      rawFormula: `Peel Free Acid ≈ ${acidPct}% × 1/(1+10^(${phLevel}-${pKa})) = ${freeAcid.toFixed(1)}%`
+      details: `Nominal ${nAcid}% at pH ${nPh} (pKa≈${pKa}) → free acid ≈ ${freeAcid.toFixed(1)}%. Lower pH increases bioavailability. Patch-test; follow brand protocols.`,
+      rawFormula: `Peel Free Acid ≈ ${nAcid}% × 1/(1+10^(${nPh}-${pKa})) = ${freeAcid.toFixed(1)}%`
     };
   },
 
