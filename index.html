@@ -294,9 +294,17 @@
       </a>
                   <ul class="nav-links">
         <li>
-          <div class="unit-toggle-wrap">
-            <button class="unit-toggle-btn active" data-unit="metric">🇬🇧 Metric</button>
-            <button class="unit-toggle-btn" data-unit="imperial">🇺🇸 Imperial</button>
+          <div class="preference-bar" id="preference-bar" aria-label="Regional and Measurement Preferences">
+            <div class="pref-group" title="Select Operating Region">
+              <span class="pref-label">Region:</span>
+              <button type="button" class="pref-btn" data-pref="region" data-val="US" aria-label="United States Edition, prices in US dollars">🇺🇸 US ($)</button>
+              <button type="button" class="pref-btn" data-pref="region" data-val="UK" aria-label="United Kingdom Edition, prices in pounds sterling">🇬🇧 UK (£)</button>
+            </div>
+            <div class="pref-group" title="Select Measurement Units">
+              <span class="pref-label">Units:</span>
+              <button type="button" class="pref-btn" data-pref="unit" data-val="metric" aria-label="Metric Units (g, ml)">Metric</button>
+              <button type="button" class="pref-btn" data-pref="unit" data-val="imperial" aria-label="Imperial Units (oz, fl oz)">Imperial</button>
+            </div>
           </div>
         </li>
         <li><a href="#directory" class="nav-cat-link" data-cat="all">All Tools</a></li>
@@ -479,6 +487,8 @@
 
   <!-- PWA & Scripts -->
   <script src="/js/salonmath.js"></script>
+  <script src="/js/preferences.js"></script>
+  <script src="/js/analytics.js"></script>
   <script src="/js/directory.js"></script>
   <script>
 

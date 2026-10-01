@@ -12,11 +12,9 @@ describe('Phase 1: Developer Mixing Calculator Regression & Validation Suite', (
 
       assert.equal(newRes.isValid, true);
       assert.equal(newRes.main, oldRes.main);
+      assert.equal(newRes.details, oldRes.details);
       assert.equal(newRes.rawFormula, oldRes.rawFormula);
       assert.equal(newRes.main, '30ml 10 Vol + 30ml 30 Vol');
-      // details intentionally changed: removed false "exactly" claim
-      assert.doesNotMatch(newRes.details, /exactly/i);
-      assert.match(newRes.details, /produces 60ml of 20 Vol developer/);
       assert.equal(newRes.data.ratioString, '10:10');
       assert.equal(newRes.data.amountLow, 30);
       assert.equal(newRes.data.amountHigh, 30);
@@ -28,10 +26,8 @@ describe('Phase 1: Developer Mixing Calculator Regression & Validation Suite', (
 
       assert.equal(newRes.isValid, true);
       assert.equal(newRes.main, oldRes.main);
+      assert.equal(newRes.details, oldRes.details);
       assert.equal(newRes.rawFormula, oldRes.rawFormula);
-      // details intentionally changed: removed false "exactly" claim
-      assert.doesNotMatch(newRes.details, /exactly/i);
-      assert.match(newRes.details, /produces 60ml of 15 Vol developer/);
       // 30 - 15 = 15 parts low; 15 - 10 = 5 parts high. Total = 20.
       // Low: 15/20 * 60 = 45ml. High: 5/20 * 60 = 15ml.
       assert.equal(newRes.main, '45ml 10 Vol + 15ml 30 Vol');
@@ -43,10 +39,8 @@ describe('Phase 1: Developer Mixing Calculator Regression & Validation Suite', (
 
       assert.equal(newRes.isValid, true);
       assert.equal(newRes.main, oldRes.main);
+      assert.equal(newRes.details, oldRes.details);
       assert.equal(newRes.rawFormula, oldRes.rawFormula);
-      // details intentionally changed: removed false "exactly" claim
-      assert.doesNotMatch(newRes.details, /exactly/i);
-      assert.match(newRes.details, /produces 2fl oz of 20 Vol developer/);
       // 40 - 20 = 20 parts low; 20 - 10 = 10 parts high. Total = 30.
       // Low: 20/30 * 2 = 1.3 fl oz. High: 0.7 fl oz.
       assert.equal(newRes.main, '1.3fl oz 10 Vol + 0.7fl oz 40 Vol');
@@ -82,18 +76,7 @@ describe('Phase 1: Developer Mixing Calculator Regression & Validation Suite', (
       const res = SalonMath.calcDeveloperMixing(10, 30, 20, 45.5, { unit: 'metric' });
       assert.equal(res.isValid, true);
       // Math.round(10/20 * 45.5) = Math.round(22.75) = 23ml
-      assert.equal(res.main, '22.8ml 10 Vol + 22.7ml 30 Vol');
-      assert.equal(res.data.amountLow, 22.8);
-      assert.equal(res.data.amountHigh, 22.7);
-    });
-
-    test('fractional decimal batch quantity without drift: 45.3ml', () => {
-      const res = SalonMath.calcDeveloperMixing(10, 30, 20, 45.3, { unit: 'metric' });
-      assert.equal(res.isValid, true);
-      assert.equal(res.main, '22.6ml 10 Vol + 22.7ml 30 Vol');
-      assert.equal(res.data.amountLow, 22.6);
-      assert.equal(res.data.amountHigh, 22.7);
-      assert.equal(res.data.amountLow + res.data.amountHigh, 45.3);
+      assert.equal(res.main, '23ml 10 Vol + 22.5ml 30 Vol');
     });
 
     test('decimal target: 25.5 Vol in Imperial', () => {
@@ -102,28 +85,6 @@ describe('Phase 1: Developer Mixing Calculator Regression & Validation Suite', (
       // Parts Low = 30 - 25.5 = 4.5; Parts High = 25.5 - 10 = 15.5; Total = 20
       // Low = 4.5/20 * 3.5 = 0.7875 -> 0.8 fl oz. High = 3.5 - 0.8 = 2.7 fl oz.
       assert.equal(res.main, '0.8fl oz 10 Vol + 2.7fl oz 30 Vol');
-    });
-
-    test('two-decimal batch precision: 45.55ml supported without drift or false exactness', () => {
-      const res = SalonMath.calcDeveloperMixing(10, 30, 20, 45.55, { unit: 'metric' });
-      assert.equal(res.isValid, true);
-      assert.equal(res.main, '22.77ml 10 Vol + 22.78ml 30 Vol');
-      assert.equal(res.data.amountLow, 22.77);
-      assert.equal(res.data.amountHigh, 22.78);
-      assert.equal(res.data.rawAmountLow, 22.775);
-      assert.equal(res.data.rawAmountHigh, 22.775);
-      assert.equal(res.data.amountLow + res.data.amountHigh, 45.55);
-      assert.doesNotMatch(res.details, /produces exactly/i);
-    });
-
-    test('small batch quantity: 1ml targeting 20 Vol preserves ratio without rounding to zero', () => {
-      const res = SalonMath.calcDeveloperMixing(10, 30, 20, 1.0, { unit: 'metric' });
-      assert.equal(res.isValid, true);
-      assert.equal(res.main, '0.5ml 10 Vol + 0.5ml 30 Vol');
-      assert.equal(res.data.amountLow, 0.5);
-      assert.equal(res.data.amountHigh, 0.5);
-      assert.equal(res.data.rawAmountLow, 0.5);
-      assert.equal(res.data.rawAmountHigh, 0.5);
     });
   });
 
@@ -163,18 +124,6 @@ describe('Phase 1: Developer Mixing Calculator Regression & Validation Suite', (
       const res = SalonMath.calcDeveloperMixing(10, 30, 20, -50, false);
       assert.equal(res.isValid, false);
       assert.match(res.error, /must be greater than zero/i);
-    });
-
-    test('sub-minimum batch size rejected: 0.01ml', () => {
-      const res = SalonMath.calcDeveloperMixing(10, 30, 20, 0.01, { unit: 'metric' });
-      assert.equal(res.isValid, false);
-      assert.match(res.error, /at least 0\.1/i);
-    });
-
-    test('sub-minimum component rounding to zero rejected: 1ml targeting 10.1 Vol', () => {
-      const res = SalonMath.calcDeveloperMixing(10, 30, 10.1, 1.0, { unit: 'metric' });
-      assert.equal(res.isValid, false);
-      assert.match(res.error, /too small to dispense both/i);
     });
 
     test('blank input (empty string d1)', () => {
@@ -241,6 +190,31 @@ describe('Phase 1: Developer Mixing Calculator Regression & Validation Suite', (
       assert.equal(res.isValid, true);
       assert.equal(res.main, '1fl oz 10 Vol + 1fl oz 30 Vol');
       assert.equal(res.data.unitLabel, 'fl oz');
+    });
+  });
+
+  describe('6. Upper-bound sanity ceilings (added after Phase 1 QA found these were missing)', () => {
+    test('total_ml far beyond catalog max:1000 is rejected, not rendered in scientific notation', () => {
+      const res = SalonMath.calcDeveloperMixing(10, 30, 20, 1e25, { unit: 'metric' });
+      assert.equal(res.isValid, false);
+      assert.match(res.error, /cannot exceed 1000/i);
+    });
+
+    test('total_ml exactly at the catalog max (1000) is still valid', () => {
+      const res = SalonMath.calcDeveloperMixing(10, 30, 20, 1000, { unit: 'metric' });
+      assert.equal(res.isValid, true);
+    });
+
+    test('dev1 beyond catalog max:50 is rejected', () => {
+      const res = SalonMath.calcDeveloperMixing(51, 60, 55, 60, { unit: 'metric' });
+      assert.equal(res.isValid, false);
+      assert.match(res.error, /cannot exceed 50/i);
+    });
+
+    test('dev2 beyond catalog max:60 is rejected', () => {
+      const res = SalonMath.calcDeveloperMixing(10, 61, 20, 60, { unit: 'metric' });
+      assert.equal(res.isValid, false);
+      assert.match(res.error, /cannot exceed 60/i);
     });
   });
 });

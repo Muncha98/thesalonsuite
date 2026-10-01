@@ -5,7 +5,6 @@
 
 let allTools = [];
 let currentFilter = 'all';
-let currentUnit = localStorage.getItem('salon_unit') || 'metric'; // 'metric' | 'imperial'
 
 const CATEGORIES_ORDER = [
   { id: 'hair-color', name: '🎨 Hair Color & Chemistry' },
@@ -24,36 +23,59 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error("Could not load catalog.json", e);
   }
 
-  SalonMath.setUnit(currentUnit);
-  updateUnitToggleUI();
+  // Homepage now shares the same SalonPreferences state as every tool page,
+  // instead of keeping its own separate unit variable and deriving currency
+  // from it. This is what makes a Region/Unit choice made here (or on any
+  // tool page) consistent everywhere else on the site.
+  syncMathWithPreferences();
+  updatePreferenceButtonsUI();
   renderDirectory(allTools);
   setupFilters();
   setupSearch();
   setupModal();
   setupHeaderNavLinks();
-  setupUnitToggle();
+  setupPreferenceButtons();
+
+  window.addEventListener('salon:preferences-changed', () => {
+    syncMathWithPreferences();
+    updatePreferenceButtonsUI();
+    renderDirectory(allTools);
+  });
 });
 
-function setupUnitToggle() {
-  const toggleBtns = document.querySelectorAll('.unit-toggle-btn');
-  toggleBtns.forEach(btn => {
+function syncMathWithPreferences() {
+  if (!window.SalonPreferences || !window.SalonMath) return;
+  const prefs = SalonPreferences.get();
+  SalonMath.setPreferences(prefs);
+}
+
+function setupPreferenceButtons() {
+  const btns = document.querySelectorAll('.pref-btn');
+  btns.forEach(btn => {
     btn.addEventListener('click', () => {
-      currentUnit = btn.getAttribute('data-unit');
-      localStorage.setItem('salon_unit', currentUnit);
-      SalonMath.setUnit(currentUnit);
-      updateUnitToggleUI();
-      renderDirectory(allTools);
+      if (!window.SalonPreferences) return;
+      const prefType = btn.getAttribute('data-pref');
+      const prefVal = btn.getAttribute('data-val');
+      if (prefType === 'region') {
+        SalonPreferences.setRegion(prefVal);
+      } else if (prefType === 'unit') {
+        SalonPreferences.setUnit(prefVal);
+      }
     });
   });
 }
 
-function updateUnitToggleUI() {
-  const toggleBtns = document.querySelectorAll('.unit-toggle-btn');
-  toggleBtns.forEach(btn => {
-    if (btn.getAttribute('data-unit') === currentUnit) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
+function updatePreferenceButtonsUI() {
+  if (!window.SalonPreferences) return;
+  const prefs = SalonPreferences.get();
+  const btns = document.querySelectorAll('.pref-btn');
+  btns.forEach(btn => {
+    const type = btn.getAttribute('data-pref');
+    const val = btn.getAttribute('data-val');
+    if (type === 'region') {
+      btn.classList.toggle('active', val === prefs.region);
+    } else if (type === 'unit') {
+      btn.classList.toggle('active', val === prefs.unit);
     }
   });
 }
@@ -64,7 +86,9 @@ function renderDirectory(tools) {
   if (!container) return;
 
   container.innerHTML = '';
-  const unitBadge = currentUnit === 'imperial' ? 'Imperial (oz/fl oz/$)' : 'Metric (g/ml/£)';
+  const prefs = window.SalonPreferences ? SalonPreferences.get() : { unit: 'metric', region: 'US', currency: 'USD' };
+  const unitLabel = prefs.unit === 'imperial' ? 'Imperial (oz/fl oz)' : 'Metric (g/ml)';
+  const unitBadge = `${unitLabel} • ${prefs.region} (${prefs.currency === 'GBP' ? '£' : '$'})`;
   if (countEl) countEl.innerText = `${tools.length} Tools Available (A–Z) • ${unitBadge}`;
 
   if (currentFilter === 'all') {
@@ -201,9 +225,10 @@ function openToolModal(tool) {
 
   iconEl.innerText = tool.icon;
   titleEl.innerText = tool.name;
-  catEl.innerText = `${tool.categoryName} • ${currentUnit === 'imperial' ? 'Imperial' : 'Metric'}`;
+  const prefs = window.SalonPreferences ? SalonPreferences.get() : { unit: 'metric', region: 'US', currency: 'USD' };
+  catEl.innerText = `${tool.categoryName} • ${prefs.unit === 'imperial' ? 'Imperial' : 'Metric'}`;
 
-  const isImp = (currentUnit === 'imperial');
+  const isImp = (prefs.unit === 'imperial');
 
   let formHtml = '';
   tool.inputs.forEach(inp => {
@@ -211,14 +236,14 @@ function openToolModal(tool) {
     let defVal = inp.default;
     let unit = inp.unit || '';
 
-    // Convert unit labels & defaults for Imperial
+    // Convert unit labels & defaults for Imperial. Currency symbol comes
+    // from the user's actual currency preference, not from the unit system —
+    // a US colorist can work in metric grams while still pricing in USD.
     if (isImp) {
       if (unit === 'ml') { unit = 'fl oz'; if (defVal === 60) defVal = 2.0; if (defVal === 30) defVal = 1.0; }
       else if (unit === 'grams') { unit = 'oz'; if (defVal === 30) defVal = 1.0; if (defVal === 60) defVal = 2.0; }
-      else if (unit === '$/£') { unit = '$'; }
-    } else {
-      if (unit === '$/£') { unit = '£'; }
     }
+    if (unit === '$/£') { unit = currency; }
 
     formHtml += `<div class="form-group">`;
     formHtml += `<label for="inp-${inp.id}">${label}</label>`;
@@ -279,8 +304,9 @@ function openToolModal(tool) {
 }
 
 function runCalculation(tool) {
-  const isImp = (currentUnit === 'imperial');
-  const currency = isImp ? '$' : '£';
+  const prefs = window.SalonPreferences ? SalonPreferences.get() : { unit: 'metric', region: 'US', currency: 'USD' };
+  const isImp = (prefs.unit === 'imperial');
+  const currency = prefs.currency === 'GBP' ? '£' : '$';
   const vals = {};
   tool.inputs.forEach(inp => {
     const el = document.getElementById(`inp-${inp.id}`);

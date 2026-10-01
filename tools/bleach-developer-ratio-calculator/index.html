@@ -306,7 +306,7 @@
 
     function runPageCalculation() {
       const isImp = (pageUnit === 'imperial');
-      const currency = isImp ? '$' : '£';
+      const currency = '$'; // USD default — this page predates per-page region/currency selection, which ships when this tool migrates to the new engine (see developer-mixing-calculator for the pattern)
       const vals = {};
       inputsConfig.forEach(inp => {
         const el = document.getElementById(`page-inp-${inp.id}`);
