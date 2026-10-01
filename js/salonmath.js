@@ -362,21 +362,49 @@ const SalonMath = {
 
   // 5. Balayage Pricing & Cost
   calcBalayagePricing: function(bleachBowls, costPerBowl, tonerBowls, bondBuilder, hours, hourlyRate, currency) {
-    bleachBowls = Number(bleachBowls) || 3;
-    costPerBowl = Number(costPerBowl) || 8.5;
-    tonerBowls = Number(tonerBowls) || 2;
-    hours = Number(hours) || 3.5;
-    hourlyRate = Number(hourlyRate) || 65;
     const curr = currency || '$';
 
-    const productCost = (bleachBowls * costPerBowl) + (tonerBowls * 7.5) + (bondBuilder === 'yes' ? 12 : 0);
-    const laborCost = hours * hourlyRate;
+    const fields = [
+      ['bleachBowls', bleachBowls, 'Bowls of lightener/clay'],
+      ['costPerBowl', costPerBowl, 'Product cost per bowl'],
+      ['tonerBowls', tonerBowls, 'Glosser/toner bowls'],
+      ['hours', hours, 'Total appointment time'],
+      ['hourlyRate', hourlyRate, 'Target net hourly labor rate']
+    ];
+
+    const parsed = {};
+    for (const [key, val, label] of fields) {
+      if (val === '' || val === null || val === undefined) {
+        return { isValid: false, errors: { [key === 'bleachBowls' ? 'bowls_bleach' : key === 'costPerBowl' ? 'cost_per_bowl' : key === 'tonerBowls' ? 'toner_bowls' : key === 'hours' ? 'service_hours' : 'target_hourly']: `${label} is required.` }, error: `${label} is required.`, main: 'Cannot Calculate', details: '', rawFormula: '' };
+      }
+      const n = Number(val);
+      if (!Number.isFinite(n) || n < 0) {
+        return { isValid: false, error: `${label} must be a valid, non-negative number.`, main: 'Cannot Calculate', details: '', rawFormula: '' };
+      }
+      parsed[key] = n;
+    }
+
+    if (parsed.hours > 24) {
+      return { isValid: false, error: 'Total appointment time cannot exceed 24 hours.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (bondBuilder !== 'yes' && bondBuilder !== 'no') {
+      return { isValid: false, error: 'Please select whether to include a bond builder.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    const productCost = (parsed.bleachBowls * parsed.costPerBowl) + (parsed.tonerBowls * 7.5) + (bondBuilder === 'yes' ? 12 : 0);
+    const laborCost = parsed.hours * parsed.hourlyRate;
     const recommendedPrice = Math.round(productCost + laborCost);
 
+    if (recommendedPrice <= 0) {
+      return { isValid: false, error: 'Calculated quote must be greater than zero — check your inputs.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
     return {
+      isValid: true,
       main: `Recommended Quote: ${curr}${recommendedPrice}`,
-      details: `Product Backbar Cost: ${curr}${productCost.toFixed(2)} | Labor (${hours}h @ ${curr}${hourlyRate}/h): ${curr}${laborCost.toFixed(2)}. Profit Margin: ~${Math.round((laborCost/recommendedPrice)*100)}%.`,
-      rawFormula: `Balayage Quote: ${curr}${recommendedPrice} (${hours}h service + ${curr}${productCost.toFixed(2)} backbar stock)`
+      details: `Product Backbar Cost: ${curr}${productCost.toFixed(2)} | Labor (${parsed.hours}h @ ${curr}${parsed.hourlyRate}/h): ${curr}${laborCost.toFixed(2)}. Profit Margin: ~${Math.round((laborCost/recommendedPrice)*100)}%.`,
+      rawFormula: `Balayage Quote: ${curr}${recommendedPrice} (${parsed.hours}h service + ${curr}${productCost.toFixed(2)} backbar stock)`,
+      data: { productCost, laborCost, recommendedPrice }
     };
   },
 
@@ -476,27 +504,46 @@ const SalonMath = {
 // 11. Toner Ratio & Processing Timer
   calcTonerRatio: function(tonerMl, ratioStr, isImperial) {
     const unitLabel = isImperial ? 'fl oz' : 'ml';
-    tonerMl = Number(tonerMl) || (isImperial ? 1.0 : 30);
-    let multiplier = 1;
-    if (ratioStr === '1:2') multiplier = 2;
-    else if (ratioStr === '1:1') multiplier = 1;
+    const RATIOS = { '1:1': 1, '1:2': 2 };
+
+    if (tonerMl === '' || tonerMl === null || tonerMl === undefined) {
+      return { isValid: false, error: 'Toner color amount is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nToner = Number(tonerMl);
+    if (!Number.isFinite(nToner)) {
+      return { isValid: false, error: 'Toner color amount must be a valid number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nToner <= 0) {
+      return { isValid: false, error: 'Toner color amount must be greater than zero.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const maxToner = isImperial ? 17 : 500;
+    if (nToner > maxToner) {
+      return { isValid: false, error: `Toner color amount cannot exceed ${maxToner}${unitLabel} (this calculator is for single-station use).`, main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (!Object.prototype.hasOwnProperty.call(RATIOS, ratioStr)) {
+      return { isValid: false, error: 'Please select a valid developer ratio.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    const multiplier = RATIOS[ratioStr];
 
     let developer, total;
     if (isImperial) {
-      developer = (tonerMl * multiplier).toFixed(1);
-      total = (Number(tonerMl) + Number(developer)).toFixed(1);
+      developer = (nToner * multiplier).toFixed(1);
+      total = (nToner + Number(developer)).toFixed(1);
     } else {
-      developer = Math.round(tonerMl * multiplier);
-      total = tonerMl + developer;
+      developer = Math.round(nToner * multiplier);
+      total = Math.round(nToner) + developer;
     }
     const processNote = multiplier === 2
       ? 'Sheer gloss: check every 5 minutes, max 15–20 minutes on damp hair.'
       : 'Standard demi: visual check at 5 and 10 minutes, process up to 20 minutes.';
 
     return {
-      main: `${tonerMl}${unitLabel} Toner + ${developer}${unitLabel} Developer (${ratioStr})`,
+      isValid: true,
+      main: `${nToner}${unitLabel} Toner + ${developer}${unitLabel} Developer (${ratioStr})`,
       details: `Total mix: ${total}${unitLabel}. Use 5–10 Vol dedicated toner developer. ${processNote}`,
-      rawFormula: `Toner (${ratioStr}): ${tonerMl}${unitLabel} color + ${developer}${unitLabel} developer = ${total}${unitLabel}`
+      rawFormula: `Toner (${ratioStr}): ${nToner}${unitLabel} color + ${developer}${unitLabel} developer = ${total}${unitLabel}`,
+      data: { tonerMl: nToner, ratio: ratioStr, developer: Number(developer), total: Number(total), unitLabel }
     };
   },
 

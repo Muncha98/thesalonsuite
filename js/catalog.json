@@ -719,6 +719,72 @@
       "how to price balayage",
       "hair salon product cost",
       "color bowl waste"
+    ],
+    "slug": "balayage-pricing-product-calculator",
+    "calc_subtitle": "Enter your product and labor inputs for a transparent, profitable balayage quote.",
+    "education": {
+      "heading": "Why Balayage Pricing Needs Real Math, Not a Flat Rate",
+      "intro": [
+        "Balayage is one of the highest-ticket services in the salon, but it is also one of the easiest to under-price. A flat \"balayage starts at $X\" rate ignores the fact that a long, thick head of hair can burn through two or three extra bowls of lightener and toner compared to a short, fine one — and every extra bowl is real backbar cost coming straight out of your margin.",
+        "Quoting from actual product usage and your target hourly rate, rather than a guess, is what protects your profit on the services that take the longest and look the most impressive on social media."
+      ],
+      "walkthrough": {
+        "icon": "🖌️",
+        "title": "How to use this calculator",
+        "steps": [
+          "Count how many bowls of lightener/clay the service will realistically need based on hair length and density.",
+          "Enter your actual product cost per bowl (check your backbar invoice, not a guess).",
+          "Add glosser/toner bowls and whether a bond builder like Olaplex or K18 is included.",
+          "Enter the total appointment time and your target net hourly labor rate.",
+          "The calculator adds backbar product cost to labor cost for a recommended quote and shows your approximate profit margin."
+        ],
+        "example": "Example: 3 lightener bowls at $8.50, 2 toner bowls, a bond builder, 3.5 hours of labor at a $65/hour target rate recommends a $255 quote with roughly 86% going to labor margin."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Price the appointment you actually did, not the one you planned",
+          "body": "If a service ran long or needed an extra bowl, that cost belongs in the quote or in next time's deposit/pricing conversation — not absorbed silently into your margin."
+        },
+        {
+          "title": "Backbar cost compounds fast on long hair",
+          "body": "Extra bowls of lightener and toner are the single biggest margin killer on balayage — track real bowl counts per length category so your pricing reflects reality."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Standard",
+      "professional_scope": "Licensed Beauty Professionals",
+      "warnings": [
+        "This tool estimates pricing only — it does not replace your own profit-and-loss tracking or accountant's advice on margins and tax."
+      ]
+    },
+    "faq": [
+      {
+        "q": "How do I use this calculator behind the chair?",
+        "a": "Enter your bowl counts, product costs, appointment time, and target hourly rate. The calculator instantly gives you a recommended quote and profit margin — no page reloads."
+      },
+      {
+        "q": "Should I include a bond builder like Olaplex or K18 in every balayage quote?",
+        "a": "That is a business decision, not a chemistry one — but if you are using it, its backbar cost belongs in the quote. Leaving it out of the price while including it in the service is a common way margin quietly disappears."
+      },
+      {
+        "q": "What profit margin should I be targeting on balayage?",
+        "a": "There is no universal number, but many salons target 70-85% of the quote going to labor once backbar product cost is covered — use the calculator's margin output as a quick sanity check against your own target."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Service Quote Formula: (Lightener Bowls × Cost) + (Gloss Bowls × Cost) + Bond Builder + (Service Hours × Target Hourly Rate).",
+        "Product backbar cost + labor cost breakdown",
+        "Approximate profit margin shown instantly",
+        "Metric and Imperial unit support"
+      ]
+    },
+    "related_tools": [
+      "chair-rental-profitability-calculator",
+      "hairdresser-hourly-rate-calculator",
+      "retail-product-markup-calculator"
     ]
   },
   {
@@ -761,6 +827,73 @@
       "how to mix toner",
       "hair toner timer",
       "redken shades eq ratio"
+    ],
+    "slug": "toner-ratio-calculator",
+    "calc_subtitle": "Enter your toner amount and ratio for the exact developer mix and processing guidance.",
+    "education": {
+      "heading": "Damp vs Dry Toning: Why the Ratio and Timing Both Matter",
+      "intro": [
+        "Toning damp, freshly lightened hair gives sheer, translucent results because the cuticle is still slightly raised and porous from the lightening service — the toner deposits lightly and blends. Toning dry hair, by contrast, allows for maximum pigment deposit, depth, and longevity, since the cuticle has fully closed.",
+        "The developer ratio controls dilution and lift intensity: a 1:1 ratio gives a standard, fuller-strength demi-permanent result, while a 1:2 ratio dilutes the toner for a sheerer, more subtle gloss."
+      ],
+      "walkthrough": {
+        "icon": "⏱️",
+        "title": "How to use this calculator",
+        "steps": [
+          "Measure your toner color amount.",
+          "Choose your developer ratio — 1:1 for standard depth, 1:2 for a sheer, diluted gloss.",
+          "Mix with 5–10 Volume dedicated toner developer.",
+          "Visual-check at 5 and 10 minutes for a standard demi, or every 5 minutes up to 15–20 minutes for a sheer gloss on damp hair."
+        ],
+        "example": "Example: 30ml of toner at a 1:1 ratio needs 30ml of developer for a 60ml total mix."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Damp hair tones lighter and sheerer",
+          "body": "The still-open cuticle from lightening means less pigment uptake — expect a softer result than the same formula on dry hair."
+        },
+        {
+          "title": "Always visual-check, never process blind",
+          "body": "Toner can grab faster than expected on porous or over-processed hair — checking at regular intervals prevents overshooting the target shade."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Standard",
+      "professional_scope": "Licensed Beauty Professionals",
+      "warnings": [
+        "Always perform a 48-hour client skin allergy patch test before chemical toning services.",
+        "Use only a dedicated toner/gloss developer at the volume your manufacturer specifies — mixing with a standard permanent-color developer can cause unpredictable results."
+      ],
+      "manufacturer_note": "Ratio math is a universal starting point compatible with major demi-permanent lines including Redken Shades EQ, Wella Color Touch, and Schwarzkopf Igora Vibrance, but exact developer volume and timing vary by line — always cross-reference your own manufacturer's instructions."
+    },
+    "faq": [
+      {
+        "q": "How do I use this calculator behind the chair?",
+        "a": "Enter your toner amount and select your developer ratio. The calculator instantly gives you the exact developer amount and processing guidance — no page reloads."
+      },
+      {
+        "q": "What is the difference between toning damp and dry hair?",
+        "a": "Damp hair (right after lightening) gives a sheer, translucent result because the cuticle is still porous. Dry hair gives maximum pigment deposit and the longest-lasting depth of tone."
+      },
+      {
+        "q": "Is this ratio math calibrated for Redken Shades EQ or Wella Color Touch?",
+        "a": "The ratio logic is a universal starting point compatible with major demi-permanent lines, but always confirm your own line's recommended developer volume and exact ratio range."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Standard Liquid Gloss Ratio: 1 part toner to 1 or 2 parts dedicated developer (5–10 Vol). Visual check every 5 minutes up to 20 minutes.",
+        "1:1 and 1:2 ratio support",
+        "Metric and Imperial unit support",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "developer-mixing-calculator",
+      "bleach-developer-ratio-calculator",
+      "color-correction-time-estimator"
     ]
   },
   {

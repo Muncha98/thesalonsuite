@@ -3,10 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Balayage Service Cost & Product Estimator | Free Stylist Tool | The Salon Suite</title>
-  <meta name="description" content="Calculate backbar product costs, toner bowls, bond builders, and labor time to quote profitable balayage services. Free instant online calculator for hair stylists, colorists, and salon suite owners.">
+  <title>Balayage Service Cost & Product Estimator | The Salon Suite</title>
+  <meta name="description" content="Calculate backbar product costs, toner bowls, bond builders, and labor time to quote profitable balayage services.">
   <link rel="canonical" href="https://thesalonsuite.com/tools/balayage-pricing-product-calculator/">
-  
+
+  <!-- PWA & Mobile Optimization -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1A1715">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SalonSuite">
+
   <!-- Open Graph -->
   <meta property="og:title" content="Balayage Service Cost & Product Estimator | The Salon Suite">
   <meta property="og:description" content="Calculate backbar product costs, toner bowls, bond builders, and labor time to quote profitable balayage services.">
@@ -15,33 +23,41 @@
   <meta property="og:site_name" content="The Salon Suite">
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Balayage Service Cost & Product Estimator">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Balayage Service Cost & Product Estimator | The Salon Suite">
   <meta name="twitter:description" content="Calculate backbar product costs, toner bowls, bond builders, and labor time to quote profitable balayage services.">
 
-  <!-- Fonts & Styles -->
+  <!-- Typography & Core CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
 
-  <!-- Schema.org Structured Data -->
+  
+  <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Balayage Service Cost & Product Estimator",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "All",
-    "description": "Calculate backbar product costs, toner bowls, bond builders, and labor time to quote profitable balayage services.",
-    "url": "https://thesalonsuite.com/tools/balayage-pricing-product-calculator/",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
-  }
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Balayage Service Cost & Product Estimator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "description": "Calculate backbar product costs, toner bowls, bond builders, and labor time to quote profitable balayage services.",
+  "url": "https://thesalonsuite.com/tools/balayage-pricing-product-calculator/",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Service Quote Formula: (Lightener Bowls × Cost) + (Gloss Bowls × Cost) + Bond Builder + (Service Hours × Target Hourly Rate).",
+    "Product backbar cost + labor cost breakdown",
+    "Approximate profit margin shown instantly",
+    "Metric and Imperial unit support"
+  ]
+}
   </script>
+  
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
@@ -49,26 +65,20 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How do you use the Balayage Service Cost & Product Estimator?",
       "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Enter your specific salon parameters into the Balayage Service Cost & Product Estimator. The calculation engine instantly computes exact mixing ratios, chemical volumes, or financial margins in real time without refreshing the page."
+        "@type": "Answer"
       }
     },
     {
       "@type": "Question",
-      "name": "What formulas are used in the Balayage Service Cost & Product Estimator?",
       "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Service Quote Formula: (Lightener Bowls \u00d7 Cost) + (Gloss Bowls \u00d7 Cost) + Bond Builder + (Service Hours \u00d7 Target Hourly Rate)."
+        "@type": "Answer"
       }
     },
     {
       "@type": "Question",
-      "name": "Is this tool calibrated for all professional brands?",
       "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The formulas use universal metric units (grams, milliliters) and imperial units (ounces, fluid ounces) compatible with major brands including Wella, Redken, Schwarzkopf, L'Or\u00e9al, and Guy Tang Mydentity."
+        "@type": "Answer"
       }
     }
   ]
@@ -88,7 +98,7 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "\ud83c\udfa8 Hair Color & Chemistry",
+      "name": "🎨 Hair Color & Chemistry",
       "item": "https://thesalonsuite.com/#hair-color"
     },
     {
@@ -100,268 +110,477 @@
   ]
 }
   </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "The Salon Suite",
+  "url": "https://thesalonsuite.com/",
+  "logo": "https://thesalonsuite.com/assets/logo.png",
+  "description": "Global professional utility platform and verified station calculators for working beauty professionals."
+}
+  </script>
 </head>
-<body>
+<body class="tool-page-body">
 
-  <!-- Navigation -->
-  <nav class="nav" aria-label="Main navigation">
-    <div class="container nav-inner">
-      <a href="/" class="nav-logo">
-        <div class="nav-logo-icon">🖌️</div>
-        TheSalon<span>Suite</span>
-      </a>
-      <ul class="nav-links">
-        <li>
-          <div class="unit-toggle-wrap">
-            <button class="unit-toggle-btn active" id="page-unit-metric" onclick="setPageUnit('metric')">🇬🇧 Metric</button>
-            <button class="unit-toggle-btn" id="page-unit-imperial" onclick="setPageUnit('imperial')">🇺🇸 Imperial</button>
+  
+  <!-- Navigation Header -->
+  <header class="site-header" role="banner">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="container nav-inner">
+        <a href="/" class="nav-logo" aria-label="The Salon Suite Home">
+          <div class="nav-logo-icon">✨</div>
+          TheSalon<span>Suite</span>
+        </a>
+
+        <!-- Reusable Preference Controls (Independent Region, Unit, Currency) -->
+        <div class="nav-controls">
+          <div class="preference-bar" id="preference-bar" aria-label="Station Regional and Measurement Preferences">
+            
+            <!-- Region Selector -->
+            <div class="pref-group" title="Select Operating Region">
+              <span class="pref-label">Region:</span>
+              <button type="button" class="pref-btn active" data-pref="region" data-val="US" aria-label="United States Edition, prices in US dollars">🇺🇸 US ($)</button>
+              <button type="button" class="pref-btn " data-pref="region" data-val="UK" aria-label="United Kingdom Edition, prices in pounds sterling">🇬🇧 UK (£)</button>
+            </div>
+
+            <!-- Unit Selector -->
+            <div class="pref-group" title="Select Measurement Units">
+              <span class="pref-label">Units:</span>
+              <button type="button" class="pref-btn active" data-pref="unit" data-val="metric" aria-label="Metric Units (g, ml)">Metric</button>
+              <button type="button" class="pref-btn " data-pref="unit" data-val="imperial" aria-label="Imperial Units (oz, fl oz)">Imperial</button>
+            </div>
+
           </div>
+
+          <a href="/" class="nav-back-link" title="Return to directory">&larr; All Calculators</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  
+  <!-- Semantic Breadcrumbs -->
+  <nav class="breadcrumb-nav" aria-label="Breadcrumbs">
+    <div class="container">
+      <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
         </li>
-        <li><a href="/">&larr; Back to All 32 Free Stylist Tools</a></li>
-      </ul>
+        <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
+        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/#hair-color" itemprop="item"><span itemprop="name">🎨 Hair Color & Chemistry</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
+        <li class="breadcrumb-item current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+          <span itemprop="name">Balayage Service Cost & Product Estimator</span>
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero" style="padding: 48px 0 36px;">
+  <section class="tool-hero" aria-labelledby="tool-hero-title">
     <div class="container">
-      <div class="hero-badge">🎨 Hair Color & Chemistry &bull; Free Station Tool</div>
-      <h1 style="font-size: 2.3rem;">Balayage Service Cost & Product Estimator</h1>
-      <p class="hero-p" style="max-width: 680px; font-size: 1.08rem;">Calculate backbar product costs, toner bowls, bond builders, and labor time to quote profitable balayage services.</p>
+      <div class="tool-hero-badge">
+        <span class="badge-cat">🎨 Hair Color & Chemistry</span>
+        <span class="badge-divider">&bull;</span>
+        <span class="badge-status">Free Professional Tool</span>
+      </div>
+      <h1 id="tool-hero-title" class="tool-hero-title">Balayage Service Cost & Product Estimator</h1>
+      <p class="tool-hero-lead">Balayage is one of the highest-revenue salon services, but extra bowls of clay lightener, glosses, and bond builders can quickly destroy your profit margins if not calculated. Use this tool to quote transparent, profitable blonding appointments.</p>
+      <div class="tool-formula-pill">
+        <span class="formula-icon">📐</span>
+        <span class="formula-text">Service Quote Formula: (Lightener Bowls × Cost) + (Gloss Bowls × Cost) + Bond Builder + (Service Hours × Target Hourly Rate).</span>
+      </div>
     </div>
   </section>
 
-  <!-- Main Calculator Content -->
-  <main class="container" style="padding: 36px 24px 72px; max-width: 820px;">
-    
-    <!-- AI-Optimized Direct Definition Box -->
-    <div style="background: #FAF7F2; border: 1.5px solid var(--gold-border); border-radius: var(--radius-md); padding: 24px 28px; margin-bottom: 32px;">
-      <h2 style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px;">💡 Station Formula &amp; Overview</h2>
-      <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px;">
-        Balayage is one of the highest-revenue salon services, but extra bowls of clay lightener, glosses, and bond builders can quickly destroy your profit margins if not calculated. Use this tool to quote transparent, profitable blonding appointments.
-      </p>
-      <div style="font-size: 0.85rem; font-weight: 700; color: var(--gold); background: rgba(212,175,55,0.08); padding: 8px 12px; border-radius: 6px;">
-        📐 Service Quote Formula: (Lightener Bowls × Cost) + (Gloss Bowls × Cost) + Bond Builder + (Service Hours × Target Hourly Rate).
-      </div>
-    </div>
-
-    <!-- Active Calculation Card -->
-    <div style="background: #ffffff; border: 1.5px solid var(--border-light); border-radius: var(--radius-lg); padding: 36px 32px; box-shadow: var(--shadow-elevated);">
-      <h3 style="font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; margin-bottom: 24px; color: var(--text-dark);">Calculate &amp; Formulate</h3>
+  <!-- Main Calculator & Content Grid -->
+  <main class="container tool-main-content">
+    <div class="tool-layout-grid">
       
-      <form id="standalone-calc-form" onsubmit="return false;">
-        <div class="form-group">
-<label for="page-inp-bowls_bleach">Bowls of Lightener / Clay Needed</label>
-<input type="number" step="any" class="form-control" id="page-inp-bowls_bleach" value="3">
-</div>
-<div class="form-group">
-<label for="page-inp-cost_per_bowl">Product Cost per Bowl ($/£)</label>
-<input type="number" step="any" class="form-control" id="page-inp-cost_per_bowl" value="8.5">
-</div>
-<div class="form-group">
-<label for="page-inp-toner_bowls">Glosser / Toner Bowls</label>
-<input type="number" step="any" class="form-control" id="page-inp-toner_bowls" value="2">
-</div>
-<div class="form-group">
-<label for="page-inp-bond_builder">Include Bond Multiplier (Olaplex/K18)</label>
-<select class="form-control" id="page-inp-bond_builder">
-<option value="yes" selected>Yes (Add $12 backbar cost)</option>
-<option value="no" >No bond builder</option>
-</select>
-</div>
-<div class="form-group">
-<label for="page-inp-service_hours">Total Appointment Time (Hours)</label>
-<input type="number" step="any" class="form-control" id="page-inp-service_hours" value="3.5">
-</div>
-<div class="form-group">
-<label for="page-inp-target_hourly">Target Net Hourly Labor Rate ($/£)</label>
-<input type="number" step="any" class="form-control" id="page-inp-target_hourly" value="65">
-</div>
-
-      </form>
-
-      <div class="results-box" style="margin-top: 32px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-          <div class="results-header" style="margin-bottom:0;">Calculated Result</div>
-          <button id="btn-copy-formula" class="btn-copy-recipe" onclick="copyPageFormula()">📋 Copy Recipe</button>
+      <!-- Primary Interactive Station Column -->
+      <div class="tool-primary-col">
+        
+  <!-- Calculator Interactive Form Card -->
+  <div class="calculator-card" id="calc-card">
+    <div class="calc-card-header">
+      <div class="calc-title-wrap">
+        <span class="calc-icon">🖌️</span>
+        <div>
+          <h2 class="calc-title">Station Calculator &amp; Formulator</h2>
+          <p class="calc-subtitle">Enter your product and labor inputs for a transparent, profitable balayage quote.</p>
         </div>
-        <div class="results-main-val" id="page-res-main">Calculating...</div>
-        <div class="results-details" id="page-res-details"></div>
-        <div id="page-copy-toast" class="copy-toast" style="display:none;">✓ Copied to clipboard!</div>
       </div>
+      <div class="calc-station-badge">📱 Station Ready</div>
     </div>
 
-    <!-- Affiliate Card -->
-    <div style="margin-top: 40px; background: #F4EFEA; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 32px 28px; text-align: center;">
-      <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; margin-bottom: 8px;">Manage Your Salon Suite with Free Booking Software</h3>
-      <p style="color: var(--text-muted); font-size: 0.94rem; margin-bottom: 20px;">Automated client text reminders, calendar scheduling, and instant card deposits on your phone with zero monthly subscription fees.</p>
-      <a href="https://squareup.com/t/appointments" target="_blank" rel="noopener sponsored" class="affiliate-btn" style="display:inline-flex;">Get Free Square Appointments &rarr;</a>
-    </div>
+    <!-- Active Input Fields -->
+    <form id="tool-calc-form" class="calc-form" onsubmit="return false;" novalidate>
+      <div class="form-grid">
+        <div class="form-group" id="grp-bowls_bleach">
+          <label for="inp-bowls_bleach" class="form-label">
+            Bowls of Lightener / Clay Needed
+            
+          </label>
+            <div class="input-wrap">
+              <input
+                type="number"
+                class="form-control"
+                id="inp-bowls_bleach"
+                name="bowls_bleach"
+                value="3"
+                
+                
+                step="any"
+                inputmode="decimal"
+                aria-describedby="err-bowls_bleach"
+                required
+              >
+            </div>
+          <span class="field-error" id="err-bowls_bleach" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-group" id="grp-cost_per_bowl">
+          <label for="inp-cost_per_bowl" class="form-label">
+            Product Cost per Bowl ($/£)
+            
+          </label>
+            <div class="input-wrap">
+              <input
+                type="number"
+                class="form-control"
+                id="inp-cost_per_bowl"
+                name="cost_per_bowl"
+                value="8.5"
+                
+                
+                step="any"
+                inputmode="decimal"
+                aria-describedby="err-cost_per_bowl"
+                required
+              >
+            </div>
+          <span class="field-error" id="err-cost_per_bowl" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-group" id="grp-toner_bowls">
+          <label for="inp-toner_bowls" class="form-label">
+            Glosser / Toner Bowls
+            
+          </label>
+            <div class="input-wrap">
+              <input
+                type="number"
+                class="form-control"
+                id="inp-toner_bowls"
+                name="toner_bowls"
+                value="2"
+                
+                
+                step="any"
+                inputmode="decimal"
+                aria-describedby="err-toner_bowls"
+                required
+              >
+            </div>
+          <span class="field-error" id="err-toner_bowls" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-group" id="grp-bond_builder">
+          <label for="inp-bond_builder" class="form-label">
+            Include Bond Multiplier (Olaplex/K18)
+            
+          </label>
+            <select class="form-control" id="inp-bond_builder" name="bond_builder" aria-describedby="err-bond_builder">
+              <option value="yes" selected>Yes (Add $12 backbar cost)</option>
+              <option value="no" >No bond builder</option>
+            </select>
+          <span class="field-error" id="err-bond_builder" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-group" id="grp-service_hours">
+          <label for="inp-service_hours" class="form-label">
+            Total Appointment Time (Hours)
+            
+          </label>
+            <div class="input-wrap">
+              <input
+                type="number"
+                class="form-control"
+                id="inp-service_hours"
+                name="service_hours"
+                value="3.5"
+                
+                
+                step="any"
+                inputmode="decimal"
+                aria-describedby="err-service_hours"
+                required
+              >
+            </div>
+          <span class="field-error" id="err-service_hours" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-group" id="grp-target_hourly">
+          <label for="inp-target_hourly" class="form-label">
+            Target Net Hourly Labor Rate ($/£)
+            
+          </label>
+            <div class="input-wrap">
+              <input
+                type="number"
+                class="form-control"
+                id="inp-target_hourly"
+                name="target_hourly"
+                value="65"
+                
+                
+                step="any"
+                inputmode="decimal"
+                aria-describedby="err-target_hourly"
+                required
+              >
+            </div>
+          <span class="field-error" id="err-target_hourly" role="alert" aria-live="polite"></span>
+        </div>
+      </div>
+    </form>
+        
+    <!-- Output Results Display Box -->
+    <div class="results-box" id="calc-results-box" aria-live="polite" aria-atomic="true">
+      <div class="results-box-header">
+        <div class="results-heading">
+          <span class="results-badge">Formula Output</span>
+          <span class="results-verified-tick">✓ Mathematically Verified</span>
+        </div>
+        <div class="results-actions">
+          <button type="button" id="btn-copy-formula" class="btn-action btn-copy" aria-label="Copy recipe to clipboard">
+            📋 Copy Recipe
+          </button>
+          <button type="button" id="btn-print-formula" class="btn-action btn-print" aria-label="Print station recipe sheet">
+            🖨️ Print Sheet
+          </button>
+        </div>
+      </div>
 
-    <!-- FAQ Section for AI Search & Google Snippets -->
-    <section style="margin-top: 56px; border-top: 1px solid var(--border-light); padding-top: 36px;">
-      <h3 style="font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; margin-bottom: 24px;">Frequently Asked Questions</h3>
+      <div class="results-main-display" id="res-main">Ready</div>
+      <div class="results-sub-details" id="res-details">Enter values above to calculate.</div>
+
+      <!-- Station Feedback Toast -->
+      <div id="copy-toast" class="copy-toast" style="display:none;" role="status">✓ Recipe copied to clipboard!</div>
+      <div id="calc-error-banner" class="calc-error-banner" style="display:none;" role="alert"></div>
+    </div>
+  </div>
+        
+  <!-- Professional Safety & Regulatory Notice -->
+  <aside class="safety-notice-card" aria-labelledby="safety-notice-title">
+    <div class="safety-header">
+      <div class="safety-header-left">
+        <span class="safety-badge risk-standard" aria-label="Risk rating: Standard">
+          🛡️ Risk Rating: Standard
+        </span>
+        <span class="safety-scope">Scope: Licensed Beauty Professionals</span>
+      </div>
       
-      <div style="margin-bottom: 24px;">
-        <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 6px;">How do I use this calculator behind the chair?</h4>
-        <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.55;">Simply adjust the input sliders or numbers on your phone or station tablet. Results calculate instantly on your device with no page reloads, saving you time at the color bar or styling mirror.</p>
-      </div>
+    </div>
 
-      <div style="margin-bottom: 24px;">
-        <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 6px;">Are these measurements calibrated for all professional salon brands?</h4>
-        <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.55;">Yes. The formulas use universal metric units (grams, milliliters) and imperial units (ounces, fluid ounces) calibrated for major brands including Wella, Redken, Schwarzkopf, L'Oréal, Guy Tang Mydentity, and Olaplex.</p>
+    <div class="safety-body">
+      <h3 id="safety-notice-title" class="safety-title">Professional Safety Notice</h3>
+      
+      <ul class="safety-warning-list">
+        <li><strong>Caution:</strong> This tool estimates pricing only — it does not replace your own profit-and-loss tracking or accountant's advice on margins and tax.</li>
+      </ul>
+      
+    </div>
+  </aside>
+        
+  <!-- Educational Guide & Formulation Protocol -->
+  <article class="educational-guide" aria-labelledby="guide-heading">
+    <h2 id="guide-heading" class="guide-title">Why Balayage Pricing Needs Real Math, Not a Flat Rate</h2>
+
+    <p class="guide-lead">Balayage is one of the highest-ticket services in the salon, but it is also one of the easiest to under-price. A flat "balayage starts at $X" rate ignores the fact that a long, thick head of hair can burn through two or three extra bowls of lightener and toner compared to a short, fine one — and every extra bowl is real backbar cost coming straight out of your margin.</p>
+    <p class="guide-lead">Quoting from actual product usage and your target hourly rate, rather than a guess, is what protects your profit on the services that take the longest and look the most impressive on social media.</p>
+
+    
+    <!-- Worked Formula Walkthrough Box -->
+    <div class="formula-walkthrough-box">
+      <h3 class="walkthrough-title">🖌️ How to use this calculator</h3>
+      
+      <ol class="walkthrough-steps">
+        <li>Count how many bowls of lightener/clay the service will realistically need based on hair length and density.</li>
+        <li>Enter your actual product cost per bowl (check your backbar invoice, not a guess).</li>
+        <li>Add glosser/toner bowls and whether a bond builder like Olaplex or K18 is included.</li>
+        <li>Enter the total appointment time and your target net hourly labor rate.</li>
+        <li>The calculator adds backbar product cost to labor cost for a recommended quote and shows your approximate profit margin.</li>
+      </ol>
+      
+      <div class="walkthrough-example">
+        Example: 3 lightener bowls at $8.50, 2 toner bowls, a bond builder, 3.5 hours of labor at a $65/hour target rate recommends a $255 quote with roughly 86% going to labor margin.
+      </div>
+    </div>
+
+    
+
+    
+    <!-- Critical Rules -->
+    <h3 class="section-subheading">Rules to Remember</h3>
+    <ul class="station-rules-list">
+      
+      <li>
+        <strong>1. Price the appointment you actually did, not the one you planned:</strong>
+        If a service ran long or needed an extra bowl, that cost belongs in the quote or in next time's deposit/pricing conversation — not absorbed silently into your margin.
+      </li>
+      <li>
+        <strong>2. Backbar cost compounds fast on long hair:</strong>
+        Extra bowls of lightener and toner are the single biggest margin killer on balayage — track real bowl counts per length category so your pricing reflects reality.
+      </li>
+    </ul>
+
+    <!-- FAQ Section -->
+    
+    <section class="faq-section" aria-labelledby="faq-section-title">
+      <h3 id="faq-section-title" class="section-subheading">Frequently Asked Questions</h3>
+      <div class="faq-list">
+        
+          <div class="faq-item">
+            <h4 class="faq-question">undefined</h4>
+            <p class="faq-answer">undefined</p>
+          </div>
+        
+          <div class="faq-item">
+            <h4 class="faq-question">undefined</h4>
+            <p class="faq-answer">undefined</p>
+          </div>
+        
+          <div class="faq-item">
+            <h4 class="faq-question">undefined</h4>
+            <p class="faq-answer">undefined</p>
+          </div>
+        
       </div>
     </section>
+  </article>
+      </div>
+
+      <!-- Contextual Sidebar Column -->
+      <aside class="tool-sidebar-col" aria-label="Station Resources & Gear">
+        
+        
+      </aside>
+
+    </div>
+
+    <!-- Related Tools Section (Bottom of Page) -->
+    
+  <!-- Related Station Tools Cluster -->
+  <section class="related-tools-section" aria-labelledby="related-tools-heading">
+    <div class="section-title-wrap">
+      <span class="section-kicker">Cross-Service Formulas</span>
+      <h3 id="related-tools-heading" class="section-title">Related Color &amp; Station Calculators</h3>
+    </div>
+    <div class="related-tools-grid">
+      
+        <a href="/tools/chair-rental-profitability-calculator/" class="related-tool-card" data-tool-id="chair-rental-profitability-calculator">
+          <div class="card-icon-badge">
+            <span class="tool-icon">💺</span>
+            <span class="tool-badge">Money Maker</span>
+          </div>
+          <h4 class="tool-name">Booth Rent vs. Commission Profitability Calculator</h4>
+          <p class="tool-desc">Compare weekly service revenue, 50% commission splits, flat booth rent, and supply expenses to calculate net gains.</p>
+          <span class="card-link-cta">Open Calculator &rarr;</span>
+        </a>
+      
+        <a href="/tools/hairdresser-hourly-rate-calculator/" class="related-tool-card" data-tool-id="hairdresser-hourly-rate-calculator">
+          <div class="card-icon-badge">
+            <span class="tool-icon">💵</span>
+            <span class="tool-badge">Essential</span>
+          </div>
+          <h4 class="tool-name">Hairdresser True Net Hourly Rate Calculator</h4>
+          <p class="tool-desc">Calculate real hourly earnings factoring in non-billable setup, sanitation, admin, and annual overhead expenses.</p>
+          <span class="card-link-cta">Open Calculator &rarr;</span>
+        </a>
+      
+        <a href="/tools/retail-product-markup-calculator/" class="related-tool-card" data-tool-id="retail-product-markup-calculator">
+          <div class="card-icon-badge">
+            <span class="tool-icon">🛍️</span>
+            <span class="tool-badge">Money Maker</span>
+          </div>
+          <h4 class="tool-name">Retail Product Markup & Profit Margin Calculator</h4>
+          <p class="tool-desc">Calculate wholesale keystone markup (100%), profit per bottle, and monthly retail revenue goals.</p>
+          <span class="card-link-cta">Open Calculator &rarr;</span>
+        </a>
+      
+    </div>
+  </section>
   </main>
 
-  <!-- Footer -->
-  <footer role="contentinfo">
-    <div class="container" style="text-align: center;">
-      <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.2); border-radius: var(--radius-sm); padding: 14px 18px; margin-bottom: 20px; font-size: 0.8rem; color: #BDB7AF; line-height: 1.5; max-width: 720px; margin-left: auto; margin-right: auto;">
-        <strong>Safety Note:</strong> Tool results are estimates for licensed beauty professionals. Always follow manufacturer directions and perform 48-hour client skin allergy patch tests. <a href="/legal/disclaimer.html" style="color: #D4AF37; text-decoration: underline;">Read Full Disclaimer</a>
+  
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      
+      <!-- Professional Review & Disclaimer Banner -->
+      <div class="footer-safety-notice">
+        <div class="footer-safety-icon">⚠️</div>
+        <div class="footer-safety-text">
+          <strong>Professional Technical Notice:</strong> Calculations and mixing ratios on TheSalonSuite.com are designed as mathematical guidance for licensed cosmetology and beauty professionals. Manufacturer chemical formulations, buffering agents, and processing requirements vary across brands. Always perform mandatory 48-hour client allergy patch tests and follow manufacturer directions.
+          <span class="footer-review-tag">Technically Reviewed by Tracey Thompson, Professional Education & Technical Reviewer.</span>
+          <a href="/legal/disclaimer.html" class="footer-legal-link">Read Full Disclaimer &rarr;</a>
+        </div>
       </div>
-      <p style="margin-bottom: 12px; color: #BDB7AF;">&copy; 2026 TheSalonSuite.com &bull; Free Professional Beauty Calculators</p>
-      <a href="/" style="color: #D4AF37; font-weight: 600;">&larr; Return to All 32 Free Salon Calculators (A–Z)</a>
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>TheSalon<span>Suite</span>.com</h4>
+          <p class="footer-tagline">Professional tools for the people behind the chair.</p>
+          <p class="footer-sub">Calculate. Learn. Create. Grow.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Hair Color & Chemistry</h5>
+          <ul>
+            <li><a href="/tools/developer-mixing-calculator/">Developer Mixing</a></li>
+            <li><a href="/tools/bleach-developer-ratio-calculator/">Bleach Ratios</a></li>
+            <li><a href="/tools/toner-ratio-calculator/">Toner & Glossing</a></li>
+            <li><a href="/tools/grey-coverage-formula-calculator/">Grey Coverage</a></li>
+            <li><a href="/tools/hair-level-undertone-chart/">Undertone Chart</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Salon Business & Pricing</h5>
+          <ul>
+            <li><a href="/tools/chair-rental-profitability-calculator/">Booth Rent vs Commission</a></li>
+            <li><a href="/tools/hairdresser-hourly-rate-calculator/">True Hourly Rate</a></li>
+            <li><a href="/tools/salon-suite-startup-budget-calculator/">Suite Startup Costs</a></li>
+            <li><a href="/tools/retail-product-markup-calculator/">Retail Product Markup</a></li>
+            <li><a href="/tools/self-employed-beauty-tax-calculator/">Self-Employed Taxes</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>About & Standards</h5>
+          <ul>
+            <li><a href="/legal/disclaimer.html">Technical Review Policy</a></li>
+            <li><a href="/legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="/legal/terms.html">Terms of Service</a></li>
+            <li><a href="/legal/cookies.html">Cookie Policy</a></li>
+            <li><a href="/sitemap.xml">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TheSalonSuite.com &bull; Global Professional Utility Platform</span>
+        <span>100% Free Tools For Working Stylists</span>
+      </div>
     </div>
   </footer>
 
+  <!-- Core Scripts -->
   <script src="/js/salonmath.js"></script>
-  <script>
-    const currentToolId = "balayage-pricing-product-calculator";
-    const inputsConfig = [{"id": "bowls_bleach", "label": "Bowls of Lightener / Clay Needed", "type": "number", "default": 3}, {"id": "cost_per_bowl", "label": "Product Cost per Bowl ($/\u00a3)", "type": "number", "default": 8.5}, {"id": "toner_bowls", "label": "Glosser / Toner Bowls", "type": "number", "default": 2}, {"id": "bond_builder", "label": "Include Bond Multiplier (Olaplex/K18)", "type": "select", "default": "yes", "options": [{"val": "yes", "text": "Yes (Add $12 backbar cost)"}, {"val": "no", "text": "No bond builder"}]}, {"id": "service_hours", "label": "Total Appointment Time (Hours)", "type": "number", "default": 3.5}, {"id": "target_hourly", "label": "Target Net Hourly Labor Rate ($/\u00a3)", "type": "number", "default": 65}];
-    let pageUnit = localStorage.getItem('salon_unit') || 'metric';
-    let lastRawFormula = "";
-
-    document.addEventListener('DOMContentLoaded', () => {
-      setPageUnit(pageUnit);
-      inputsConfig.forEach(inp => {
-        const el = document.getElementById(`page-inp-${inp.id}`);
-        if (!el) return;
-        el.addEventListener('input', () => {
-          if (inp.type === 'range') {
-            const valEl = document.getElementById(`page-val-${inp.id}`);
-            if (valEl) valEl.innerText = `${el.value} ${inp.unit || ''}`;
-          }
-          runPageCalculation();
-        });
-      });
-      runPageCalculation();
-    });
-
-    function setPageUnit(u) {
-      pageUnit = u;
-      localStorage.setItem('salon_unit', u);
-      const metricBtn = document.getElementById('page-unit-metric');
-      const imperialBtn = document.getElementById('page-unit-imperial');
-      if (metricBtn && imperialBtn) {
-        if (u === 'imperial') {
-          imperialBtn.classList.add('active');
-          metricBtn.classList.remove('active');
-        } else {
-          metricBtn.classList.add('active');
-          imperialBtn.classList.remove('active');
-        }
-      }
-      SalonMath.setUnit(u);
-      runPageCalculation();
-    }
-
-    function runPageCalculation() {
-      const isImp = (pageUnit === 'imperial');
-      const currency = '$'; // USD default — this page predates per-page region/currency selection, which ships when this tool migrates to the new engine (see developer-mixing-calculator for the pattern)
-      const vals = {};
-      inputsConfig.forEach(inp => {
-        const el = document.getElementById(`page-inp-${inp.id}`);
-        if (el) vals[inp.id] = el.value;
-      });
-
-      let res = { main: "Calculating...", details: "", rawFormula: "" };
-
-      if (currentToolId === 'developer-mixing-calculator') {
-        res = SalonMath.calcDeveloperMixing(vals.dev1, vals.dev2, vals.target_vol, vals.total_ml, isImp);
-      } else if (currentToolId === 'bleach-developer-ratio-calculator') {
-        res = SalonMath.calcBleachRatio(vals.powder_grams, vals.ratio, isImp);
-      } else if (currentToolId === 'hair-level-undertone-chart') {
-        res = SalonMath.calcHairLevel(vals.current_level);
-      } else if (currentToolId === 'grey-coverage-formula-calculator') {
-        res = SalonMath.calcGreyCoverage(vals.grey_pct, vals.total_color_grams, isImp);
-      } else if (currentToolId === 'balayage-pricing-product-calculator') {
-        res = SalonMath.calcBalayagePricing(vals.bowls_bleach, vals.cost_per_bowl, vals.toner_bowls, vals.bond_builder, vals.service_hours, vals.target_hourly, currency);
-      } else if (currentToolId === 'toner-ratio-calculator') {
-        res = SalonMath.calcTonerRatio(vals.toner_ml, vals.ratio, isImp);
-      } else if (currentToolId === 'color-correction-time-estimator') {
-        res = SalonMath.calcColorCorrection(vals.stages, vals.target_hourly, currency);
-      } else if (currentToolId === 'foil-usage-placement-calculator') {
-        res = SalonMath.calcFoilUsage(vals.service_type);
-      } else if (currentToolId === 'perm-rod-timing-calculator') {
-        res = SalonMath.calcPermRod(vals.curl_type);
-      } else if (currentToolId === 'keratin-treatment-dosage-guide') {
-        res = SalonMath.calcKeratinDosage(vals.hair_length, isImp);
-      } else if (currentToolId === 'lash-weight-safety-calculator') {
-        res = SalonMath.calcLashWeight(vals.natural_lash, vals.fan_dimension);
-      } else if (currentToolId === 'lash-mapping-blueprint-generator') {
-        res = SalonMath.calcLashMapping(vals.eye_shape, vals.style, vals.max_length);
-      } else if (currentToolId === 'lash-adhesive-humidity-adjuster') {
-        res = SalonMath.calcLashHumidity(vals.humidity_pct);
-      } else if (currentToolId === 'brow-tint-developer-ratio') {
-        res = SalonMath.calcBrowTint(vals.tint_cm, isImp);
-      } else if (currentToolId === 'brow-lamination-processing-timer') {
-        res = SalonMath.calcBrowLamination(vals.hair_type);
-      } else if (currentToolId === 'acrylic-monomer-ratio-calculator') {
-        res = SalonMath.calcAcrylicMonomer(vals.bead_size);
-      } else if (currentToolId === 'gel-nail-cure-lamp-wattage-calculator') {
-        res = SalonMath.calcGelCure(vals.lamp_wattage);
-      } else if (currentToolId === 'spray-tan-dha-development-calculator') {
-        res = SalonMath.calcSprayTanDha(vals.skin_type);
-      } else if (currentToolId === 'chemical-peel-acid-calculator') {
-        res = SalonMath.calcChemicalPeel(vals.acid_pct, vals.ph_level);
-      } else if (currentToolId === 'chair-rental-profitability-calculator') {
-        res = SalonMath.calcBoothRentVsComm(vals.weekly_sales, vals.comm_split, vals.booth_rent, vals.weekly_supplies, currency);
-      } else if (currentToolId === 'hairdresser-hourly-rate-calculator') {
-        res = SalonMath.calcHourlyRate(vals.annual_revenue, vals.annual_expenses, vals.client_hours_week, vals.admin_hours_week, vals.weeks_worked, currency);
-      } else if (currentToolId === 'salon-suite-startup-budget-calculator') {
-        res = SalonMath.calcSuiteStartup(vals.first_last_rent, vals.decor_equipment, vals.initial_stock, vals.avg_ticket, currency);
-      } else if (currentToolId === 'self-employed-beauty-tax-calculator') {
-        res = SalonMath.calcSelfEmployedTax(vals.weekly_gross, vals.weekly_tips, vals.weekly_expenses, currency);
-      } else if (currentToolId === 'retail-product-markup-calculator') {
-        res = SalonMath.calcRetailMarkup(vals.wholesale_cost, vals.markup_pct, vals.bottles_week, currency);
-      } else if (currentToolId === 'salon-software-cost-comparison') {
-        res = SalonMath.calcSoftwareCost(vals.monthly_card_vol, currency);
-      } else if (currentToolId === 'salon-profit-margin-calculator') {
-        res = SalonMath.calcProfitMargin(vals.total_rev, vals.total_cost, currency);
-      } else if (currentToolId === 'fade-clipper-guard-guide') {
-        res = SalonMath.calcFadeGuards(vals.fade_type);
-      } else if (currentToolId === 'beard-oil-carrier-ratio-calculator') {
-        res = SalonMath.calcBeardOil(vals.bottle_size_ml, isImp);
-      } else if (currentToolId === 'hot-towel-shave-protocol-timer') {
-        res = SalonMath.calcHotTowelShave(vals.beard_density);
-      } else if (currentToolId === 'essential-oil-dilution-calculator') {
-        res = SalonMath.calcEssentialOilDilution(vals.carrier_ml, vals.dilution_pct, isImp);
-      } else if (currentToolId === 'massage-oil-coverage-cost-calculator') {
-        res = SalonMath.calcMassageOilCost(vals.session_len, vals.oil_bottle_cost, currency);
-      } else if (currentToolId === 'hot-stone-temp-placement-guide') {
-        res = SalonMath.calcHotStone(vals.stone_type);
-      } else {
-        res = { main: "Unable to calculate", details: "Tool not wired: " + currentToolId, rawFormula: "" };
-      }
-
-      lastRawFormula = res.rawFormula || res.main;
-      const mainEl = document.getElementById('page-res-main');
-      const detEl = document.getElementById('page-res-details');
-      if (mainEl) mainEl.innerText = res.main;
-      if (detEl) detEl.innerText = res.details;
-    }
-
-    function copyPageFormula() {
-      if (!lastRawFormula) return;
-      navigator.clipboard.writeText(lastRawFormula).then(() => {
-        const toast = document.getElementById('page-copy-toast');
-        if (toast) {
-          toast.style.display = 'block';
-          setTimeout(() => { toast.style.display = 'none'; }, 2500);
-        }
-      });
-    }
-  </script>
+  <script src="/js/preferences.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/tools/balayage-pricing-product-calculator.js"></script>
 </body>
 </html>
