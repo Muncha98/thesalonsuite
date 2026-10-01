@@ -549,19 +549,39 @@ const SalonMath = {
 
   // 12. Color Correction Time & Quote
   calcColorCorrection: function(stages, hourlyRate, currency) {
-    stages = Number(stages) || 3;
-    hourlyRate = Number(hourlyRate) || 85;
     const curr = currency || '$';
+
+    if (stages === '' || stages === null || stages === undefined) {
+      return { isValid: false, errors: { stages: 'Estimated correction stages is required.' }, error: 'Estimated correction stages is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nStages = Number(stages);
+    if (!Number.isFinite(nStages) || nStages <= 0) {
+      return { isValid: false, errors: { stages: 'Stages must be a positive whole number.' }, error: 'Stages must be a positive whole number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nStages > 12) {
+      return { isValid: false, errors: { stages: 'Stages cannot exceed 12 (consider splitting into multiple appointments).' }, error: 'Stages cannot exceed 12 (consider splitting into multiple appointments).', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    if (hourlyRate === '' || hourlyRate === null || hourlyRate === undefined) {
+      return { isValid: false, errors: { target_hourly: 'Hourly rate is required.' }, error: 'Hourly rate is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nRate = Number(hourlyRate);
+    if (!Number.isFinite(nRate) || nRate <= 0) {
+      return { isValid: false, errors: { target_hourly: 'Hourly rate must be a positive number.' }, error: 'Hourly rate must be a positive number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
     const hoursPerStage = 1.25;
-    const totalHours = stages * hoursPerStage;
-    const labor = totalHours * hourlyRate;
-    const backbar = stages * 25;
+    const totalHours = nStages * hoursPerStage;
+    const labor = totalHours * nRate;
+    const backbar = nStages * 25;
     const quote = Math.round(labor + backbar);
 
     return {
+      isValid: true,
       main: `Quote: ${curr}${quote} (~${totalHours.toFixed(1)} hrs)`,
-      details: `${stages} stage(s) × ${hoursPerStage}h = ${totalHours.toFixed(1)}h labor @ ${curr}${hourlyRate}/h (${curr}${Math.round(labor)}) + ~${curr}${backbar} backbar buffer.`,
-      rawFormula: `Color Correction: ${stages} stages × ${hoursPerStage}h × ${curr}${hourlyRate} + ${curr}${backbar} backbar = ${curr}${quote}`
+      details: `${nStages} stage(s) × ${hoursPerStage}h = ${totalHours.toFixed(1)}h labor @ ${curr}${nRate}/h (${curr}${Math.round(labor)}) + ~${curr}${backbar} backbar buffer.`,
+      rawFormula: `Color Correction: ${nStages} stages × ${hoursPerStage}h × ${curr}${nRate} + ${curr}${backbar} backbar = ${curr}${quote}`,
+      data: { stages: nStages, totalHours, labor, backbar, quote }
     };
   },
 
@@ -572,8 +592,12 @@ const SalonMath = {
       full: { foils: '70–90', note: 'Full-head foils. Pre-cut sheets; allow ~10% spare for weaving adjustments.' },
       platinum: { foils: '110–140', note: 'Platinum card / dense weave. Expect longer process time and higher lightener usage.' }
     };
-    const conf = map[serviceType] || map.full;
+    if (!Object.prototype.hasOwnProperty.call(map, serviceType)) {
+      return { isValid: false, error: 'Please select a valid service placement.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const conf = map[serviceType];
     return {
+      isValid: true,
       main: `Estimated Foils: ${conf.foils}`,
       details: conf.note,
       rawFormula: `Foil Placement (${serviceType}): ${conf.foils} foils`
@@ -587,8 +611,12 @@ const SalonMath = {
       standard: { rods: 'Blue / Pink (9mm)', process: 'Process 12–18 min per manufacturer', note: 'Medium volume curl — most common salon rod size.' },
       beach: { rods: 'Purple / Orange (14–16mm)', process: 'Process 8–12 min for soft wave', note: 'Soft beach wave. Avoid over-processing or waves will tighten.' }
     };
-    const conf = map[curlType] || map.beach;
+    if (!Object.prototype.hasOwnProperty.call(map, curlType)) {
+      return { isValid: false, error: 'Please select a valid wave pattern.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const conf = map[curlType];
     return {
+      isValid: true,
       main: `Rod Choice: ${conf.rods}`,
       details: `${conf.note} Timing: ${conf.process}. Always perform a test curl before neutralizing.`,
       rawFormula: `Perm Rod (${curlType}): ${conf.rods} | ${conf.process}`
@@ -602,7 +630,10 @@ const SalonMath = {
       medium: { ml: 52, range: '45–60ml', passes: '4–6 iron passes', temp: '400–430°F (204–221°C)' },
       long: { ml: 82, range: '75–90ml', passes: '6–8 iron passes', temp: '420–450°F (216–232°C)' }
     };
-    const conf = map[hairLength] || map.medium;
+    if (!Object.prototype.hasOwnProperty.call(map, hairLength)) {
+      return { isValid: false, error: 'Please select a valid hair length & density.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const conf = map[hairLength];
     const unitLabel = isImperial ? 'fl oz' : 'ml';
     const amount = isImperial ? (conf.ml / 30).toFixed(1) : conf.ml;
     const rangeLabel = isImperial
@@ -610,6 +641,7 @@ const SalonMath = {
       : conf.range;
 
     return {
+      isValid: true,
       main: `Dose: ~${amount}${unitLabel} (${rangeLabel})`,
       details: `Apply thin even layers mid-lengths to ends, then roots last. Flat iron: ${conf.passes} at ${conf.temp}. Follow brand-specific wash wait time.`,
       rawFormula: `Keratin Dosage (${hairLength}): ${rangeLabel} | ${conf.passes} @ ${conf.temp}`

@@ -924,6 +924,71 @@
       "color correction cost",
       "how to charge for color correction",
       "hair color remover time"
+    ],
+    "slug": "color-correction-time-estimator",
+    "calc_subtitle": "Enter your estimated stages and hourly rate for a transparent corrective-color quote.",
+    "education": {
+      "heading": "Why Flat-Rate Color Correction Pricing Loses Money",
+      "intro": [
+        "Color correction is inherently unpredictable — you cannot know exactly how many stages (decap, fill, foil, gloss) a head of hair will need until you are in it. Charging a single flat \"color correction\" rate regardless of complexity is one of the most common ways stylists end up working for below minimum wage on these appointments.",
+        "Breaking the service into discrete stages, each billed at a real hourly rate plus a backbar buffer, keeps the quote honest whether the correction takes two stages or six."
+      ],
+      "walkthrough": {
+        "icon": "🪄",
+        "title": "How to use this calculator",
+        "steps": [
+          "Estimate the number of correction stages needed (e.g. color remover, fill, lightening, toning/gloss).",
+          "Enter your target hourly rate.",
+          "The calculator allocates 1.25 hours per stage and adds a $25/stage backbar buffer for the extra product correction work consumes."
+        ],
+        "example": "Example: a 3-stage correction at an $85/hour target rate recommends a quote of roughly $394, covering about 3.75 hours of labor plus a $75 backbar buffer."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Always quote a range before you start, then confirm once you see the hair",
+          "body": "Give the client an estimated stage range up front, and confirm the final quote once you have assessed porosity and prior chemical history in person."
+        },
+        {
+          "title": "Backbar cost scales with stages, not just time",
+          "body": "Each additional stage consumes real product — a flat backbar assumption per stage keeps the quote honest even if labor time runs efficiently."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Elevated",
+      "professional_scope": "Licensed Beauty Professionals",
+      "warnings": [
+        "Color correction often involves multiple chemical services in one sitting — always assess hair integrity and consider splitting into multiple appointments if the hair cannot safely tolerate it in one visit.",
+        "This tool estimates pricing only — it does not replace your own professional judgment on what the hair can safely withstand."
+      ]
+    },
+    "faq": [
+      {
+        "q": "How do I use this calculator behind the chair?",
+        "a": "Enter your estimated number of correction stages and your target hourly rate. The calculator instantly gives you a transparent quote broken into labor and backbar cost."
+      },
+      {
+        "q": "Why does each stage add a backbar buffer on top of labor time?",
+        "a": "Each additional correction stage (decap, fill, foil, gloss) consumes real product beyond what a single-process service would use — the backbar buffer keeps that cost in the quote instead of silently eating your margin."
+      },
+      {
+        "q": "What if the hair needs more stages once I start?",
+        "a": "Reassess and requote — this calculator is meant to be rerun as the plan firms up, not used once at the very start before you have seen the hair in person."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Color Correction Quote: Total Stages (Decap / Fill / Foil / Gloss) × 1.25 Hours/Stage × Hourly Rate + Backbar Buffer.",
+        "Stage-based labor + backbar cost breakdown",
+        "Metric and Imperial unit support",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "bleach-developer-ratio-calculator",
+      "toner-ratio-calculator",
+      "hairdresser-hourly-rate-calculator"
     ]
   },
   {
@@ -963,6 +1028,68 @@
       "how many foils for full head",
       "foil highlight placement",
       "platinum card foils"
+    ],
+    "slug": "foil-usage-placement-calculator",
+    "calc_subtitle": "Select your service placement for an estimated foil count and prep guidance.",
+    "education": {
+      "heading": "Why Foil Count Estimates Save Appointment Time",
+      "intro": [
+        "Foil count drives both product usage and appointment length. Underestimating foils mid-service means stopping to prep more sheets with lightener already activated in the bowl — a rushed, messy interruption. Overestimating wastes pre-cut sheets and backbar product.",
+        "Estimating the right range before you start lets you prep foils, mix the right batch size, and set an accurate appointment time with the client up front."
+      ],
+      "walkthrough": {
+        "icon": "🧻",
+        "title": "How to use this guide",
+        "steps": [
+          "Select the service placement that matches the appointment — partial, full head, or a dense platinum card/weave.",
+          "Pre-cut and prep the estimated foil range before mixing lightener.",
+          "Add 8–12 extra money-piece foils to a partial if face-framing is requested."
+        ],
+        "example": "Example: a full-head foil service typically needs 70–90 pre-cut foil sheets, with about 10% spare for weaving adjustments."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Always prep slightly more than the estimate",
+          "body": "Running out of pre-cut foils mid-placement forces you to cut more with lightener already drying in the bowl — the 10% spare margin exists for a reason."
+        },
+        {
+          "title": "Platinum and dense weaves need a longer appointment slot, not just more foils",
+          "body": "More foils means more processing checks and often a longer overall appointment — factor that into scheduling, not just product prep."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Standard",
+      "professional_scope": "Licensed Beauty Professionals",
+      "warnings": [
+        "Foil counts are estimates — actual count varies with head size, hair density, and desired dimension."
+      ]
+    },
+    "faq": [
+      {
+        "q": "How many foils do I need for a full head?",
+        "a": "A full-head foil service typically needs 70–90 pre-cut foils, with about 10% extra prepped for weaving adjustments."
+      },
+      {
+        "q": "How do I use this calculator behind the chair?",
+        "a": "Select your service placement and the guide instantly gives you an estimated foil count range and prep notes."
+      },
+      {
+        "q": "What about a partial highlight with face-framing?",
+        "a": "A partial highlight typically needs 35–45 foils — include 8–12 additional money-piece foils if the client wants face-framing."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Foil Guidelines: Money Piece (8–12 foils), Partial (35–50 foils), Full Head (70–90 foils), Platinum Card (110–140 foils).",
+        "Partial, full-head, and platinum card coverage",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "balayage-pricing-product-calculator",
+      "color-correction-time-estimator"
     ]
   },
   {
@@ -1002,6 +1129,69 @@
       "perm curl diameter",
       "perm timing calculator",
       "beach wave perm rods"
+    ],
+    "slug": "perm-rod-timing-calculator",
+    "calc_subtitle": "Select your desired wave pattern for the right rod size and processing time.",
+    "education": {
+      "heading": "Matching Rod Size to Wave Pattern",
+      "intro": [
+        "Perm rod diameter directly determines final curl size — smaller rods create tighter spirals, larger rods create soft, loose waves. Processing time also varies by rod size and hair porosity, so a one-size-fits-all timer risks over- or under-processing.",
+        "Choosing the right rod size and timing range up front, then confirming with a test curl, keeps the result predictable."
+      ],
+      "walkthrough": {
+        "icon": "🌀",
+        "title": "How to use this guide",
+        "steps": [
+          "Select the desired wave pattern — tight spiral, medium volume curl, or soft beach wave.",
+          "Use the matching rod size and wrap evenly for a consistent diameter.",
+          "Process within the given time range, checking a test curl before neutralizing."
+        ],
+        "example": "Example: a soft beach wave uses purple/orange rods (14–16mm) and processes in 8–12 minutes."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Always test curl before neutralizing",
+          "body": "A test curl confirms the perm has actually taken before you commit to neutralizing — skipping it risks an under-processed result that relaxes within days."
+        },
+        {
+          "title": "Fine hair processes faster",
+          "body": "Check early on fine or previously colored hair — it typically processes faster than the standard range for a given rod size."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Elevated",
+      "professional_scope": "Licensed Beauty Professionals",
+      "warnings": [
+        "Always perform a 48-hour client skin allergy patch test before chemical perm services.",
+        "Previously colored or chemically treated hair may process faster and is more prone to breakage — adjust timing and always test curl before proceeding."
+      ]
+    },
+    "faq": [
+      {
+        "q": "What rod size gives the loosest wave?",
+        "a": "Purple/orange rods (14–16mm) give the softest beach wave pattern, processing in about 8–12 minutes."
+      },
+      {
+        "q": "How do I use this calculator behind the chair?",
+        "a": "Select your desired wave pattern and the guide instantly gives you the matching rod size and processing time range."
+      },
+      {
+        "q": "Why does rod size affect processing time?",
+        "a": "Smaller rods create tighter bends in the hair shaft, which generally process faster — larger rods create gentler bends that typically need a bit longer to set."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Rod Color Chart: Red (4mm tight), Yellow (5mm), Blue (9mm standard), White (11mm full wave), Purple (14mm beach wave).",
+        "Spiral, standard, and beach wave coverage",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "keratin-treatment-dosage-guide",
+      "color-correction-time-estimator"
     ]
   },
   {
@@ -1041,6 +1231,71 @@
       "how much keratin treatment to use",
       "keratin flat iron temperature",
       "brazilian blowout ounces"
+    ],
+    "slug": "keratin-treatment-dosage-guide",
+    "calc_subtitle": "Select hair length & density for the right keratin dosage and flat iron guidance.",
+    "education": {
+      "heading": "Dosing Keratin by Hair Length and Density",
+      "intro": [
+        "Keratin smoothing treatments need enough product to coat every strand evenly without oversaturating — too little leaves patchy results, too much can cause buildup and a greasy, weighed-down finish that doesn't smooth properly under the flat iron.",
+        "Hair length and density are the two biggest drivers of how much product a head actually needs, along with how many flat iron passes are required to properly seal it in."
+      ],
+      "walkthrough": {
+        "icon": "💇",
+        "title": "How to use this guide",
+        "steps": [
+          "Select the client's hair length and density category.",
+          "Apply thin, even layers from mid-lengths to ends first, then roots last.",
+          "Flat iron with the number of passes and temperature range shown, then follow your brand's specific wash-wait time before the client showers."
+        ],
+        "example": "Example: medium/normal hair typically needs 45–60ml of product and 4–6 flat iron passes at 400–430°F (204–221°C)."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Apply mid-lengths to ends first, roots last",
+          "body": "This sequencing avoids over-depositing product at the scalp where it is least needed and most likely to cause buildup or irritation."
+        },
+        {
+          "title": "Follow brand-specific wash-wait time exactly",
+          "body": "Washing too soon after a keratin treatment can undo the bond before it has fully set, regardless of how well the application and flat ironing were done."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Elevated",
+      "professional_scope": "Licensed Beauty Professionals",
+      "warnings": [
+        "Many keratin smoothing treatments release formaldehyde or formaldehyde-releasing agents when heat-sealed — always ensure adequate salon ventilation and check your product's safety data sheet.",
+        "Always perform a 48-hour client skin allergy patch test before keratin smoothing services."
+      ],
+      "manufacturer_note": "Dosage ranges are a general guide — always follow your specific keratin brand's application amount, flat iron temperature, and wash-wait time instructions, as formulations vary significantly between brands."
+    },
+    "faq": [
+      {
+        "q": "How much keratin product do I need for long, dense hair?",
+        "a": "Long or dense hair typically needs 75–90ml of product and 6–8 flat iron passes at 420–450°F (216–232°C)."
+      },
+      {
+        "q": "How do I use this calculator behind the chair?",
+        "a": "Select the client's hair length and density, and the guide instantly gives you a dosage range, iron pass count, and temperature guidance."
+      },
+      {
+        "q": "Why does keratin need flat ironing at a specific temperature?",
+        "a": "The flat iron heat is what seals the keratin treatment into the hair shaft — too low a temperature won't properly bond it, while too high risks heat damage."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Dosage guide by hair length and density",
+        "Flat iron pass count and temperature guidance",
+        "Metric and Imperial unit support",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "perm-rod-timing-calculator",
+      "color-correction-time-estimator"
     ]
   },
   {
