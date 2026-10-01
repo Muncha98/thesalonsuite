@@ -257,6 +257,107 @@
       "lightener developer ratio",
       "how much developer for 30g bleach",
       "foil mixing ratio"
+    ],
+    "slug": "bleach-developer-ratio-calculator",
+    "calc_subtitle": "Enter your powder amount and ratio for an exact developer weight and total bowl weight.",
+    "education": {
+      "heading": "Why Weighing Bleach and Developer Is Non-Negotiable",
+      "intro": [
+        "In chemical lightening, potassium persulfate and ammonium persulfate salts require exact stoichiometry with hydrogen peroxide developer to lift melanin without compromising the structural keratin disulfide bonds.",
+        "Eyeballing lightener ratios or using volumetric plastic scoops introduces up to 30% inconsistency in chemical pH and viscosity. Too dry (under-ratio) and the persulfate crystals swell rapidly, crust over, and stop lifting. Too wet (over-ratio in foils) and developer peroxide dilutes the active persulfate concentration, causing packet slippage and chemical banding."
+      ],
+      "walkthrough": {
+        "icon": "⚖️",
+        "title": "How to use this calculator",
+        "steps": [
+          "Weigh your powder lightener on a tared digital scale and enter the gram (or ounce) amount.",
+          "Select the mixing ratio for the technique you are performing — thicker for open-air work, thinner for foils or a bleach bath.",
+          "Pour developer into the same bowl, on the same scale, until the total reaches the calculated bowl weight."
+        ],
+        "example": "Example: 30g of powder at a 1:2 ratio needs 60g of developer, for a 90g total bowl weight."
+      },
+      "reference_table": {
+        "title": "Lightener Ratio Application Guide",
+        "columns": [
+          "Mixing Ratio",
+          "Consistency",
+          "Ideal Technique",
+          "Lift Velocity"
+        ],
+        "rows": [
+          [
+            "1:1",
+            "Heavy Clay / Paste",
+            "Open-air freehand balayage, surface hair painting",
+            "Slow, controlled surface lift. Zero bleed-through."
+          ],
+          [
+            "1:1.5",
+            "Creamy Whipped",
+            "Teasylights, foilayage, root retouch on thick hair",
+            "Moderate lift speed with excellent saturation."
+          ],
+          [
+            "1:2",
+            "Smooth Cream (Standard)",
+            "Traditional foil highlights, babylights, platinum cards",
+            "Fast, maximum lift potential with complete saturation."
+          ],
+          [
+            "1:3",
+            "Liquid / Bleach Bath",
+            "Shampoo bowl color cleanse, pulling out old direct dye",
+            "Ultra-gentle, rapid visual wash (5–15 min)."
+          ]
+        ]
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Always weigh, never eyeball",
+          "body": "A digital scale removes the up-to-30% inconsistency that volumetric scoops introduce, which directly affects lift speed and evenness."
+        },
+        {
+          "title": "Match ratio to technique, not habit",
+          "body": "A thinner ratio for foils and a thicker ratio for open-air work both exist for a reason — using the wrong one causes bleed-through or slow, patchy lift."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Elevated",
+      "professional_scope": "Licensed Beauty Professionals",
+      "warnings": [
+        "Always perform a 48-hour client skin allergy patch test before chemical lightening services.",
+        "Follow your lightener manufacturer's own developer volume and maximum processing time directions — they take priority over the general guidance given here.",
+        "Never mix bleach and developer until immediately before application — activated lightener loses potency and consistency over time."
+      ],
+      "manufacturer_note": "Formulas use universal metric and imperial weight units calibrated for major professional brands including Wella, Redken, Schwarzkopf, L'Oréal, Guy Tang Mydentity, and Olaplex, but exact product strength varies by line — always cross-reference your own manufacturer's instructions."
+    },
+    "faq": [
+      {
+        "q": "How do I use this calculator behind the chair?",
+        "a": "Enter your powder lightener weight and select your mixing ratio. The calculator instantly gives you the exact developer weight and total bowl weight to hit on your scale — no page reloads."
+      },
+      {
+        "q": "Are these measurements calibrated for all professional salon brands?",
+        "a": "The ratio math is universal. Formulas use metric (grams/ml) and imperial (ounces/fl oz) units compatible with major brands including Wella, Redken, Schwarzkopf, L'Oréal, Guy Tang Mydentity, and Olaplex — always confirm your own product's recommended ratio range."
+      },
+      {
+        "q": "What mixing ratio should I use for foil highlights?",
+        "a": "A 1:2 ratio (smooth cream consistency) is the standard choice for traditional foil highlights and babylights, giving fast lift with complete saturation."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Formula: Developer Weight = Powder Grams × Ratio Multiplier (1.0, 1.5, 2.0, or 3.0). Total Bowl Weight = Powder + Developer.",
+        "1:1, 1:1.5, 1:2, and 1:3 ratio support",
+        "Metric and Imperial unit support",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "developer-mixing-calculator",
+      "toner-ratio-calculator"
     ]
   },
   {
@@ -456,6 +557,103 @@
       "grey coverage ratio",
       "how to formulate grey hair",
       "stubborn grey hair dye"
+    ],
+    "slug": "grey-coverage-formula-calculator",
+    "calc_subtitle": "Enter grey percentage and batch size for the exact base-to-fashion shade gram breakdown.",
+    "education": {
+      "heading": "Why Grey Hair Needs a Base-to-Fashion Blend",
+      "intro": [
+        "Grey hair has little to no natural background pigment — it is translucent, not simply \"faded\" like regrown natural hair. A fashion or demi-permanent shade applied alone on resistant grey will often look sheer, cool, or ashy because there is no underlying warmth for it to deposit onto.",
+        "A dedicated Natural/Base (N) series restores that missing background pigment, giving the fashion shade something to sit on top of. The more grey present, the more base is needed relative to the fashion shade."
+      ],
+      "walkthrough": {
+        "icon": "👵",
+        "title": "How to use this calculator",
+        "steps": [
+          "Estimate the client's grey percentage by sectioning the hair and visually assessing coverage.",
+          "Enter your total color batch size (the full amount you plan to mix).",
+          "Use the resulting Base (N) and Fashion Shade gram split to build your formula in the bowl.",
+          "Process with 20 Volume developer at a 1:1 or 1:1.5 ratio for a full 45 minutes on resistant cuticles."
+        ],
+        "example": "Example: 50% grey hair with a 60g total batch needs 30g Natural Base (N) + 30g Fashion Shade."
+      },
+      "reference_table": {
+        "title": "Grey Percentage to Base Ratio",
+        "columns": [
+          "Grey Percentage",
+          "Natural Base (N) Share",
+          "Fashion Shade Share"
+        ],
+        "rows": [
+          [
+            "Up to 25%",
+            "25%",
+            "75%"
+          ],
+          [
+            "26%–50%",
+            "50%",
+            "50%"
+          ],
+          [
+            "51%–75%",
+            "66%",
+            "34%"
+          ],
+          [
+            "76%–100%",
+            "75%",
+            "25%"
+          ]
+        ]
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "More grey means more base, not more developer",
+          "body": "Resistant grey needs more Natural Base pigment in the mix, not a higher developer volume — overprocessing with excess peroxide does not improve coverage and risks damage."
+        },
+        {
+          "title": "Full processing time matters on resistant cuticles",
+          "body": "Grey hair's compact cuticle structure resists pigment deposit — cutting the 45-minute process short is the most common cause of grey \"bleed-through\" after a few washes."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Standard",
+      "professional_scope": "Licensed Beauty Professionals",
+      "warnings": [
+        "Always perform a 48-hour client skin allergy patch test before chemical color services.",
+        "Follow your color manufacturer's own base/fashion blending ratios and developer volume guidance — they take priority over the general guidance given here."
+      ],
+      "manufacturer_note": "Base ratio percentages are a universal starting formula compatible with major professional brands including Wella, Redken, Schwarzkopf, L'Oréal, and Guy Tang Mydentity, but exact Natural/Base series naming and strength vary by line — always cross-reference your own color system."
+    },
+    "faq": [
+      {
+        "q": "How do I use this calculator behind the chair?",
+        "a": "Enter the client's grey percentage and your total batch size. The calculator instantly gives you the Natural Base and Fashion Shade gram split — no page reloads."
+      },
+      {
+        "q": "Are these measurements calibrated for all professional salon brands?",
+        "a": "The base ratio percentages are a universal starting point compatible with major brands including Wella, Redken, Schwarzkopf, L'Oréal, and Guy Tang Mydentity — always confirm your own line's recommended Natural/Base series and ratio range."
+      },
+      {
+        "q": "Why does more grey need more base color instead of a stronger developer?",
+        "a": "Grey hair lacks background pigment, not porosity. A higher developer volume lifts hair but does not add missing pigment back in — only a Natural Base shade restores the warmth a fashion color needs to sit on top of."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Standard Formulation: 25% grey = 25% Natural Base | 50% grey = 50% Natural Base | 75%+ grey = 66%–75% Natural Base with 20 Vol developer.",
+        "25% / 50% / 66% / 75% base ratio breakpoints",
+        "Metric and Imperial unit support",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "developer-mixing-calculator",
+      "toner-ratio-calculator",
+      "color-correction-time-estimator"
     ]
   },
   {

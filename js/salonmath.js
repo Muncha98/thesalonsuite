@@ -216,27 +216,48 @@ const SalonMath = {
   // 2. Bleach to Developer Ratio
   calcBleachRatio: function(powderAmount, ratioStr, isImperial) {
     const unitLabel = isImperial ? 'oz' : 'g';
-    powderAmount = Number(powderAmount) || (isImperial ? 1.0 : 30);
-    
-    let multiplier = 2;
-    if (ratioStr === '1:1') multiplier = 1;
-    else if (ratioStr === '1:1.5') multiplier = 1.5;
-    else if (ratioStr === '1:2') multiplier = 2;
-    else if (ratioStr === '1:3') multiplier = 3;
+
+    // Defensive validation — previously any unrecognized ratio silently
+    // fell back to 1:2, and powderAmount silently fell back to a default
+    // instead of being rejected. Mirrors the rigor applied to the other
+    // calculators after the Phase 1 QA review.
+    const RATIOS = { '1:1': 1, '1:1.5': 1.5, '1:2': 2, '1:3': 3 };
+
+    if (powderAmount === '' || powderAmount === null || powderAmount === undefined) {
+      return { isValid: false, error: 'Powder lightener amount is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nPowder = Number(powderAmount);
+    if (!Number.isFinite(nPowder)) {
+      return { isValid: false, error: 'Powder lightener amount must be a valid number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nPowder <= 0) {
+      return { isValid: false, error: 'Powder lightener amount must be greater than zero.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const maxPowder = isImperial ? 17.5 : 500; // generous single-station ceiling (~500g / ~1lb tub)
+    if (nPowder > maxPowder) {
+      return { isValid: false, error: `Powder lightener amount cannot exceed ${maxPowder}${unitLabel} (this calculator is for single-station use).`, main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (!Object.prototype.hasOwnProperty.call(RATIOS, ratioStr)) {
+      return { isValid: false, error: 'Please select a valid mixing ratio.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    const multiplier = RATIOS[ratioStr];
 
     let devAmount, totalWeight;
     if (isImperial) {
-      devAmount = (powderAmount * multiplier).toFixed(1);
-      totalWeight = (Number(powderAmount) + Number(devAmount)).toFixed(1);
+      devAmount = (nPowder * multiplier).toFixed(1);
+      totalWeight = (nPowder + Number(devAmount)).toFixed(1);
     } else {
-      devAmount = Math.round(powderAmount * multiplier);
-      totalWeight = powderAmount + devAmount;
+      devAmount = Math.round(nPowder * multiplier);
+      totalWeight = Math.round(nPowder) + devAmount;
     }
 
     return {
-      main: `${devAmount}${unitLabel} Developer (${powderAmount}${unitLabel} Powder)`,
+      isValid: true,
+      main: `${devAmount}${unitLabel} Developer (${nPowder}${unitLabel} Powder)`,
       details: `Total bowl weight: ${totalWeight}${unitLabel}. For a ${ratioStr} ratio, tare your digital scale and pour developer until scale reaches ${totalWeight}${unitLabel}.`,
-      rawFormula: `Bleach Formula (${ratioStr}): ${powderAmount}${unitLabel} Powder + ${devAmount}${unitLabel} Developer = ${totalWeight}${unitLabel} Total`
+      rawFormula: `Bleach Formula (${ratioStr}): ${nPowder}${unitLabel} Powder + ${devAmount}${unitLabel} Developer = ${totalWeight}${unitLabel} Total`,
+      data: { powderAmount: nPowder, ratio: ratioStr, devAmount: Number(devAmount), totalWeight: Number(totalWeight), unitLabel }
     };
   },
 
@@ -287,29 +308,55 @@ const SalonMath = {
 
   // 4. Grey Coverage Formulation
   calcGreyCoverage: function(greyPct, totalAmount, isImperial) {
-    greyPct = Number(greyPct);
     const unitLabel = isImperial ? 'oz' : 'g';
-    totalAmount = Number(totalAmount) || (isImperial ? 2.0 : 60);
+
+    if (greyPct === '' || greyPct === null || greyPct === undefined) {
+      return { isValid: false, error: 'Client grey percentage is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nGrey = Number(greyPct);
+    if (!Number.isFinite(nGrey)) {
+      return { isValid: false, error: 'Grey percentage must be a valid number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nGrey < 0 || nGrey > 100) {
+      return { isValid: false, error: 'Grey percentage must be between 0 and 100.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    if (totalAmount === '' || totalAmount === null || totalAmount === undefined) {
+      return { isValid: false, error: 'Total color batch amount is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nTotal = Number(totalAmount);
+    if (!Number.isFinite(nTotal)) {
+      return { isValid: false, error: 'Total color batch amount must be a valid number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nTotal <= 0) {
+      return { isValid: false, error: 'Total color batch amount must be greater than zero.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const maxTotal = isImperial ? 17.5 : 500;
+    if (nTotal > maxTotal) {
+      return { isValid: false, error: `Total color batch amount cannot exceed ${maxTotal}${unitLabel} (this calculator is for single-station use).`, main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
 
     let basePct = 0;
-    if (greyPct <= 25) basePct = 0.25;
-    else if (greyPct <= 50) basePct = 0.50;
-    else if (greyPct <= 75) basePct = 0.66;
+    if (nGrey <= 25) basePct = 0.25;
+    else if (nGrey <= 50) basePct = 0.50;
+    else if (nGrey <= 75) basePct = 0.66;
     else basePct = 0.75;
 
     let baseAmount, fashionAmount;
     if (isImperial) {
-      baseAmount = (totalAmount * basePct).toFixed(1);
-      fashionAmount = (totalAmount - baseAmount).toFixed(1);
+      baseAmount = (nTotal * basePct).toFixed(1);
+      fashionAmount = (nTotal - baseAmount).toFixed(1);
     } else {
-      baseAmount = Math.round(totalAmount * basePct);
-      fashionAmount = totalAmount - baseAmount;
+      baseAmount = Math.round(nTotal * basePct);
+      fashionAmount = nTotal - baseAmount;
     }
 
     return {
+      isValid: true,
       main: `${baseAmount}${unitLabel} Base (N) + ${fashionAmount}${unitLabel} Fashion Shade`,
-      details: `For ${greyPct}% grey hair, use 20 Volume (6%) developer at 1:1 or 1:1.5 ratio. Process for a full 45 minutes for resistant cuticles.`,
-      rawFormula: `Grey Formula (${greyPct}% grey): ${baseAmount}${unitLabel} Natural Base (N) + ${fashionAmount}${unitLabel} Fashion Target Shade`
+      details: `For ${nGrey}% grey hair, use 20 Volume (6%) developer at 1:1 or 1:1.5 ratio. Process for a full 45 minutes for resistant cuticles.`,
+      rawFormula: `Grey Formula (${nGrey}% grey): ${baseAmount}${unitLabel} Natural Base (N) + ${fashionAmount}${unitLabel} Fashion Target Shade`,
+      data: { greyPct: nGrey, totalAmount: nTotal, baseAmount: Number(baseAmount), fashionAmount: Number(fashionAmount), unitLabel }
     };
   },
 
