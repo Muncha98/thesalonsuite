@@ -2258,6 +2258,66 @@
       "chair rental calculator",
       "salon suite profit calculator",
       "is booth rent worth it"
+    ],
+    "slug": "chair-rental-profitability-calculator",
+    "calc_subtitle": "Enter your weekly sales, commission split, and booth rent costs to compare which pay structure nets more take-home pay.",
+    "education": {
+      "heading": "Booth Rent vs. Commission: Running the Real Numbers",
+      "intro": [
+        "Switching from commission to booth (suite) rental is one of the biggest financial decisions a stylist makes — and it is easy to get seduced by the idea of \"keeping 100%\" without actually running the comparison against your real weekly sales.",
+        "This calculator compares your current commission take-home against what renting a booth or suite would net you, after accounting for the fixed rent and the backbar/supplies costs you would now be covering yourself."
+      ],
+      "walkthrough": {
+        "icon": "💈",
+        "title": "How to use this calculator",
+        "steps": [
+          "Enter your average weekly service revenue.",
+          "Enter your current commission split percentage.",
+          "Enter the weekly booth/suite rent you would pay as a renter.",
+          "Enter your estimated weekly supply and backbar cost as a renter."
+        ],
+        "example": "Example: $1,800/week in sales at a 50% commission split nets $900/week. The same sales as a renter paying $300 rent + $150 supplies nets $1,350/week — a $450/week gain."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Rent is fixed — commission is proportional",
+          "body": "On a slow week, booth rent still comes due regardless of how much you earned, while commission automatically scales down with you. Compare at your worst realistic week, not just your average."
+        },
+        {
+          "title": "Renters take on real business overhead",
+          "body": "As a renter you are now responsible for your own insurance, supplies, marketing, and often your own booking software — build these into your supply cost estimate, not just color and backbar."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "None",
+      "professional_scope": "Any Service Provider",
+      "warnings": [
+        "This is a financial planning estimate, not tax, legal, or accounting advice — consult a professional before making a booth rental decision.",
+        "Factor in slow-season variability, not just your current best weeks, before committing to a fixed rent obligation."
+      ]
+    },
+    "faq": [
+      {
+        "q": "Does this account for taxes?",
+        "a": "No — this compares pre-tax take-home only. As a booth renter you will typically be self-employed and responsible for your own tax set-asides; see the Self-Employed Tax Estimator for that."
+      },
+      {
+        "q": "What counts as \"supplies\" for a renter?",
+        "a": "Color, backbar products, towels, and any consumables you would now purchase yourself rather than have provided by the salon."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Side-by-side weekly and annual take-home comparison",
+        "Accounts for fixed rent vs. proportional commission",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "hairdresser-hourly-rate-calculator",
+      "salon-suite-startup-budget-calculator"
     ]
   },
   {
@@ -2307,6 +2367,66 @@
       "how much should hair stylist charge",
       "salon true hourly rate",
       "hairstylist salary calculator"
+    ],
+    "slug": "hairdresser-hourly-rate-calculator",
+    "calc_subtitle": "Enter your annual revenue, expenses, and hours worked to find your true hourly rate — including unpaid admin time.",
+    "education": {
+      "heading": "Your \"True\" Hourly Rate Is Lower Than You Think",
+      "intro": [
+        "Most stylists price their time based on chair-hours alone, forgetting that cleaning, restocking, consultations, and admin work are real hours spent that generate no direct revenue.",
+        "This calculator divides your net annual income by ALL hours worked — client hours plus admin hours — to reveal your true hourly rate, alongside your chair-only rate for comparison."
+      ],
+      "walkthrough": {
+        "icon": "⏱️",
+        "title": "How to use this calculator",
+        "steps": [
+          "Enter your gross annual revenue.",
+          "Enter your annual business expenses (product, rent, booking fees, etc.).",
+          "Enter your billable client chair-hours per week.",
+          "Enter your unpaid admin/sanitation hours per week.",
+          "Enter the number of weeks you actually work per year (accounting for holiday/sick time)."
+        ],
+        "example": "Example: $65,000 revenue − $18,000 expenses = $47,000 net. At 38 total hours/week × 48 weeks = 1,824 hours/year, that is a true rate of about $25.77/hr versus a chair-only rate of $32.64/hr."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Unpaid time is still time",
+          "body": "If admin and cleaning hours are not counted, your real hourly rate looks artificially high — and your pricing may be too low to sustain your actual workload."
+        },
+        {
+          "title": "Weeks worked matters more than people think",
+          "body": "Vacation, sick days, and slow holiday weeks reduce your effective working weeks — use a realistic number, not 52."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "None",
+      "professional_scope": "Any Service Provider",
+      "warnings": [
+        "This is a financial planning estimate — confirm figures with your own bookkeeping or an accountant before making pricing decisions."
+      ]
+    },
+    "faq": [
+      {
+        "q": "Why is my true rate lower than my chair rate?",
+        "a": "Because it divides your net income across all hours worked, including the unpaid admin and sanitation time that chair-only math ignores."
+      },
+      {
+        "q": "Should I price services based on chair rate or true rate?",
+        "a": "Many professionals use their true rate as a pricing floor to make sure admin time is implicitly covered by service pricing."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "True hourly rate including unpaid admin time",
+        "Chair-only rate for comparison",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "chair-rental-profitability-calculator",
+      "salon-profit-margin-calculator"
     ]
   },
   {
@@ -2350,6 +2470,65 @@
       "how much to start a salon suite",
       "salon suite break even",
       "booth rental budget"
+    ],
+    "slug": "salon-suite-startup-budget-calculator",
+    "calc_subtitle": "Enter your rent deposit, build-out, and stock costs to see total startup cost and clients needed to break even.",
+    "education": {
+      "heading": "Budgeting a Salon Suite Launch — Startup Cost & Break-Even",
+      "intro": [
+        "Moving into your own salon suite is exciting, but the up-front costs — deposits, furniture, tools, initial product inventory — add up fast, and it is easy to underestimate how many clients you need before you are in the black.",
+        "This calculator totals your realistic startup spend and estimates both your monthly break-even client count and the total clients needed to fully recoup your initial investment."
+      ],
+      "walkthrough": {
+        "icon": "🏠",
+        "title": "How to use this calculator",
+        "steps": [
+          "Enter your first & security rent deposit.",
+          "Enter your furniture/tool build-out budget.",
+          "Enter your initial color and product inventory budget.",
+          "Enter your average client ticket price."
+        ],
+        "example": "Example: $1,200 deposit + $1,500 build-out + $800 stock = $3,500 startup total. At a $95 average ticket, that is about 37 clients to fully recoup the investment."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Startup cost is not the same as monthly cost",
+          "body": "Your one-time build-out budget should be kept separate from your recurring monthly fixed costs (rent, software, insurance) when planning cash flow."
+        },
+        {
+          "title": "Build in a cushion",
+          "body": "New suites rarely hit full client volume immediately — budget for a ramp-up period where income may be below your break-even estimate for the first few months."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "None",
+      "professional_scope": "Any Service Provider",
+      "warnings": [
+        "This is a financial planning estimate, not a guarantee — actual startup costs vary significantly by location and build-out scope."
+      ]
+    },
+    "faq": [
+      {
+        "q": "What is included in \"decor & equipment\"?",
+        "a": "Styling chairs, stations, tools, shelving, decor, and any build-out work needed to make the suite service-ready."
+      },
+      {
+        "q": "Does this include ongoing monthly costs?",
+        "a": "This tool estimates a rough monthly fixed cost for break-even purposes, but see the Chair Rental and Profit Margin calculators for ongoing cost planning."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Total startup cost breakdown",
+        "Monthly break-even client count",
+        "Clients needed to recoup startup investment"
+      ]
+    },
+    "related_tools": [
+      "chair-rental-profitability-calculator",
+      "self-employed-beauty-tax-calculator"
     ]
   },
   {
@@ -2387,6 +2566,64 @@
       "booth renter taxes",
       "how much tax to save hairstylist",
       "self employed beauty taxes"
+    ],
+    "slug": "self-employed-beauty-tax-calculator",
+    "calc_subtitle": "Enter your weekly gross, tips, and expenses to estimate how much to set aside for taxes each week.",
+    "education": {
+      "heading": "Why Self-Employed Beauty Pros Must Set Aside Tax Reserves Weekly",
+      "intro": [
+        "When you are self-employed — booth renting, freelancing, or running your own suite — no one withholds taxes from your income automatically. Many new self-employed professionals get a painful surprise at tax time because they spent every dollar they earned.",
+        "This calculator estimates a simple weekly set-aside amount based on your net income (gross + tips − expenses), using an illustrative reserve rate, so you build the habit of saving for taxes as you earn rather than scrambling later."
+      ],
+      "walkthrough": {
+        "icon": "🧾",
+        "title": "How to use this calculator",
+        "steps": [
+          "Enter your weekly gross service revenue.",
+          "Enter your weekly tips received.",
+          "Enter your weekly deductible business expenses."
+        ],
+        "example": "Example: $1,500 gross + $250 tips − $400 expenses = $1,350 weekly net. Setting aside roughly 28% means saving about $378/week toward taxes."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "This is an estimate, not a tax filing",
+          "body": "Actual tax obligations depend on your total income, filing status, deductions, and local tax law — this tool gives a reserve-planning starting point only."
+        },
+        {
+          "title": "Move the set-aside to a separate account",
+          "body": "Many self-employed professionals keep tax savings in a dedicated account they never touch, so it is there (and only there) when payments are due."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "None",
+      "professional_scope": "Self-Employed Service Providers",
+      "warnings": [
+        "This calculator is not tax advice. Always consult a qualified tax professional for your specific obligations and deadlines."
+      ]
+    },
+    "faq": [
+      {
+        "q": "Why 28%?",
+        "a": "It is an illustrative combined estimate often used as a starting reserve rate for self-employment and income tax — your actual rate may be higher or lower depending on your total income and location."
+      },
+      {
+        "q": "Should I count tips as taxable income?",
+        "a": "In most jurisdictions tips are taxable income — but confirm the specific rules that apply to you with a tax professional."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Weekly tax reserve estimate",
+        "Annual net income and tax reserve projection",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "salon-suite-startup-budget-calculator",
+      "hairdresser-hourly-rate-calculator"
     ]
   },
   {
@@ -2425,6 +2662,64 @@
       "keystone markup salon",
       "product profit margin salon",
       "how to price retail shampoo"
+    ],
+    "slug": "retail-product-markup-calculator",
+    "calc_subtitle": "Enter your wholesale cost, markup percentage, and weekly sales volume to see your margin and weekly retail profit.",
+    "education": {
+      "heading": "Pricing Retail Products for Profit, Not Just \"Market Rate\"",
+      "intro": [
+        "Retail product sales can be a meaningful revenue stream for salons and independent professionals, but pricing it correctly requires understanding the difference between markup (added to cost) and margin (percentage of the final sale price that is profit).",
+        "This calculator converts your wholesale cost and chosen markup into retail price, profit per bottle, true profit margin, and projected weekly profit at your expected sales volume."
+      ],
+      "walkthrough": {
+        "icon": "🛍️",
+        "title": "How to use this calculator",
+        "steps": [
+          "Enter your wholesale cost per bottle/unit.",
+          "Enter your intended markup percentage.",
+          "Enter how many bottles/units you expect to sell per week."
+        ],
+        "example": "Example: a $14 wholesale cost with a 100% markup retails at $28, for a 50% margin and $14 profit per bottle — at 10 bottles/week that is $140/week in retail profit."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Markup % and margin % are not the same number",
+          "body": "A 100% markup produces a 50% margin, not a 100% margin — always check your actual margin percentage, which is what shows up in your profitability, not the markup you applied."
+        },
+        {
+          "title": "Price for your market, not just for margin",
+          "body": "Retail pricing also needs to stay competitive with what clients can buy the same product for online or elsewhere — balance margin goals against market reality."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "None",
+      "professional_scope": "Any Service Provider",
+      "warnings": [
+        "This is a pricing planning estimate; always check minimum advertised price (MAP) policies from your product suppliers before setting final retail pricing."
+      ]
+    },
+    "faq": [
+      {
+        "q": "What markup percentage is typical for salon retail?",
+        "a": "Many salons use 40–100% markup on retail product, though this varies widely by brand, category, and local market."
+      },
+      {
+        "q": "Does this include sales tax?",
+        "a": "No — this calculates pre-tax retail price and profit only."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Retail price, margin %, and profit-per-unit breakdown",
+        "Weekly profit projection at your sales volume",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "salon-profit-margin-calculator",
+      "salon-software-cost-comparison"
     ]
   },
   {
@@ -2450,6 +2745,63 @@
       "salon booking software cost",
       "fresha vs vagaro pricing",
       "cheapest salon software"
+    ],
+    "slug": "salon-software-cost-comparison",
+    "calc_subtitle": "Enter your monthly card processing volume to compare illustrative software + payment fee stacks side by side.",
+    "education": {
+      "heading": "Comparing Salon Software & Payment Processing Costs",
+      "intro": [
+        "Booking software and payment processing fees are often quoted separately, which makes it hard to see the real all-in monthly cost of different setups — a low monthly subscription with a high card fee percentage can cost more than a higher subscription with lower processing fees, depending on your volume.",
+        "This calculator estimates three illustrative fee structures against your actual monthly card processing volume, so you can see which type of pricing model tends to favor your business size."
+      ],
+      "walkthrough": {
+        "icon": "💳",
+        "title": "How to use this calculator",
+        "steps": [
+          "Enter your estimated monthly card processing volume.",
+          "Compare the three illustrative fee stacks shown in the result."
+        ],
+        "example": "Example: at $6,000/month in card volume, a flat-fee processor, a mid-tier salon software bundle, and a premium all-in-one platform will each land at a different effective monthly cost."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "These are illustrative rates, not quotes",
+          "body": "Real providers vary their pricing by contract, negotiated rate, and region — always get an actual quote before switching providers based on this estimate alone."
+        },
+        {
+          "title": "Higher volume shifts the math toward subscription models",
+          "body": "As card volume grows, a lower percentage fee with a higher flat subscription often becomes cheaper than a zero-subscription, higher-percentage model — recheck this calculation periodically as your volume changes."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "None",
+      "professional_scope": "Any Service Provider",
+      "warnings": [
+        "This tool does not endorse any specific software or payment provider — figures are illustrative only. Always request current, written quotes before switching providers."
+      ]
+    },
+    "faq": [
+      {
+        "q": "Does this include hardware costs (card readers, terminals)?",
+        "a": "No — this compares only the ongoing software subscription and per-transaction processing fees."
+      },
+      {
+        "q": "Why do the three plans compare differently at different volumes?",
+        "a": "Flat-fee, no-subscription plans tend to favor lower volume, while subscription + lower-percentage plans tend to favor higher volume — rerun this calculator as your business grows."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Three illustrative fee-stack comparisons",
+        "Monthly and annual projected cost",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "retail-product-markup-calculator",
+      "salon-profit-margin-calculator"
     ]
   },
   {
@@ -2481,6 +2833,63 @@
       "healthy salon profit percentage",
       "booth rental net margin",
       "how profitable is a salon suite"
+    ],
+    "slug": "salon-profit-margin-calculator",
+    "calc_subtitle": "Enter your total monthly revenue and expenses to see your net margin and how it compares to industry benchmarks.",
+    "education": {
+      "heading": "Understanding Your Salon or Suite Profit Margin",
+      "intro": [
+        "Revenue alone does not tell you whether a business is healthy — a salon doing $20,000/month in sales with $18,000 in expenses is in a much weaker position than one doing $10,000/month with $7,500 in expenses.",
+        "This calculator computes your net margin percentage and places it into a simple health band, so you have a quick benchmark for whether your current cost structure is sustainable."
+      ],
+      "walkthrough": {
+        "icon": "📊",
+        "title": "How to use this calculator",
+        "steps": [
+          "Enter your total monthly revenue.",
+          "Enter your total monthly expenses (rent, product, payroll, software, etc.)."
+        ],
+        "example": "Example: $7,500 revenue − $2,800 expenses = $4,700 net, a 62.7% margin — well into the \"Healthy\" band."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Margin bands are general guidance, not absolute rules",
+          "body": "Target margins vary by business model and whether owner pay is counted inside \"expenses\" — be consistent in how you categorize costs month to month."
+        },
+        {
+          "title": "Track margin over time, not just one snapshot",
+          "body": "A single month can be skewed by one-off costs or a slow season — trend your margin over several months for a truer picture."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "None",
+      "professional_scope": "Any Service Provider",
+      "warnings": [
+        "This is a financial planning estimate. For formal financial statements or tax filings, consult a licensed accountant."
+      ]
+    },
+    "faq": [
+      {
+        "q": "What margin should I be aiming for?",
+        "a": "Many salons target 15–25%+ net margin after backbar and owner pay, though this varies by business model and market."
+      },
+      {
+        "q": "Should owner salary be counted as an expense?",
+        "a": "This depends on your business structure — be consistent, and consider running the calculation both ways to see the difference."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Net margin percentage and health band",
+        "Simple revenue vs. expense breakdown",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "retail-product-markup-calculator",
+      "hairdresser-hourly-rate-calculator"
     ]
   },
   {
@@ -2520,6 +2929,64 @@
       "fade clipper steps",
       "how to blend guard 1 to 2",
       "skin fade guard guide"
+    ],
+    "slug": "fade-clipper-guard-guide",
+    "calc_subtitle": "Select your target fade style to get the clipper guard progression and blending technique.",
+    "education": {
+      "heading": "Clipper Guard Progressions for Clean, Consistent Fades",
+      "intro": [
+        "A great fade comes down to a consistent, well-planned guard progression — jumping straight from skin to a #2 guard leaves a visible line, while a smooth stepped sequence blends naturally.",
+        "This guide gives a standard guard progression for three common fade styles, as a starting reference — always adjust based on hair density, growth pattern, and client preference."
+      ],
+      "walkthrough": {
+        "icon": "✂️",
+        "title": "How to use this guide",
+        "steps": [
+          "Select your target fade style: low taper, mid skin, or high drop.",
+          "Follow the listed guard progression, stretching and blending between each step.",
+          "Detail the line and finish with trimmer/shader as needed."
+        ],
+        "example": "Example: a mid skin fade typically runs closed-blade/0 → open 0 → #0.5 → #1 → #1.5 → #2, each step blended into the next."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Blend, do not jump",
+          "body": "Skipping guard steps is the most common cause of a visible line in a fade — always stretch and blend between each guard length."
+        },
+        {
+          "title": "Hair texture changes the technique",
+          "body": "Coarser or curlier hair may need extra blending passes compared to straighter, finer hair at the same guard progression."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Low",
+      "professional_scope": "Licensed Barbers / Stylists",
+      "warnings": [
+        "Use appropriate guard attachments and clean, well-maintained blades to avoid nicks or uneven cutting, especially during skin/zero-guard work."
+      ]
+    },
+    "faq": [
+      {
+        "q": "What is the difference between a low taper and a mid skin fade?",
+        "a": "A low taper keeps the fade line lower, below the occipital area, while a mid skin fade brings bald/skin work up to the mid-side of the head."
+      },
+      {
+        "q": "Can this guide be used with any clipper brand?",
+        "a": "Guard sizes are generally standardized across brands, but always confirm your specific clipper’s guard-to-length mapping."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Guard progression for 3 fade styles",
+        "Blending and detailing guidance",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "beard-oil-carrier-ratio-calculator",
+      "hot-towel-shave-protocol-timer"
     ]
   },
   {
@@ -2546,6 +3013,66 @@
       "beard oil ratio",
       "how to make beard oil",
       "carrier oil ratio beard"
+    ],
+    "slug": "beard-oil-carrier-ratio-calculator",
+    "calc_subtitle": "Enter your bottle size to get a 60/30/10 carrier oil blend with an appropriate essential oil drop count.",
+    "education": {
+      "heading": "Formulating a Balanced Beard Oil Carrier Blend",
+      "intro": [
+        "A good beard oil blend balances lightweight absorption with conditioning richness — a common professional starting ratio is 60% jojoba (lightweight, non-greasy), 30% argan (conditioning), and 10% castor (thickness/shine), finished with a light essential oil load for fragrance.",
+        "This calculator scales that 60/30/10 carrier ratio and an approximate 1% essential oil load to whatever bottle size you are mixing."
+      ],
+      "walkthrough": {
+        "icon": "🧴",
+        "title": "How to use this calculator",
+        "steps": [
+          "Enter the bottle size you are mixing.",
+          "Measure out the jojoba, argan, and castor amounts shown.",
+          "Add the listed essential oil drop count and shake well before use."
+        ],
+        "example": "Example: a 30ml bottle uses about 18ml jojoba, 9ml argan, 3ml castor, plus roughly 6 drops of essential oil."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "This ratio is a starting template",
+          "body": "Carrier oil ratios can be adjusted for client hair type and personal scent preference — treat this as a reliable starting formula, not a fixed rule."
+        },
+        {
+          "title": "Always patch test new essential oil blends",
+          "body": "Essential oils can cause skin sensitivity in some clients — patch test any new blend before full application, especially on facial skin."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Low",
+      "professional_scope": "Barbers / Groomers",
+      "manufacturer_note": "Always verify essential oil dilution guidance against the specific oil’s manufacturer safety data, as maximum safe dilution varies by oil.",
+      "warnings": [
+        "Some essential oils are not safe for topical use at standard dilution — verify each specific oil’s guidance before blending.",
+        "Patch test any new blend on a small area of skin before full client application."
+      ]
+    },
+    "faq": [
+      {
+        "q": "Can I substitute other carrier oils?",
+        "a": "Yes — jojoba, argan, and castor are common choices for their absorption and shine properties, but other light carrier oils can be substituted at similar ratios."
+      },
+      {
+        "q": "How many essential oil drops is safe?",
+        "a": "This calculator targets roughly a 1% fragrance load, a commonly used safe starting point for leave-on beard products, but always check the specific oil’s guidance."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Scaled 60/30/10 carrier oil blend",
+        "Essential oil drop count at ~1% load",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "fade-clipper-guard-guide",
+      "essential-oil-dilution-calculator"
     ]
   },
   {
@@ -2581,6 +3108,65 @@
       "straight razor shave protocol",
       "hot towel temperature barber",
       "pre shave oil timing"
+    ],
+    "slug": "hot-towel-shave-protocol-timer",
+    "calc_subtitle": "Select the client’s beard density to get the recommended hot towel shave protocol and steam timing.",
+    "education": {
+      "heading": "Hot Towel Shave Protocol Timing by Beard Density",
+      "intro": [
+        "A proper hot towel shave softens the beard before the blade ever touches skin, dramatically reducing irritation and improving closeness — but the steam time needed varies with how coarse and dense the client’s beard growth is.",
+        "This guide gives a standard protocol sequence and steam timing for light stubble versus coarse/thick beards."
+      ],
+      "walkthrough": {
+        "icon": "♨️",
+        "title": "How to use this guide",
+        "steps": [
+          "Select the client’s beard density: light stubble or coarse/thick.",
+          "Apply pre-shave oil, then the hot towel for the listed duration.",
+          "Shave with the grain, re-towel, then shave against/cross-grain as tolerated."
+        ],
+        "example": "Example: a coarse, thick beard typically needs 3-4 minutes of steam versus 2 minutes for light stubble, with a second towel cycle before the against-grain pass."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Steam temperature matters as much as time",
+          "body": "Keep towel temperature in a safe, comfortable range (~130°F / 54°C) — always check towel temperature against your own skin before applying to a client."
+        },
+        {
+          "title": "Against-grain passes are optional, not mandatory",
+          "body": "Skip or soften the against-grain pass for sensitive skin or ingrown-prone clients, regardless of beard density."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Low",
+      "professional_scope": "Licensed Barbers",
+      "warnings": [
+        "Always test towel temperature on your own skin before applying to a client to avoid burns.",
+        "Screen clients for skin sensitivities or conditions before performing hot towel services."
+      ]
+    },
+    "faq": [
+      {
+        "q": "What towel temperature is standard?",
+        "a": "Around 130°F (54°C) is a commonly used comfortable, safe target for hot towel work — always verify temperature before client contact."
+      },
+      {
+        "q": "Is a second towel cycle necessary?",
+        "a": "A second, shorter towel cycle before the against-grain pass helps keep the beard soft through the full service, especially for coarser hair."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Steam timing by beard density",
+        "Full protocol sequence",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "fade-clipper-guard-guide",
+      "beard-oil-carrier-ratio-calculator"
     ]
   },
   {
@@ -2635,6 +3221,96 @@
       "drops per ml essential oil",
       "essential oil percentage chart",
       "massage oil dilution"
+    ],
+    "slug": "essential-oil-dilution-calculator",
+    "calc_subtitle": "Enter your carrier oil amount and select a target dilution percentage to get the exact essential oil drop count.",
+    "education": {
+      "heading": "Essential Oil Dilution: Getting the Drop Count Right",
+      "intro": [
+        "Essential oils are highly concentrated and must be diluted in a carrier oil before topical application — too strong a dilution risks skin sensitization or irritation, while too weak reduces the intended therapeutic or aromatic effect.",
+        "This calculator converts a carrier oil volume and a target dilution percentage into an exact essential oil drop count, using standard drop-to-volume conversions."
+      ],
+      "walkthrough": {
+        "icon": "💧",
+        "title": "How to use this calculator",
+        "steps": [
+          "Enter the amount of carrier oil you are using.",
+          "Select your target dilution percentage based on the intended use (see reference table).",
+          "Add the exact number of essential oil drops shown."
+        ],
+        "example": "Example: 30ml of carrier oil at a 2% dilution (standard full body massage) needs 12 drops of essential oil."
+      },
+      "reference_table": {
+        "title": "Common Dilution Targets",
+        "columns": [
+          "Dilution %",
+          "Typical Use"
+        ],
+        "rows": [
+          [
+            "0.5%",
+            "Sensitive skin, facial, or children"
+          ],
+          [
+            "1.0%",
+            "Daily facial use / sensitive skin"
+          ],
+          [
+            "2.0%",
+            "Standard full body massage"
+          ],
+          [
+            "3.0%",
+            "Localized muscle relief"
+          ],
+          [
+            "5.0%",
+            "Acute, short-term application only"
+          ]
+        ]
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Higher is not always better",
+          "body": "Exceeding recommended dilution percentages increases the risk of skin sensitization — more concentrated is not automatically more effective."
+        },
+        {
+          "title": "Different essential oils have different safe maximums",
+          "body": "Some oils (e.g. cinnamon, oregano) require lower maximum dilutions than others — always check the specific oil’s safety data before formulating."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Elevated",
+      "professional_scope": "Licensed Estheticians / Massage Therapists",
+      "manufacturer_note": "Always cross-reference the specific essential oil’s manufacturer or supplier safety data sheet for its recommended maximum dilution, as this varies by oil.",
+      "warnings": [
+        "Always patch test a new essential oil blend before full application.",
+        "Some essential oils are not safe for use during pregnancy, on children, or on certain skin conditions — screen clients before use.",
+        "Never apply undiluted (\"neat\") essential oil directly to skin unless specifically directed by the oil’s documented safety data."
+      ]
+    },
+    "faq": [
+      {
+        "q": "How many drops are in a milliliter?",
+        "a": "This calculator uses a standard approximation of about 20 drops per milliliter, which is typical for most essential oils."
+      },
+      {
+        "q": "Can I use a higher dilution for a stronger effect?",
+        "a": "Not safely in most cases — exceeding recommended dilution increases the risk of skin irritation or sensitization rather than proportionally increasing benefit."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Exact essential oil drop count by dilution %",
+        "Reference table of common dilution targets",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "massage-oil-coverage-cost-calculator",
+      "beard-oil-carrier-ratio-calculator"
     ]
   },
   {
@@ -2676,6 +3352,64 @@
       "cost per massage treatment",
       "how much massage oil for 60 min",
       "massage backbar cost"
+    ],
+    "slug": "massage-oil-coverage-cost-calculator",
+    "calc_subtitle": "Select your session length and oil bottle cost to see the backbar cost per session.",
+    "education": {
+      "heading": "Tracking Massage Oil Backbar Cost per Session",
+      "intro": [
+        "Backbar costs like massage oil are easy to overlook when pricing services, but they add up — knowing the actual cost-per-session helps ensure your pricing covers consumables, not just your time.",
+        "This calculator estimates typical oil usage for a 60- or 90-minute full body session and converts your bulk oil cost into a per-session backbar cost."
+      ],
+      "walkthrough": {
+        "icon": "🫙",
+        "title": "How to use this calculator",
+        "steps": [
+          "Select the session length (60 or 90 minutes).",
+          "Enter the cost of a 1-liter (33.8 oz) bottle of carrier oil.",
+          "Read the estimated oil cost for that session."
+        ],
+        "example": "Example: a $24 one-liter bottle at a 90-minute session (~40ml used) costs about $0.96 in oil backbar per session."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Usage varies by technique and client",
+          "body": "Deep tissue work, larger clients, or drier skin can increase oil usage above these estimates — treat these figures as a planning baseline."
+        },
+        {
+          "title": "Backbar cost should be reflected in pricing",
+          "body": "Even small per-session costs compound across many sessions per month — factor them into your service pricing, not just your time."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "None",
+      "professional_scope": "Massage Therapists",
+      "warnings": [
+        "Always screen clients for oil or nut allergies before using a specific carrier oil, and keep an alternative hypoallergenic option on hand."
+      ]
+    },
+    "faq": [
+      {
+        "q": "Why does a 90-minute session use more than 1.5x the oil of a 60-minute one?",
+        "a": "Reapplication and coverage needs do not scale perfectly linearly with time, so a 90-minute session often uses somewhat more than proportionally more oil."
+      },
+      {
+        "q": "Does this account for spillage or waste?",
+        "a": "No — this is a baseline usage estimate; actual backbar cost may run slightly higher after accounting for spillage and pump waste."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Per-session oil cost by session length",
+        "Usage estimate in ml and fl oz",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "hot-stone-temp-placement-guide",
+      "essential-oil-dilution-calculator"
     ]
   },
   {
@@ -2711,6 +3445,66 @@
       "hot stone massage temperature guide",
       "how hot should hot stones be",
       "basalt stone placement"
+    ],
+    "slug": "hot-stone-temp-placement-guide",
+    "calc_subtitle": "Select a placement area to get the recommended hot stone temperature and safety guidance.",
+    "education": {
+      "heading": "Hot Stone Temperature & Placement by Body Area",
+      "intro": [
+        "Different body areas tolerate different stone temperatures — the paraspinal back muscles can generally handle a slightly higher temperature than sensitive extremities like toes and palms.",
+        "This guide gives standard temperature ranges and placement guidance for two common hot stone massage zones."
+      ],
+      "walkthrough": {
+        "icon": "🪨",
+        "title": "How to use this guide",
+        "steps": [
+          "Select the placement area: back/paraspinal or toes/palms.",
+          "Keep the heater bath within the overall target range (120-130°F / 49-54°C).",
+          "Test stone temperature on your own inner forearm before client placement."
+        ],
+        "example": "Example: back placement targets about 125°F (52°C), while toe/palm placement uses a cooler stone, closer to 115°F (46°C), since extremities are more heat-sensitive."
+      },
+      "rules_heading": "Rules to Remember",
+      "rules": [
+        {
+          "title": "Never place a stone directly on the spine",
+          "body": "Always work the paraspinal muscles alongside the spine, never directly on the vertebrae."
+        },
+        {
+          "title": "Always test temperature before client contact",
+          "body": "Test every stone on your own inner forearm before placing it on a client, every time, regardless of how long the heater bath has been running."
+        }
+      ]
+    },
+    "safety": {
+      "risk_level": "Elevated",
+      "professional_scope": "Licensed Massage Therapists",
+      "warnings": [
+        "Never place a stone directly on the spine, bone, or broken/irritated skin.",
+        "Always test stone temperature on your own skin before client placement to avoid burns.",
+        "Screen clients for conditions like diabetes, neuropathy, or impaired sensation before using hot stones — reduced sensation increases burn risk."
+      ]
+    },
+    "faq": [
+      {
+        "q": "Why do toes and palms need cooler stones?",
+        "a": "Extremities have less insulating tissue and can be more sensitive to heat, so a lower stone temperature reduces burn risk in these areas."
+      },
+      {
+        "q": "How often should the heater bath temperature be checked?",
+        "a": "Check and maintain heater bath temperature regularly throughout the day, and always test an individual stone before each client placement."
+      }
+    ],
+    "seo": {
+      "feature_list": [
+        "Temperature guidance by body area",
+        "Heater bath target range",
+        "Instant real-time result, no page reload"
+      ]
+    },
+    "related_tools": [
+      "massage-oil-coverage-cost-calculator",
+      "essential-oil-dilution-calculator"
     ]
   }
 ]

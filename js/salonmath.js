@@ -474,10 +474,33 @@ const SalonMath = {
 
   // 8. Booth Rent vs Commission
   calcBoothRentVsComm: function(weeklySales, commSplit, boothRent, supplies, currency) {
-    weeklySales = Number(weeklySales) || 1800;
-    commSplit = Number(commSplit) || 50;
-    boothRent = Number(boothRent) || 300;
-    supplies = Number(supplies) || 150;
+    const errors = {};
+    const nSales = Number(weeklySales);
+    const nComm = Number(commSplit);
+    const nRent = Number(boothRent);
+    const nSupplies = Number(supplies);
+
+    if (weeklySales === '' || weeklySales === null || weeklySales === undefined) errors.weekly_sales = 'Weekly sales is required.';
+    else if (!Number.isFinite(nSales)) errors.weekly_sales = 'Weekly sales must be a valid number.';
+    else if (nSales < 0) errors.weekly_sales = 'Weekly sales cannot be negative.';
+
+    if (commSplit === '' || commSplit === null || commSplit === undefined) errors.comm_split = 'Commission split is required.';
+    else if (!Number.isFinite(nComm)) errors.comm_split = 'Commission split must be a valid number.';
+    else if (nComm < 0 || nComm > 100) errors.comm_split = 'Commission split must be between 0 and 100%.';
+
+    if (boothRent === '' || boothRent === null || boothRent === undefined) errors.booth_rent = 'Booth rent is required.';
+    else if (!Number.isFinite(nRent)) errors.booth_rent = 'Booth rent must be a valid number.';
+    else if (nRent < 0) errors.booth_rent = 'Booth rent cannot be negative.';
+
+    if (supplies === '' || supplies === null || supplies === undefined) errors.weekly_supplies = 'Weekly supplies cost is required.';
+    else if (!Number.isFinite(nSupplies)) errors.weekly_supplies = 'Weekly supplies cost must be a valid number.';
+    else if (nSupplies < 0) errors.weekly_supplies = 'Weekly supplies cost cannot be negative.';
+
+    if (Object.keys(errors).length > 0) {
+      return { isValid: false, error: Object.values(errors)[0], errors, main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    weeklySales = nSales; commSplit = nComm; boothRent = nRent; supplies = nSupplies;
     const curr = currency || '$';
 
     const commTakeHome = weeklySales * (commSplit / 100);
@@ -485,19 +508,52 @@ const SalonMath = {
     const diff = boothTakeHome - commTakeHome;
 
     return {
+      isValid: true,
       main: diff >= 0 ? `Booth Rent Yields +${curr}${Math.round(diff)}/week More Take-Home` : `Commission Yields +${curr}${Math.round(Math.abs(diff))}/week More`,
       details: `Suite Rental Net: ${curr}${Math.round(boothTakeHome)}/wk (${curr}${Math.round(boothTakeHome*4.33)}/mo) vs. Commission Net: ${curr}${Math.round(commTakeHome)}/wk (${curr}${Math.round(commTakeHome*4.33)}/mo). Annual Difference: ${curr}${Math.round(diff * 50)}/year.`,
-      rawFormula: `Booth Rent Net: ${curr}${Math.round(boothTakeHome)}/wk vs Commission Net: ${curr}${Math.round(commTakeHome)}/wk (Annual Difference: ${curr}${Math.round(diff * 50)}/yr)`
+      rawFormula: `Booth Rent Net: ${curr}${Math.round(boothTakeHome)}/wk vs Commission Net: ${curr}${Math.round(commTakeHome)}/wk (Annual Difference: ${curr}${Math.round(diff * 50)}/yr)`,
+      data: { diff, boothTakeHome, commTakeHome }
     };
   },
 
   // 9. True Hourly Rate
   calcHourlyRate: function(annualRev, annualExp, clientHours, adminHours, weeksWorked, currency) {
-    annualRev = Number(annualRev) || 65000;
-    annualExp = Number(annualExp) || 18000;
-    clientHours = Number(clientHours) || 30;
-    adminHours = Number(adminHours) || 8;
-    weeksWorked = Number(weeksWorked) || 48;
+    const errors = {};
+    const nRev = Number(annualRev);
+    const nExp = Number(annualExp);
+    const nClientHrs = Number(clientHours);
+    const nAdminHrs = Number(adminHours);
+    const nWeeks = Number(weeksWorked);
+
+    if (annualRev === '' || annualRev === null || annualRev === undefined) errors.annual_revenue = 'Annual revenue is required.';
+    else if (!Number.isFinite(nRev)) errors.annual_revenue = 'Annual revenue must be a valid number.';
+    else if (nRev < 0) errors.annual_revenue = 'Annual revenue cannot be negative.';
+
+    if (annualExp === '' || annualExp === null || annualExp === undefined) errors.annual_expenses = 'Annual expenses is required.';
+    else if (!Number.isFinite(nExp)) errors.annual_expenses = 'Annual expenses must be a valid number.';
+    else if (nExp < 0) errors.annual_expenses = 'Annual expenses cannot be negative.';
+
+    if (clientHours === '' || clientHours === null || clientHours === undefined) errors.client_hours_week = 'Client hours per week is required.';
+    else if (!Number.isFinite(nClientHrs)) errors.client_hours_week = 'Client hours per week must be a valid number.';
+    else if (nClientHrs < 0 || nClientHrs > 168) errors.client_hours_week = 'Client hours per week must be between 0 and 168.';
+
+    if (adminHours === '' || adminHours === null || adminHours === undefined) errors.admin_hours_week = 'Admin hours per week is required.';
+    else if (!Number.isFinite(nAdminHrs)) errors.admin_hours_week = 'Admin hours per week must be a valid number.';
+    else if (nAdminHrs < 0 || nAdminHrs > 168) errors.admin_hours_week = 'Admin hours per week must be between 0 and 168.';
+
+    if (weeksWorked === '' || weeksWorked === null || weeksWorked === undefined) errors.weeks_worked = 'Weeks worked per year is required.';
+    else if (!Number.isFinite(nWeeks)) errors.weeks_worked = 'Weeks worked per year must be a valid number.';
+    else if (nWeeks <= 0 || nWeeks > 52) errors.weeks_worked = 'Weeks worked per year must be between 1 and 52.';
+
+    if (!errors.client_hours_week && !errors.admin_hours_week && (nClientHrs + nAdminHrs) > 168) {
+      errors.admin_hours_week = 'Combined client and admin hours cannot exceed 168 hours/week.';
+    }
+
+    if (Object.keys(errors).length > 0) {
+      return { isValid: false, error: Object.values(errors)[0], errors, main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    annualRev = nRev; annualExp = nExp; clientHours = nClientHrs; adminHours = nAdminHrs; weeksWorked = nWeeks;
     const curr = currency || '$';
 
     const netIncome = annualRev - annualExp;
@@ -508,26 +564,48 @@ const SalonMath = {
     const chairHourly = netIncome / clientHoursPerYear;
 
     return {
+      isValid: true,
       main: `True Net Rate: ${curr}${realHourly.toFixed(2)} / hr (All working time)`,
       details: `Chair-Only Rate: ${curr}${chairHourly.toFixed(2)}/hr. Annual Net Profit: ${curr}${Math.round(netIncome)}. Total hours worked per year: ${totalHoursPerYear} hours.`,
-      rawFormula: `True Hourly Net Rate: ${curr}${realHourly.toFixed(2)}/hr (${totalHoursPerYear} hrs/yr on ${curr}${Math.round(netIncome)} net profit)`
+      rawFormula: `True Hourly Net Rate: ${curr}${realHourly.toFixed(2)}/hr (${totalHoursPerYear} hrs/yr on ${curr}${Math.round(netIncome)} net profit)`,
+      data: { realHourly, chairHourly, netIncome }
     };
   },
 
   // 10. Essential Oil Dilution
   calcEssentialOilDilution: function(carrierAmount, pct, isImperial) {
-    carrierAmount = Number(carrierAmount) || (isImperial ? 1.0 : 30);
-    pct = Number(pct) || 2.0;
+    const unitLabel = isImperial ? 'fl oz' : 'ml';
+    if (carrierAmount === '' || carrierAmount === null || carrierAmount === undefined) {
+      return { isValid: false, error: 'Carrier oil amount is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nCarrier = Number(carrierAmount);
+    if (!Number.isFinite(nCarrier)) {
+      return { isValid: false, error: 'Carrier oil amount must be a valid number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nCarrier <= 0) {
+      return { isValid: false, error: 'Carrier oil amount must be greater than zero.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const maxCarrier = isImperial ? 34 : 1000;
+    if (nCarrier > maxCarrier) {
+      return { isValid: false, error: `Carrier oil amount cannot exceed ${maxCarrier}${unitLabel}.`, main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const VALID_PCTS = { '0.5': 0.5, '1': 1, '2': 2, '3': 3, '5': 5 };
+    if (pct === '' || pct === null || pct === undefined || !Object.prototype.hasOwnProperty.call(VALID_PCTS, String(pct))) {
+      return { isValid: false, error: 'Please select a valid dilution percentage.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nPct = VALID_PCTS[String(pct)];
 
+    carrierAmount = nCarrier; pct = nPct;
     // 1 ml ≈ 20 drops | 1 fl oz ≈ 600 drops (30ml * 20)
     const totalDropsInCarrier = isImperial ? (carrierAmount * 600) : (carrierAmount * 20);
     const essentialDrops = Math.round(totalDropsInCarrier * (pct / 100));
-    const unitLabel = isImperial ? 'fl oz' : 'ml';
 
     return {
+      isValid: true,
       main: `${essentialDrops} Drops of Essential Oil for ${carrierAmount}${unitLabel}`,
       details: `For a ${pct}% dilution in ${carrierAmount}${unitLabel} of carrier oil (Jojoba/Sweet Almond), add exactly ${essentialDrops} drops of essential oil.`,
-      rawFormula: `Essential Oil Dilution (${pct}%): Add ${essentialDrops} drops to ${carrierAmount}${unitLabel} carrier oil`
+      rawFormula: `Essential Oil Dilution (${pct}%): Add ${essentialDrops} drops to ${carrierAmount}${unitLabel} carrier oil`,
+      data: { essentialDrops, carrierAmount, pct }
     };
   },
 // 11. Toner Ratio & Processing Timer
@@ -860,10 +938,33 @@ const SalonMath = {
 
   // 23. Salon Suite Startup / Break-Even
   calcSuiteStartup: function(firstLastRent, decorEquipment, initialStock, avgTicket, currency) {
-    firstLastRent = Number(firstLastRent) || 1200;
-    decorEquipment = Number(decorEquipment) || 1500;
-    initialStock = Number(initialStock) || 800;
-    avgTicket = Number(avgTicket) || 95;
+    const errors = {};
+    const nRent = Number(firstLastRent);
+    const nDecor = Number(decorEquipment);
+    const nStock = Number(initialStock);
+    const nTicket = Number(avgTicket);
+
+    if (firstLastRent === '' || firstLastRent === null || firstLastRent === undefined) errors.first_last_rent = 'First/last rent deposit is required.';
+    else if (!Number.isFinite(nRent)) errors.first_last_rent = 'First/last rent deposit must be a valid number.';
+    else if (nRent < 0) errors.first_last_rent = 'First/last rent deposit cannot be negative.';
+
+    if (decorEquipment === '' || decorEquipment === null || decorEquipment === undefined) errors.decor_equipment = 'Decor/equipment budget is required.';
+    else if (!Number.isFinite(nDecor)) errors.decor_equipment = 'Decor/equipment budget must be a valid number.';
+    else if (nDecor < 0) errors.decor_equipment = 'Decor/equipment budget cannot be negative.';
+
+    if (initialStock === '' || initialStock === null || initialStock === undefined) errors.initial_stock = 'Initial stock budget is required.';
+    else if (!Number.isFinite(nStock)) errors.initial_stock = 'Initial stock budget must be a valid number.';
+    else if (nStock < 0) errors.initial_stock = 'Initial stock budget cannot be negative.';
+
+    if (avgTicket === '' || avgTicket === null || avgTicket === undefined) errors.avg_ticket = 'Average ticket price is required.';
+    else if (!Number.isFinite(nTicket)) errors.avg_ticket = 'Average ticket price must be a valid number.';
+    else if (nTicket <= 0) errors.avg_ticket = 'Average ticket price must be greater than zero.';
+
+    if (Object.keys(errors).length > 0) {
+      return { isValid: false, error: Object.values(errors)[0], errors, main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    firstLastRent = nRent; decorEquipment = nDecor; initialStock = nStock; avgTicket = nTicket;
     const curr = currency || '$';
     const startupTotal = firstLastRent + decorEquipment + initialStock;
     // Assume firstLastRent covers ~2 months rent equivalent for monthly fixed estimate
@@ -872,17 +973,38 @@ const SalonMath = {
     const clientsToRecoupStartup = Math.ceil(startupTotal / avgTicket);
 
     return {
+      isValid: true,
       main: `Startup Total: ${curr}${startupTotal.toLocaleString()} | Break-even ≈ ${clientsToBreakEvenMonth} clients/mo`,
       details: `Deposit/rent block ${curr}${firstLastRent} + build-out ${curr}${decorEquipment} + stock ${curr}${initialStock}. Est. monthly fixed ~${curr}${monthlyFixed}. Clients to recoup startup: ~${clientsToRecoupStartup} @ ${curr}${avgTicket}/ticket.`,
-      rawFormula: `Suite Startup: ${curr}${startupTotal}; monthly BE ≈ ${clientsToBreakEvenMonth} clients @ ${curr}${avgTicket}`
+      rawFormula: `Suite Startup: ${curr}${startupTotal}; monthly BE ≈ ${clientsToBreakEvenMonth} clients @ ${curr}${avgTicket}`,
+      data: { startupTotal, clientsToBreakEvenMonth, clientsToRecoupStartup }
     };
   },
 
   // 24. Self-Employed Tax & Tip Estimator
   calcSelfEmployedTax: function(weeklyGross, weeklyTips, weeklyExpenses, currency) {
-    weeklyGross = Number(weeklyGross) || 1500;
-    weeklyTips = Number(weeklyTips) || 250;
-    weeklyExpenses = Number(weeklyExpenses) || 400;
+    const errors = {};
+    const nGross = Number(weeklyGross);
+    const nTips = Number(weeklyTips);
+    const nExp = Number(weeklyExpenses);
+
+    if (weeklyGross === '' || weeklyGross === null || weeklyGross === undefined) errors.weekly_gross = 'Weekly gross income is required.';
+    else if (!Number.isFinite(nGross)) errors.weekly_gross = 'Weekly gross income must be a valid number.';
+    else if (nGross < 0) errors.weekly_gross = 'Weekly gross income cannot be negative.';
+
+    if (weeklyTips === '' || weeklyTips === null || weeklyTips === undefined) errors.weekly_tips = 'Weekly tips is required.';
+    else if (!Number.isFinite(nTips)) errors.weekly_tips = 'Weekly tips must be a valid number.';
+    else if (nTips < 0) errors.weekly_tips = 'Weekly tips cannot be negative.';
+
+    if (weeklyExpenses === '' || weeklyExpenses === null || weeklyExpenses === undefined) errors.weekly_expenses = 'Weekly expenses is required.';
+    else if (!Number.isFinite(nExp)) errors.weekly_expenses = 'Weekly expenses must be a valid number.';
+    else if (nExp < 0) errors.weekly_expenses = 'Weekly expenses cannot be negative.';
+
+    if (Object.keys(errors).length > 0) {
+      return { isValid: false, error: Object.values(errors)[0], errors, main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    weeklyGross = nGross; weeklyTips = nTips; weeklyExpenses = nExp;
     const curr = currency || '$';
     const weeklyNet = weeklyGross + weeklyTips - weeklyExpenses;
     const annualNet = weeklyNet * 52;
@@ -891,17 +1013,38 @@ const SalonMath = {
     const annualSetAside = weeklySetAside * 52;
 
     return {
+      isValid: true,
       main: `Set Aside ~${curr}${Math.round(weeklySetAside)}/wk (28% of net)`,
       details: `Weekly taxable net: ${curr}${Math.round(weeklyNet)} (gross ${curr}${weeklyGross} + tips ${curr}${weeklyTips} − expenses ${curr}${weeklyExpenses}). Annual net ≈ ${curr}${Math.round(annualNet)}; annual tax reserve ≈ ${curr}${Math.round(annualSetAside)}. Confirm with a tax professional.`,
-      rawFormula: `Tax Reserve: 28% × ${curr}${Math.round(weeklyNet)}/wk = ${curr}${Math.round(weeklySetAside)}/wk`
+      rawFormula: `Tax Reserve: 28% × ${curr}${Math.round(weeklyNet)}/wk = ${curr}${Math.round(weeklySetAside)}/wk`,
+      data: { weeklyNet, annualNet, weeklySetAside, annualSetAside }
     };
   },
 
   // 25. Retail Product Markup
   calcRetailMarkup: function(wholesaleCost, markupPct, bottlesWeek, currency) {
-    wholesaleCost = Number(wholesaleCost) || 14;
-    markupPct = Number(markupPct) || 100;
-    bottlesWeek = Number(bottlesWeek) || 10;
+    const errors = {};
+    const nCost = Number(wholesaleCost);
+    const nMarkup = Number(markupPct);
+    const nBottles = Number(bottlesWeek);
+
+    if (wholesaleCost === '' || wholesaleCost === null || wholesaleCost === undefined) errors.wholesale_cost = 'Wholesale cost is required.';
+    else if (!Number.isFinite(nCost)) errors.wholesale_cost = 'Wholesale cost must be a valid number.';
+    else if (nCost <= 0) errors.wholesale_cost = 'Wholesale cost must be greater than zero.';
+
+    if (markupPct === '' || markupPct === null || markupPct === undefined) errors.markup_pct = 'Markup percentage is required.';
+    else if (!Number.isFinite(nMarkup)) errors.markup_pct = 'Markup percentage must be a valid number.';
+    else if (nMarkup < 0) errors.markup_pct = 'Markup percentage cannot be negative.';
+
+    if (bottlesWeek === '' || bottlesWeek === null || bottlesWeek === undefined) errors.bottles_week = 'Bottles sold per week is required.';
+    else if (!Number.isFinite(nBottles)) errors.bottles_week = 'Bottles sold per week must be a valid number.';
+    else if (nBottles < 0) errors.bottles_week = 'Bottles sold per week cannot be negative.';
+
+    if (Object.keys(errors).length > 0) {
+      return { isValid: false, error: Object.values(errors)[0], errors, main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    wholesaleCost = nCost; markupPct = nMarkup; bottlesWeek = nBottles;
     const curr = currency || '$';
     const retail = wholesaleCost * (1 + markupPct / 100);
     const profitPerBottle = retail - wholesaleCost;
@@ -909,15 +1052,27 @@ const SalonMath = {
     const weeklyProfit = profitPerBottle * bottlesWeek;
 
     return {
+      isValid: true,
       main: `Retail ${curr}${retail.toFixed(2)} | Margin ${marginPct.toFixed(0)}% | ${curr}${weeklyProfit.toFixed(0)}/wk profit`,
       details: `Wholesale ${curr}${wholesaleCost.toFixed(2)} + ${markupPct}% markup → ${curr}${retail.toFixed(2)}. Profit/bottle ${curr}${profitPerBottle.toFixed(2)}. At ${bottlesWeek}/wk ≈ ${curr}${weeklyProfit.toFixed(2)} weekly retail profit.`,
-      rawFormula: `Retail = ${curr}${wholesaleCost} × (1+${markupPct}/100) = ${curr}${retail.toFixed(2)}`
+      rawFormula: `Retail = ${curr}${wholesaleCost} × (1+${markupPct}/100) = ${curr}${retail.toFixed(2)}`,
+      data: { retail, profitPerBottle, marginPct, weeklyProfit }
     };
   },
 
   // 26. Salon Software Cost Comparison
   calcSoftwareCost: function(monthlyCardVol, currency) {
-    monthlyCardVol = Number(monthlyCardVol) || 6000;
+    if (monthlyCardVol === '' || monthlyCardVol === null || monthlyCardVol === undefined) {
+      return { isValid: false, error: 'Monthly card volume is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nVol = Number(monthlyCardVol);
+    if (!Number.isFinite(nVol)) {
+      return { isValid: false, error: 'Monthly card volume must be a valid number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nVol < 0) {
+      return { isValid: false, error: 'Monthly card volume cannot be negative.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    monthlyCardVol = nVol;
     const curr = currency || '$';
     // Typical illustrative fee stacks (not endorsements)
     const plans = [
@@ -933,16 +1088,33 @@ const SalonMath = {
       return `${p.name}: ~${curr}${Math.round(p.monthly + processing)}/mo (~${curr}${Math.round(annual)}/yr)`;
     });
     return {
+      isValid: true,
       main: `At ${curr}${monthlyCardVol.toLocaleString()}/mo card volume`,
       details: lines.join(' · ') + '. Compare your contract’s monthly SaaS fee + card %; cancel unused seats.',
-      rawFormula: `Software Cost ≈ (Monthly SaaS × 12) + (Card Volume × fee%)`
+      rawFormula: `Software Cost ≈ (Monthly SaaS × 12) + (Card Volume × fee%)`,
+      data: { monthlyCardVol }
     };
   },
 
   // 27. Salon Profit Margin
   calcProfitMargin: function(totalRev, totalCost, currency) {
-    totalRev = Number(totalRev) || 7500;
-    totalCost = Number(totalCost) || 2800;
+    const errors = {};
+    const nRev = Number(totalRev);
+    const nCost = Number(totalCost);
+
+    if (totalRev === '' || totalRev === null || totalRev === undefined) errors.total_rev = 'Total revenue is required.';
+    else if (!Number.isFinite(nRev)) errors.total_rev = 'Total revenue must be a valid number.';
+    else if (nRev <= 0) errors.total_rev = 'Total revenue must be greater than zero.';
+
+    if (totalCost === '' || totalCost === null || totalCost === undefined) errors.total_cost = 'Total cost is required.';
+    else if (!Number.isFinite(nCost)) errors.total_cost = 'Total cost must be a valid number.';
+    else if (nCost < 0) errors.total_cost = 'Total cost cannot be negative.';
+
+    if (Object.keys(errors).length > 0) {
+      return { isValid: false, error: Object.values(errors)[0], errors, main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    totalRev = nRev; totalCost = nCost;
     const curr = currency || '$';
     const net = totalRev - totalCost;
     const margin = totalRev > 0 ? (net / totalRev) * 100 : 0;
@@ -953,9 +1125,11 @@ const SalonMath = {
     else band = 'Loss';
 
     return {
+      isValid: true,
       main: `Net Margin: ${margin.toFixed(1)}% (${band}) — ${curr}${Math.round(net)}`,
       details: `Revenue ${curr}${Math.round(totalRev)} − expenses ${curr}${Math.round(totalCost)} = ${curr}${Math.round(net)} net. Target 15–25%+ after backbar and owner pay.`,
-      rawFormula: `Net Margin = (${curr}${Math.round(totalRev)} − ${curr}${Math.round(totalCost)}) / ${curr}${Math.round(totalRev)} × 100 = ${margin.toFixed(1)}%`
+      rawFormula: `Net Margin = (${curr}${Math.round(totalRev)} − ${curr}${Math.round(totalCost)}) / ${curr}${Math.round(totalRev)} × 100 = ${margin.toFixed(1)}%`,
+      data: { net, margin, band }
     };
   },
 
@@ -975,8 +1149,12 @@ const SalonMath = {
         details: 'High drop fade: elevate bald line toward parietal ridge, drop behind ear, then stretch guards into length.'
       }
     };
-    const conf = map[fadeType] || map.mid_skin;
+    if (!Object.prototype.hasOwnProperty.call(map, fadeType)) {
+      return { isValid: false, error: 'Please select a valid fade type.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const conf = map[fadeType];
     return {
+      isValid: true,
       main: conf.main,
       details: conf.details + ' Stretch each band; detail with trimmer/shader.',
       rawFormula: `Fade Guards (${fadeType}): ${conf.main}`
@@ -985,7 +1163,22 @@ const SalonMath = {
 
   // 29. Beard Oil Carrier Ratio
   calcBeardOil: function(bottleSizeMl, isImperial) {
-    bottleSizeMl = Number(bottleSizeMl) || (isImperial ? 1.0 : 30);
+    const unitLabel = isImperial ? 'fl oz' : 'ml';
+    if (bottleSizeMl === '' || bottleSizeMl === null || bottleSizeMl === undefined) {
+      return { isValid: false, error: 'Bottle size is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nBottle = Number(bottleSizeMl);
+    if (!Number.isFinite(nBottle)) {
+      return { isValid: false, error: 'Bottle size must be a valid number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nBottle <= 0) {
+      return { isValid: false, error: 'Bottle size must be greater than zero.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const maxBottle = isImperial ? 17 : 500;
+    if (nBottle > maxBottle) {
+      return { isValid: false, error: `Bottle size cannot exceed ${maxBottle}${unitLabel}.`, main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    bottleSizeMl = nBottle;
     // Treat imperial input as fl oz → convert to ml for ratio math
     const ml = isImperial ? bottleSizeMl * 30 : bottleSizeMl;
     const jojoba = ml * 0.60;
@@ -996,9 +1189,11 @@ const SalonMath = {
     const fmt = (v) => isImperial ? (v / 30).toFixed(2) : String(Math.round(v));
 
     return {
+      isValid: true,
       main: `${fmt(jojoba)}${unit} Jojoba + ${fmt(argan)}${unit} Argan + ${fmt(castor)}${unit} Castor + ${eoDrops} EO drops`,
       details: `60/30/10 carrier split for ${isImperial ? bottleSizeMl + ' fl oz' : ml + 'ml'} bottle with ~1% essential-oil load (${eoDrops} drops). Shake before use.`,
-      rawFormula: `Beard Oil ${isImperial ? bottleSizeMl + 'fl oz' : ml + 'ml'}: 60% jojoba / 30% argan / 10% castor + ${eoDrops} EO drops`
+      rawFormula: `Beard Oil ${isImperial ? bottleSizeMl + 'fl oz' : ml + 'ml'}: 60% jojoba / 30% argan / 10% castor + ${eoDrops} EO drops`,
+      data: { jojoba, argan, castor, eoDrops }
     };
   },
 
@@ -1008,8 +1203,12 @@ const SalonMath = {
       light: { steam: '2 min', note: 'Light stubble — shorter steam; one with-grain pass may suffice.' },
       coarse: { steam: '3–4 min', note: 'Coarse / thick beard — full steam cycle; expect second towel before against-grain.' }
     };
-    const conf = map[beardDensity] || map.coarse;
+    if (!Object.prototype.hasOwnProperty.call(map, beardDensity)) {
+      return { isValid: false, error: 'Please select a valid beard density.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const conf = map[beardDensity];
     return {
+      isValid: true,
       main: `Steam ${conf.steam} @ ~130°F / 54°C`,
       details: `Protocol: 2 min pre-shave oil → hot towel (${conf.steam}) → first pass with grain → 2 min second towel → against-grain / cross-grain as tolerated. ${conf.note}`,
       rawFormula: `Hot Towel Shave (${beardDensity}): steam ${conf.steam}; oil → towel → with-grain → towel → against-grain`
@@ -1018,17 +1217,37 @@ const SalonMath = {
 
   // 31. Massage Oil Coverage Cost
   calcMassageOilCost: function(sessionLen, oilBottleCost, currency) {
-    sessionLen = String(sessionLen || '60');
-    oilBottleCost = Number(oilBottleCost) || 24;
+    const VALID_LENGTHS = { '60': 25, '90': 40 };
+    if (sessionLen === '' || sessionLen === null || sessionLen === undefined) {
+      return { isValid: false, error: 'Session length is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const lenKey = String(sessionLen);
+    if (!Object.prototype.hasOwnProperty.call(VALID_LENGTHS, lenKey)) {
+      return { isValid: false, error: 'Please select a valid session length.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (oilBottleCost === '' || oilBottleCost === null || oilBottleCost === undefined) {
+      return { isValid: false, error: 'Oil bottle cost is required.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const nCost = Number(oilBottleCost);
+    if (!Number.isFinite(nCost)) {
+      return { isValid: false, error: 'Oil bottle cost must be a valid number.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    if (nCost <= 0) {
+      return { isValid: false, error: 'Oil bottle cost must be greater than zero.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+
+    sessionLen = lenKey; oilBottleCost = nCost;
     const curr = currency || '$';
-    const mlUsed = sessionLen === '90' ? 40 : 25;
+    const mlUsed = VALID_LENGTHS[lenKey];
     const costPerMl = oilBottleCost / 1000;
     const cost = costPerMl * mlUsed;
 
     return {
+      isValid: true,
       main: `${mlUsed}ml used → ${curr}${cost.toFixed(2)} backbar / session`,
       details: `1 L bottle @ ${curr}${oilBottleCost.toFixed(2)} → ${curr}${costPerMl.toFixed(4)}/ml. ${sessionLen}-minute session uses ~${mlUsed}ml (~${(mlUsed/30).toFixed(2)} fl oz).`,
-      rawFormula: `Massage Oil Cost: ${mlUsed}ml × (${curr}${oilBottleCost}/1000ml) = ${curr}${cost.toFixed(2)}`
+      rawFormula: `Massage Oil Cost: ${mlUsed}ml × (${curr}${oilBottleCost}/1000ml) = ${curr}${cost.toFixed(2)}`,
+      data: { mlUsed, cost }
     };
   },
 
@@ -1038,8 +1257,12 @@ const SalonMath = {
       back: { tempF: '125°F (52°C)', tempC: '49–54°C bath', place: 'Paraspinal & sacral', note: 'Never place directly on spine. Test on therapist inner forearm first.' },
       toes: { tempF: '115°F (46°C)', tempC: 'lower end of bath', place: 'Interdigital toes & palms', note: 'Extremities run cooler — use lower temp stones; watch client feedback.' }
     };
-    const conf = map[stoneType] || map.back;
+    if (!Object.prototype.hasOwnProperty.call(map, stoneType)) {
+      return { isValid: false, error: 'Please select a valid placement area.', main: 'Cannot Calculate', details: '', rawFormula: '' };
+    }
+    const conf = map[stoneType];
     return {
+      isValid: true,
       main: `${conf.place}: ${conf.tempF}`,
       details: `Heater bath target 120–130°F (49–54°C). Placement temp: ${conf.tempF} (${conf.tempC}). ${conf.note}`,
       rawFormula: `Hot Stone (${stoneType}): ${conf.place} @ ${conf.tempF}`
