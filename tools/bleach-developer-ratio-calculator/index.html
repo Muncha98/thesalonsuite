@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Bleach & Lightener Ratio Calculator | The Salon Suite</title>
+  <meta name="description" content="Tare your digital scale and calculate exact gram weights for 1:1, 1:1.5, 1:2, and 1:3 powder lightener ratios.">
+  <link rel="canonical" href="https://thesalonsuite.com/tools/bleach-developer-ratio-calculator/">
+
+  <!-- PWA & Mobile Optimization -->
+  <link rel="manifest" href="/thesalonsuite/manifest.json">
+  <meta name="theme-color" content="#1A1715">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SalonSuite">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Bleach & Lightener Ratio Calculator | The Salon Suite">
+  <meta property="og:description" content="Tare your digital scale and calculate exact gram weights for 1:1, 1:1.5, 1:2, and 1:3 powder lightener ratios.">
+  <meta property="og:url" content="https://thesalonsuite.com/tools/bleach-developer-ratio-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The Salon Suite">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bleach & Lightener Ratio Calculator | The Salon Suite">
+  <meta name="twitter:description" content="Tare your digital scale and calculate exact gram weights for 1:1, 1:1.5, 1:2, and 1:3 powder lightener ratios.">
+
+  <!-- Typography & Core CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/thesalonsuite/css/main.css">
+
+  
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Bleach & Lightener Ratio Calculator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "description": "Tare your digital scale and calculate exact gram weights for 1:1, 1:1.5, 1:2, and 1:3 powder lightener ratios.",
+  "url": "https://thesalonsuite.com/tools/bleach-developer-ratio-calculator/",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Formula: Developer Weight = Powder Grams × Ratio Multiplier (1.0, 1.5, 2.0, or 3.0). Total Bowl Weight = Powder + Developer.",
+    "1:1, 1:1.5, 1:2, and 1:3 ratio support",
+    "Metric and Imperial unit support",
+    "Instant real-time result, no page reload"
+  ]
+}
+  </script>
+  
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "acceptedAnswer": {
+        "@type": "Answer"
+      }
+    },
+    {
+      "@type": "Question",
+      "acceptedAnswer": {
+        "@type": "Answer"
+      }
+    },
+    {
+      "@type": "Question",
+      "acceptedAnswer": {
+        "@type": "Answer"
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://thesalonsuite.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "🎨 Hair Color & Chemistry",
+      "item": "https://thesalonsuite.com/#hair-color"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Bleach & Lightener Ratio Calculator",
+      "item": "https://thesalonsuite.com/tools/bleach-developer-ratio-calculator/"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "The Salon Suite",
+  "url": "https://thesalonsuite.com/",
+  "logo": "https://thesalonsuite.com/assets/logo.png",
+  "description": "Global professional utility platform and verified station calculators for working beauty professionals."
+}
+  </script>
+</head>
+<body class="tool-page-body">
+
+  
+  <!-- Navigation Header -->
+  <header class="site-header" role="banner">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="container nav-inner">
+        <a href="/thesalonsuite/" class="nav-logo" aria-label="The Salon Suite Home">
+          <div class="nav-logo-icon">✨</div>
+          TheSalon<span>Suite</span>
+        </a>
+
+        <!-- Reusable Preference Controls (Independent Region, Unit, Currency) -->
+        <div class="nav-controls">
+          <div class="preference-bar" id="preference-bar" aria-label="Station Regional and Measurement Preferences">
+            
+            <!-- Region Selector -->
+            <div class="pref-group" title="Select Operating Region">
+              <span class="pref-label">Region:</span>
+              <button type="button" class="pref-btn active" data-pref="region" data-val="US" aria-label="United States Edition, prices in US dollars">🇺🇸 US ($)</button>
+              <button type="button" class="pref-btn " data-pref="region" data-val="UK" aria-label="United Kingdom Edition, prices in pounds sterling">🇬🇧 UK (£)</button>
+            </div>
+
+            <!-- Unit Selector -->
+            <div class="pref-group" title="Select Measurement Units">
+              <span class="pref-label">Units:</span>
+              <button type="button" class="pref-btn active" data-pref="unit" data-val="metric" aria-label="Metric Units (g, ml)">Metric</button>
+              <button type="button" class="pref-btn " data-pref="unit" data-val="imperial" aria-label="Imperial Units (oz, fl oz)">Imperial</button>
+            </div>
+
+          </div>
+
+          <a href="/thesalonsuite/" class="nav-back-link" title="Return to directory">&larr; All Calculators</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  
+  <!-- Semantic Breadcrumbs -->
+  <nav class="breadcrumb-nav" aria-label="Breadcrumbs">
+    <div class="container">
+      <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/thesalonsuite/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
+        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/thesalonsuite/#hair-color" itemprop="item"><span itemprop="name">🎨 Hair Color & Chemistry</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
+        <li class="breadcrumb-item current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+          <span itemprop="name">Bleach & Lightener Ratio Calculator</span>
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="tool-hero" aria-labelledby="tool-hero-title">
+    <div class="container">
+      <div class="tool-hero-badge">
+        <span class="badge-cat">🎨 Hair Color & Chemistry</span>
+        <span class="badge-divider">&bull;</span>
+        <span class="badge-status">Free Professional Tool</span>
+      </div>
+      <h1 id="tool-hero-title" class="tool-hero-title">Bleach & Lightener Ratio Calculator</h1>
+      <p class="tool-hero-lead">Consistency is everything in blonding. Whether you need a thick 1:1 clay consistency for open-air balayage or a smooth 1:2 foil ratio, this tool gives you precise gram and ounce measurements to prevent over-dilution and bowl waste.</p>
+      <div class="tool-formula-pill">
+        <span class="formula-icon">📐</span>
+        <span class="formula-text">Formula: Developer Weight = Powder Grams × Ratio Multiplier (1.0, 1.5, 2.0, or 3.0). Total Bowl Weight = Powder + Developer.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Calculator & Content Grid -->
+  <main class="container tool-main-content">
+    <div class="tool-layout-grid">
+      
+      <!-- Primary Interactive Station Column -->
+      <div class="tool-primary-col">
+        
+  <!-- Calculator Interactive Form Card -->
+  <div class="calculator-card" id="calc-card">
+    <div class="calc-card-header">
+      <div class="calc-title-wrap">
+        <span class="calc-icon">⚖️</span>
+        <div>
+          <h2 class="calc-title">Station Calculator &amp; Formulator</h2>
+          <p class="calc-subtitle">Enter your powder amount and ratio for an exact developer weight and total bowl weight.</p>
+        </div>
+      </div>
+      <div class="calc-station-badge">📱 Station Ready</div>
+    </div>
+
+    <!-- Active Input Fields -->
+    <form id="tool-calc-form" class="calc-form" onsubmit="return false;" novalidate>
+      <div class="form-grid">
+        <div class="form-group" id="grp-powder_grams">
+          <label for="inp-powder_grams" class="form-label">
+            Powder Lightener Amount
+            <span class="unit-tag" id="unit-tag-powder_grams">grams</span>
+          </label>
+            <div class="input-wrap">
+              <input
+                type="number"
+                class="form-control"
+                id="inp-powder_grams"
+                name="powder_grams"
+                value="30"
+                
+                
+                step="any"
+                inputmode="decimal"
+                aria-describedby="err-powder_grams"
+                required
+              >
+            </div>
+          <span class="field-error" id="err-powder_grams" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-group" id="grp-ratio">
+          <label for="inp-ratio" class="form-label">
+            Mixing Ratio (Powder : Developer)
+            
+          </label>
+            <select class="form-control" id="inp-ratio" name="ratio" aria-describedby="err-ratio">
+              <option value="1:1" >1:1 (Thick / Open Air Clay)</option>
+              <option value="1:1.5" >1:1.5 (Standard Balayage)</option>
+              <option value="1:2" selected>1:2 (Standard Foil Highlights)</option>
+              <option value="1:3" >1:3 (Gentle Scalp Bleach Bath)</option>
+            </select>
+          <span class="field-error" id="err-ratio" role="alert" aria-live="polite"></span>
+        </div>
+      </div>
+    </form>
+        
+    <!-- Output Results Display Box -->
+    <div class="results-box" id="calc-results-box" aria-live="polite" aria-atomic="true">
+      <div class="results-box-header">
+        <div class="results-heading">
+          <span class="results-badge">Formula Output</span>
+          <span class="results-verified-tick">✓ Mathematically Verified</span>
+        </div>
+        <div class="results-actions">
+          <button type="button" id="btn-copy-formula" class="btn-action btn-copy" aria-label="Copy recipe to clipboard">
+            📋 Copy Recipe
+          </button>
+          <button type="button" id="btn-print-formula" class="btn-action btn-print" aria-label="Print station recipe sheet">
+            🖨️ Print Sheet
+          </button>
+        </div>
+      </div>
+
+      <div class="results-main-display" id="res-main">Ready</div>
+      <div class="results-sub-details" id="res-details">Enter values above to calculate.</div>
+
+      <!-- Station Feedback Toast -->
+      <div id="copy-toast" class="copy-toast" style="display:none;" role="status">✓ Recipe copied to clipboard!</div>
+      <div id="calc-error-banner" class="calc-error-banner" style="display:none;" role="alert"></div>
+    </div>
+  </div>
+        
+  <!-- Professional Safety & Regulatory Notice -->
+  <aside class="safety-notice-card" aria-labelledby="safety-notice-title">
+    <div class="safety-header">
+      <div class="safety-header-left">
+        <span class="safety-badge risk-elevated" aria-label="Risk rating: Elevated">
+          🛡️ Risk Rating: Elevated
+        </span>
+        <span class="safety-scope">Scope: Licensed Beauty Professionals</span>
+      </div>
+      
+    </div>
+
+    <div class="safety-body">
+      <h3 id="safety-notice-title" class="safety-title">Professional Safety Notice</h3>
+      
+      <ul class="safety-warning-list">
+        <li><strong>Caution:</strong> Always perform a 48-hour client skin allergy patch test before chemical lightening services.</li>
+        <li><strong>Caution:</strong> Follow your lightener manufacturer's own developer volume and maximum processing time directions — they take priority over the general guidance given here.</li>
+        <li><strong>Caution:</strong> Never mix bleach and developer until immediately before application — activated lightener loses potency and consistency over time.</li>
+      </ul>
+      
+      <div class="safety-manufacturer-callout">
+        <strong>⚠️ Manufacturer Specification Rule:</strong> Formulas use universal metric and imperial weight units calibrated for major professional brands including Wella, Redken, Schwarzkopf, L'Oréal, Guy Tang Mydentity, and Olaplex, but exact product strength varies by line — always cross-reference your own manufacturer's instructions. Mathematical calculations provide proportions, but manufacturer guidelines must always take precedence.
+      </div>
+    </div>
+  </aside>
+        
+  <!-- Educational Guide & Formulation Protocol -->
+  <article class="educational-guide" aria-labelledby="guide-heading">
+    <h2 id="guide-heading" class="guide-title">Why Weighing Bleach and Developer Is Non-Negotiable</h2>
+
+    <p class="guide-lead">In chemical lightening, potassium persulfate and ammonium persulfate salts require exact stoichiometry with hydrogen peroxide developer to lift melanin without compromising the structural keratin disulfide bonds.</p>
+    <p class="guide-lead">Eyeballing lightener ratios or using volumetric plastic scoops introduces up to 30% inconsistency in chemical pH and viscosity. Too dry (under-ratio) and the persulfate crystals swell rapidly, crust over, and stop lifting. Too wet (over-ratio in foils) and developer peroxide dilutes the active persulfate concentration, causing packet slippage and chemical banding.</p>
+
+    
+    <!-- Worked Formula Walkthrough Box -->
+    <div class="formula-walkthrough-box">
+      <h3 class="walkthrough-title">⚖️ How to use this calculator</h3>
+      
+      <ol class="walkthrough-steps">
+        <li>Weigh your powder lightener on a tared digital scale and enter the gram (or ounce) amount.</li>
+        <li>Select the mixing ratio for the technique you are performing — thicker for open-air work, thinner for foils or a bleach bath.</li>
+        <li>Pour developer into the same bowl, on the same scale, until the total reaches the calculated bowl weight.</li>
+      </ol>
+      
+      <div class="walkthrough-example">
+        Example: 30g of powder at a 1:2 ratio needs 60g of developer, for a 90g total bowl weight.
+      </div>
+    </div>
+
+    
+    <!-- Quick Reference Table -->
+    <h3 class="section-subheading">Lightener Ratio Application Guide</h3>
+    <div class="table-responsive">
+      <table class="reference-table">
+        <thead>
+          <tr>
+            <th scope="col">Mixing Ratio</th>
+            <th scope="col">Consistency</th>
+            <th scope="col">Ideal Technique</th>
+            <th scope="col">Lift Velocity</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td><strong>1:1</strong></td>
+            <td>Heavy Clay / Paste</td>
+            <td>Open-air freehand balayage, surface hair painting</td>
+            <td>Slow, controlled surface lift. Zero bleed-through.</td>
+          </tr>
+          <tr>
+            <td><strong>1:1.5</strong></td>
+            <td>Creamy Whipped</td>
+            <td>Teasylights, foilayage, root retouch on thick hair</td>
+            <td>Moderate lift speed with excellent saturation.</td>
+          </tr>
+          <tr>
+            <td><strong>1:2</strong></td>
+            <td>Smooth Cream (Standard)</td>
+            <td>Traditional foil highlights, babylights, platinum cards</td>
+            <td>Fast, maximum lift potential with complete saturation.</td>
+          </tr>
+          <tr>
+            <td><strong>1:3</strong></td>
+            <td>Liquid / Bleach Bath</td>
+            <td>Shampoo bowl color cleanse, pulling out old direct dye</td>
+            <td>Ultra-gentle, rapid visual wash (5–15 min).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <!-- Critical Rules -->
+    <h3 class="section-subheading">Rules to Remember</h3>
+    <ul class="station-rules-list">
+      
+      <li>
+        <strong>1. Always weigh, never eyeball:</strong>
+        A digital scale removes the up-to-30% inconsistency that volumetric scoops introduce, which directly affects lift speed and evenness.
+      </li>
+      <li>
+        <strong>2. Match ratio to technique, not habit:</strong>
+        A thinner ratio for foils and a thicker ratio for open-air work both exist for a reason — using the wrong one causes bleed-through or slow, patchy lift.
+      </li>
+    </ul>
+
+    <!-- FAQ Section -->
+    
+    <section class="faq-section" aria-labelledby="faq-section-title">
+      <h3 id="faq-section-title" class="section-subheading">Frequently Asked Questions</h3>
+      <div class="faq-list">
+        
+          <div class="faq-item">
+            <h4 class="faq-question">undefined</h4>
+            <p class="faq-answer">undefined</p>
+          </div>
+        
+          <div class="faq-item">
+            <h4 class="faq-question">undefined</h4>
+            <p class="faq-answer">undefined</p>
+          </div>
+        
+          <div class="faq-item">
+            <h4 class="faq-question">undefined</h4>
+            <p class="faq-answer">undefined</p>
+          </div>
+        
+      </div>
+    </section>
+  </article>
+      </div>
+
+      <!-- Contextual Sidebar Column -->
+      <aside class="tool-sidebar-col" aria-label="Station Resources & Gear">
+        
+        
+      </aside>
+
+    </div>
+
+    <!-- Related Tools Section (Bottom of Page) -->
+    
+  <!-- Related Station Tools Cluster -->
+  <section class="related-tools-section" aria-labelledby="related-tools-heading">
+    <div class="section-title-wrap">
+      <span class="section-kicker">Cross-Service Formulas</span>
+      <h3 id="related-tools-heading" class="section-title">Related Color &amp; Station Calculators</h3>
+    </div>
+    <div class="related-tools-grid">
+      
+        <a href="/thesalonsuite/tools/developer-mixing-calculator/" class="related-tool-card" data-tool-id="developer-mixing-calculator">
+          <div class="card-icon-badge">
+            <span class="tool-icon">🧪</span>
+            <span class="tool-badge">Popular</span>
+          </div>
+          <h4 class="tool-name">Developer Volume Mixing Calculator</h4>
+          <p class="tool-desc">Calculate exact proportions of two developers (10, 20, 30, 40 Vol) to hit any custom target volume in ml or fluid ounces.</p>
+          <span class="card-link-cta">Open Calculator &rarr;</span>
+        </a>
+      
+        <a href="/thesalonsuite/tools/toner-ratio-calculator/" class="related-tool-card" data-tool-id="toner-ratio-calculator">
+          <div class="card-icon-badge">
+            <span class="tool-icon">⏱️</span>
+            <span class="tool-badge">Essential</span>
+          </div>
+          <h4 class="tool-name">Hair Toner Ratio & Processing Timer</h4>
+          <p class="tool-desc">Calculate demi-permanent gloss ratios (1:1 vs 1:2) and optimal processing times for damp or dry toning.</p>
+          <span class="card-link-cta">Open Calculator &rarr;</span>
+        </a>
+      
+    </div>
+  </section>
+  </main>
+
+  
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      
+      <!-- Professional Review & Disclaimer Banner -->
+      <div class="footer-safety-notice">
+        <div class="footer-safety-icon">⚠️</div>
+        <div class="footer-safety-text">
+          <strong>Professional Technical Notice:</strong> Calculations and mixing ratios on TheSalonSuite.com are designed as mathematical guidance for licensed cosmetology and beauty professionals. Manufacturer chemical formulations, buffering agents, and processing requirements vary across brands. Always perform mandatory 48-hour client allergy patch tests and follow manufacturer directions.
+          <span class="footer-review-tag">Technically Reviewed by Tracey Thompson, Professional Education & Technical Reviewer.</span>
+          <a href="/thesalonsuite/legal/disclaimer.html" class="footer-legal-link">Read Full Disclaimer &rarr;</a>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>TheSalon<span>Suite</span>.com</h4>
+          <p class="footer-tagline">Professional tools for the people behind the chair.</p>
+          <p class="footer-sub">Calculate. Learn. Create. Grow.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Hair Color & Chemistry</h5>
+          <ul>
+            <li><a href="/thesalonsuite/tools/developer-mixing-calculator/">Developer Mixing</a></li>
+            <li><a href="/thesalonsuite/tools/bleach-developer-ratio-calculator/">Bleach Ratios</a></li>
+            <li><a href="/thesalonsuite/tools/toner-ratio-calculator/">Toner & Glossing</a></li>
+            <li><a href="/thesalonsuite/tools/grey-coverage-formula-calculator/">Grey Coverage</a></li>
+            <li><a href="/thesalonsuite/tools/hair-level-undertone-chart/">Undertone Chart</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Salon Business & Pricing</h5>
+          <ul>
+            <li><a href="/thesalonsuite/tools/chair-rental-profitability-calculator/">Booth Rent vs Commission</a></li>
+            <li><a href="/thesalonsuite/tools/hairdresser-hourly-rate-calculator/">True Hourly Rate</a></li>
+            <li><a href="/thesalonsuite/tools/salon-suite-startup-budget-calculator/">Suite Startup Costs</a></li>
+            <li><a href="/thesalonsuite/tools/retail-product-markup-calculator/">Retail Product Markup</a></li>
+            <li><a href="/thesalonsuite/tools/self-employed-beauty-tax-calculator/">Self-Employed Taxes</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>About & Standards</h5>
+          <ul>
+            <li><a href="/thesalonsuite/legal/disclaimer.html">Technical Review Policy</a></li>
+            <li><a href="/thesalonsuite/legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="/thesalonsuite/legal/terms.html">Terms of Service</a></li>
+            <li><a href="/thesalonsuite/legal/cookies.html">Cookie Policy</a></li>
+            <li><a href="/thesalonsuite/sitemap.xml">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TheSalonSuite.com &bull; Global Professional Utility Platform</span>
+        <span>100% Free Tools For Working Stylists</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="/thesalonsuite/js/salonmath.js"></script>
+  <script src="/thesalonsuite/js/preferences.js"></script>
+  <script src="/thesalonsuite/js/analytics.js"></script>
+  <script src="/thesalonsuite/js/tools/bleach-developer-ratio-calculator.js"></script>
+</body>
+</html>

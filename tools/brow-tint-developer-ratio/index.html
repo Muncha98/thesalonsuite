@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Brow Tint & Developer Ratio Calculator | The Salon Suite</title>
+  <meta name="description" content="Calculate exact drop-to-cream ratios for 3% (10 Vol) oxidant and brow tint shades.">
+  <link rel="canonical" href="https://thesalonsuite.com/tools/brow-tint-developer-ratio/">
+
+  <!-- PWA & Mobile Optimization -->
+  <link rel="manifest" href="/thesalonsuite/manifest.json">
+  <meta name="theme-color" content="#1A1715">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SalonSuite">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Brow Tint & Developer Ratio Calculator | The Salon Suite">
+  <meta property="og:description" content="Calculate exact drop-to-cream ratios for 3% (10 Vol) oxidant and brow tint shades.">
+  <meta property="og:url" content="https://thesalonsuite.com/tools/brow-tint-developer-ratio/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The Salon Suite">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Brow Tint & Developer Ratio Calculator | The Salon Suite">
+  <meta name="twitter:description" content="Calculate exact drop-to-cream ratios for 3% (10 Vol) oxidant and brow tint shades.">
+
+  <!-- Typography & Core CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/thesalonsuite/css/main.css">
+
+  
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Brow Tint & Developer Ratio Calculator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "description": "Calculate exact drop-to-cream ratios for 3% (10 Vol) oxidant and brow tint shades.",
+  "url": "https://thesalonsuite.com/tools/brow-tint-developer-ratio/",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Brow Formula: 2cm tint cream = 10 drops of 3% (10 Vol) developer liquid (or 1:1 for cream oxidant).",
+    "Metric and Imperial unit support",
+    "Instant real-time result, no page reload"
+  ]
+}
+  </script>
+  
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "acceptedAnswer": {
+        "@type": "Answer"
+      }
+    },
+    {
+      "@type": "Question",
+      "acceptedAnswer": {
+        "@type": "Answer"
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://thesalonsuite.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "👁️ Lashes, Brows & Nails",
+      "item": "https://thesalonsuite.com/#lashes-brows"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Brow Tint & Developer Ratio Calculator",
+      "item": "https://thesalonsuite.com/tools/brow-tint-developer-ratio/"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "The Salon Suite",
+  "url": "https://thesalonsuite.com/",
+  "logo": "https://thesalonsuite.com/assets/logo.png",
+  "description": "Global professional utility platform and verified station calculators for working beauty professionals."
+}
+  </script>
+</head>
+<body class="tool-page-body">
+
+  
+  <!-- Navigation Header -->
+  <header class="site-header" role="banner">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="container nav-inner">
+        <a href="/thesalonsuite/" class="nav-logo" aria-label="The Salon Suite Home">
+          <div class="nav-logo-icon">✨</div>
+          TheSalon<span>Suite</span>
+        </a>
+
+        <!-- Reusable Preference Controls (Independent Region, Unit, Currency) -->
+        <div class="nav-controls">
+          <div class="preference-bar" id="preference-bar" aria-label="Station Regional and Measurement Preferences">
+            
+            <!-- Region Selector -->
+            <div class="pref-group" title="Select Operating Region">
+              <span class="pref-label">Region:</span>
+              <button type="button" class="pref-btn active" data-pref="region" data-val="US" aria-label="United States Edition, prices in US dollars">🇺🇸 US ($)</button>
+              <button type="button" class="pref-btn " data-pref="region" data-val="UK" aria-label="United Kingdom Edition, prices in pounds sterling">🇬🇧 UK (£)</button>
+            </div>
+
+            <!-- Unit Selector -->
+            <div class="pref-group" title="Select Measurement Units">
+              <span class="pref-label">Units:</span>
+              <button type="button" class="pref-btn active" data-pref="unit" data-val="metric" aria-label="Metric Units (g, ml)">Metric</button>
+              <button type="button" class="pref-btn " data-pref="unit" data-val="imperial" aria-label="Imperial Units (oz, fl oz)">Imperial</button>
+            </div>
+
+          </div>
+
+          <a href="/thesalonsuite/" class="nav-back-link" title="Return to directory">&larr; All Calculators</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  
+  <!-- Semantic Breadcrumbs -->
+  <nav class="breadcrumb-nav" aria-label="Breadcrumbs">
+    <div class="container">
+      <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/thesalonsuite/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
+        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/thesalonsuite/#lashes-brows" itemprop="item"><span itemprop="name">👁️ Lashes, Brows & Nails</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
+        <li class="breadcrumb-item current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+          <span itemprop="name">Brow Tint & Developer Ratio Calculator</span>
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="tool-hero" aria-labelledby="tool-hero-title">
+    <div class="container">
+      <div class="tool-hero-badge">
+        <span class="badge-cat">👁️ Lashes, Brows & Nails</span>
+        <span class="badge-divider">&bull;</span>
+        <span class="badge-status">Free Professional Tool</span>
+      </div>
+      <h1 id="tool-hero-title" class="tool-hero-title">Brow Tint & Developer Ratio Calculator</h1>
+      <p class="tool-hero-lead">Achieving consistent brow stains requires an exact 1:1 or 2:1 tint-to-developer ratio. This tool provides precise drop counts to eliminate runny mixes and uneven skin stains.</p>
+      <div class="tool-formula-pill">
+        <span class="formula-icon">📐</span>
+        <span class="formula-text">Brow Formula: 2cm tint cream = 10 drops of 3% (10 Vol) developer liquid (or 1:1 for cream oxidant).</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Calculator & Content Grid -->
+  <main class="container tool-main-content">
+    <div class="tool-layout-grid">
+      
+      <!-- Primary Interactive Station Column -->
+      <div class="tool-primary-col">
+        
+  <!-- Calculator Interactive Form Card -->
+  <div class="calculator-card" id="calc-card">
+    <div class="calc-card-header">
+      <div class="calc-title-wrap">
+        <span class="calc-icon">✒️</span>
+        <div>
+          <h2 class="calc-title">Station Calculator &amp; Formulator</h2>
+          <p class="calc-subtitle">Enter your tint cream strip length for the exact developer drop count.</p>
+        </div>
+      </div>
+      <div class="calc-station-badge">📱 Station Ready</div>
+    </div>
+
+    <!-- Active Input Fields -->
+    <form id="tool-calc-form" class="calc-form" onsubmit="return false;" novalidate>
+      <div class="form-grid">
+        <div class="form-group" id="grp-tint_cm">
+          <label for="inp-tint_cm" class="form-label">
+            Tint Cream Strip Length
+            <span class="unit-tag" id="unit-tag-tint_cm">cm</span>
+          </label>
+            <div class="input-wrap">
+              <input
+                type="number"
+                class="form-control"
+                id="inp-tint_cm"
+                name="tint_cm"
+                value="2"
+                
+                
+                step="any"
+                inputmode="decimal"
+                aria-describedby="err-tint_cm"
+                required
+              >
+            </div>
+          <span class="field-error" id="err-tint_cm" role="alert" aria-live="polite"></span>
+        </div>
+      </div>
+    </form>
+        
+    <!-- Output Results Display Box -->
+    <div class="results-box" id="calc-results-box" aria-live="polite" aria-atomic="true">
+      <div class="results-box-header">
+        <div class="results-heading">
+          <span class="results-badge">Formula Output</span>
+          <span class="results-verified-tick">✓ Mathematically Verified</span>
+        </div>
+        <div class="results-actions">
+          <button type="button" id="btn-copy-formula" class="btn-action btn-copy" aria-label="Copy recipe to clipboard">
+            📋 Copy Recipe
+          </button>
+          <button type="button" id="btn-print-formula" class="btn-action btn-print" aria-label="Print station recipe sheet">
+            🖨️ Print Sheet
+          </button>
+        </div>
+      </div>
+
+      <div class="results-main-display" id="res-main">Ready</div>
+      <div class="results-sub-details" id="res-details">Enter values above to calculate.</div>
+
+      <!-- Station Feedback Toast -->
+      <div id="copy-toast" class="copy-toast" style="display:none;" role="status">✓ Recipe copied to clipboard!</div>
+      <div id="calc-error-banner" class="calc-error-banner" style="display:none;" role="alert"></div>
+    </div>
+  </div>
+        
+  <!-- Professional Safety & Regulatory Notice -->
+  <aside class="safety-notice-card" aria-labelledby="safety-notice-title">
+    <div class="safety-header">
+      <div class="safety-header-left">
+        <span class="safety-badge risk-elevated" aria-label="Risk rating: Elevated">
+          🛡️ Risk Rating: Elevated
+        </span>
+        <span class="safety-scope">Scope: Licensed Brow & Lash Technicians</span>
+      </div>
+      
+    </div>
+
+    <div class="safety-body">
+      <h3 id="safety-notice-title" class="safety-title">Professional Safety Notice</h3>
+      
+      <ul class="safety-warning-list">
+        <li><strong>Caution:</strong> Always perform a 48-hour client skin allergy patch test before any brow or lash tinting service — this area is close to the eye and more sensitive than scalp skin.</li>
+        <li><strong>Caution:</strong> Never allow tint or developer to come into direct contact with the eye — use protective under-eye patches or petroleum jelly barrier as a precaution.</li>
+      </ul>
+      
+    </div>
+  </aside>
+        
+  <!-- Educational Guide & Formulation Protocol -->
+  <article class="educational-guide" aria-labelledby="guide-heading">
+    <h2 id="guide-heading" class="guide-title">Why Brow Tint Needs Precise Developer Proportions</h2>
+
+    <p class="guide-lead">Brow tint cream needs a specific amount of liquid or cream oxidant to activate properly — too little developer under-processes the tint, giving a weak, uneven result, while too much can irritate sensitive brow-area skin.</p>
+    <p class="guide-lead">Measuring tint cream by strip length (as dispensed from the tube) and converting to a precise developer drop count removes the guesswork of "a little bit" of oxidant.</p>
+
+    
+    <!-- Worked Formula Walkthrough Box -->
+    <div class="formula-walkthrough-box">
+      <h3 class="walkthrough-title">🖊️ How to use this calculator</h3>
+      
+      <ol class="walkthrough-steps">
+        <li>Dispense your tint cream and measure the strip length.</li>
+        <li>Enter the length to get the exact liquid developer drop count (or equivalent cream oxidant amount).</li>
+        <li>Mix thoroughly and process 5–10 minutes, patch-testing first.</li>
+      </ol>
+      
+      <div class="walkthrough-example">
+        Example: a 2cm strip of tint cream needs approximately 10 drops of 10 Volume (3%) liquid developer.
+      </div>
+    </div>
+
+    
+
+    
+    <!-- Critical Rules -->
+    <h3 class="section-subheading">Rules to Remember</h3>
+    <ul class="station-rules-list">
+      
+      <li>
+        <strong>1. Always patch-test before full application:</strong>
+        Brow and lash tints are applied close to the eye on sensitive skin — a 48-hour patch test is non-negotiable for new clients.
+      </li>
+      <li>
+        <strong>2. Process time matters as much as the ratio:</strong>
+        Even a correctly mixed tint can under- or over-deposit if left on too short or too long — stick to the 5–10 minute window and check progress visually.
+      </li>
+    </ul>
+
+    <!-- FAQ Section -->
+    
+    <section class="faq-section" aria-labelledby="faq-section-title">
+      <h3 id="faq-section-title" class="section-subheading">Frequently Asked Questions</h3>
+      <div class="faq-list">
+        
+          <div class="faq-item">
+            <h4 class="faq-question">undefined</h4>
+            <p class="faq-answer">undefined</p>
+          </div>
+        
+          <div class="faq-item">
+            <h4 class="faq-question">undefined</h4>
+            <p class="faq-answer">undefined</p>
+          </div>
+        
+      </div>
+    </section>
+  </article>
+      </div>
+
+      <!-- Contextual Sidebar Column -->
+      <aside class="tool-sidebar-col" aria-label="Station Resources & Gear">
+        
+        
+      </aside>
+
+    </div>
+
+    <!-- Related Tools Section (Bottom of Page) -->
+    
+  <!-- Related Station Tools Cluster -->
+  <section class="related-tools-section" aria-labelledby="related-tools-heading">
+    <div class="section-title-wrap">
+      <span class="section-kicker">Cross-Service Formulas</span>
+      <h3 id="related-tools-heading" class="section-title">Related Color &amp; Station Calculators</h3>
+    </div>
+    <div class="related-tools-grid">
+      
+        <a href="/thesalonsuite/tools/developer-mixing-calculator/" class="related-tool-card" data-tool-id="developer-mixing-calculator">
+          <div class="card-icon-badge">
+            <span class="tool-icon">🧪</span>
+            <span class="tool-badge">Popular</span>
+          </div>
+          <h4 class="tool-name">Developer Volume Mixing Calculator</h4>
+          <p class="tool-desc">Calculate exact proportions of two developers (10, 20, 30, 40 Vol) to hit any custom target volume in ml or fluid ounces.</p>
+          <span class="card-link-cta">Open Calculator &rarr;</span>
+        </a>
+      
+        <a href="/thesalonsuite/tools/brow-lamination-processing-timer/" class="related-tool-card" data-tool-id="brow-lamination-processing-timer">
+          <div class="card-icon-badge">
+            <span class="tool-icon">⏳</span>
+            <span class="tool-badge">Safety</span>
+          </div>
+          <h4 class="tool-name">Brow Lamination Processing Timer</h4>
+          <p class="tool-desc">Determine Step 1 (Relaxing) and Step 2 (Neutralizing) timings based on hair thickness to prevent over-processing.</p>
+          <span class="card-link-cta">Open Calculator &rarr;</span>
+        </a>
+      
+    </div>
+  </section>
+  </main>
+
+  
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      
+      <!-- Professional Review & Disclaimer Banner -->
+      <div class="footer-safety-notice">
+        <div class="footer-safety-icon">⚠️</div>
+        <div class="footer-safety-text">
+          <strong>Professional Technical Notice:</strong> Calculations and mixing ratios on TheSalonSuite.com are designed as mathematical guidance for licensed cosmetology and beauty professionals. Manufacturer chemical formulations, buffering agents, and processing requirements vary across brands. Always perform mandatory 48-hour client allergy patch tests and follow manufacturer directions.
+          <span class="footer-review-tag">Technically Reviewed by Tracey Thompson, Professional Education & Technical Reviewer.</span>
+          <a href="/thesalonsuite/legal/disclaimer.html" class="footer-legal-link">Read Full Disclaimer &rarr;</a>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>TheSalon<span>Suite</span>.com</h4>
+          <p class="footer-tagline">Professional tools for the people behind the chair.</p>
+          <p class="footer-sub">Calculate. Learn. Create. Grow.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Hair Color & Chemistry</h5>
+          <ul>
+            <li><a href="/thesalonsuite/tools/developer-mixing-calculator/">Developer Mixing</a></li>
+            <li><a href="/thesalonsuite/tools/bleach-developer-ratio-calculator/">Bleach Ratios</a></li>
+            <li><a href="/thesalonsuite/tools/toner-ratio-calculator/">Toner & Glossing</a></li>
+            <li><a href="/thesalonsuite/tools/grey-coverage-formula-calculator/">Grey Coverage</a></li>
+            <li><a href="/thesalonsuite/tools/hair-level-undertone-chart/">Undertone Chart</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Salon Business & Pricing</h5>
+          <ul>
+            <li><a href="/thesalonsuite/tools/chair-rental-profitability-calculator/">Booth Rent vs Commission</a></li>
+            <li><a href="/thesalonsuite/tools/hairdresser-hourly-rate-calculator/">True Hourly Rate</a></li>
+            <li><a href="/thesalonsuite/tools/salon-suite-startup-budget-calculator/">Suite Startup Costs</a></li>
+            <li><a href="/thesalonsuite/tools/retail-product-markup-calculator/">Retail Product Markup</a></li>
+            <li><a href="/thesalonsuite/tools/self-employed-beauty-tax-calculator/">Self-Employed Taxes</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>About & Standards</h5>
+          <ul>
+            <li><a href="/thesalonsuite/legal/disclaimer.html">Technical Review Policy</a></li>
+            <li><a href="/thesalonsuite/legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="/thesalonsuite/legal/terms.html">Terms of Service</a></li>
+            <li><a href="/thesalonsuite/legal/cookies.html">Cookie Policy</a></li>
+            <li><a href="/thesalonsuite/sitemap.xml">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TheSalonSuite.com &bull; Global Professional Utility Platform</span>
+        <span>100% Free Tools For Working Stylists</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="/thesalonsuite/js/salonmath.js"></script>
+  <script src="/thesalonsuite/js/preferences.js"></script>
+  <script src="/thesalonsuite/js/analytics.js"></script>
+  <script src="/thesalonsuite/js/tools/brow-tint-developer-ratio.js"></script>
+</body>
+</html>

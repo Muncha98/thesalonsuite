@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Developer Volume Mixing Calculator | Free Stylist Tool | The Salon Suite</title>
+  <meta name="description" content="Calculate exact proportions of two developers (10, 20, 30, 40 Vol) to hit any custom target volume in ml or fluid ounces. Free instant station calculator.">
+  <link rel="canonical" href="https://thesalonsuite.com/tools/developer-mixing-calculator/">
+
+  <!-- PWA & Mobile Optimization -->
+  <link rel="manifest" href="/thesalonsuite/manifest.json">
+  <meta name="theme-color" content="#1A1715">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SalonSuite">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Developer Volume Mixing Calculator | Free Stylist Tool | The Salon Suite">
+  <meta property="og:description" content="Calculate exact proportions of two developers (10, 20, 30, 40 Vol) to hit any custom target volume in ml or fluid ounces. Free instant station calculator.">
+  <meta property="og:url" content="https://thesalonsuite.com/tools/developer-mixing-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The Salon Suite">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Developer Volume Mixing Calculator | Free Stylist Tool | The Salon Suite">
+  <meta name="twitter:description" content="Calculate exact proportions of two developers (10, 20, 30, 40 Vol) to hit any custom target volume in ml or fluid ounces. Free instant station calculator.">
+
+  <!-- Typography & Core CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/thesalonsuite/css/main.css">
+
+  
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Developer Volume Mixing Calculator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "description": "Calculate exact proportions of two developers (10, 20, 30, 40 Vol) to hit any custom target volume in ml or fluid ounces.",
+  "url": "https://thesalonsuite.com/tools/developer-mixing-calculator/",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Formula: Parts Low = High Vol - Target Vol | Parts High = Target Vol - Low Vol. Mix in digital grams or fluid ounces.",
+    "Metric and Imperial unit support",
+    "Real-time station calculation",
+    "1-click printable station formula sheet"
+  ]
+}
+  </script>
+  
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you mix 10 and 30 volume developer to make 20 volume?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To formulate 20 Volume (6%) developer, mix equal parts (1:1 ratio) of 10 Volume (3%) and 30 Volume (9%) developer. For example, 30ml of 10 Vol + 30ml of 30 Vol equals 60ml of 20 Vol developer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I mix different developer brands together?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Different manufacturers formulate developers with proprietary buffers, conditioning agents, and viscosity stabilizers. Blending different brands can cause emulsion breakdown or unpredictable lift."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you dilute 40 volume developer with water to make 20 volume?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Never use water to dilute developer. Water dilutes the preservative system, alters the pH balance, and thins the product consistency, causing bleeding into foils or scalp irritation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the Alligation calculation formula work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The formula uses Pearson's Square (Alligation Alternate): Parts Low = High Vol - Target Vol; Parts High = Target Vol - Low Vol. Total parts equal Parts Low + Parts High."
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://thesalonsuite.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "🎨 Hair Color & Chemistry",
+      "item": "https://thesalonsuite.com/#hair-color"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Developer Volume Mixing Calculator",
+      "item": "https://thesalonsuite.com/tools/developer-mixing-calculator/"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "The Salon Suite",
+  "url": "https://thesalonsuite.com/",
+  "logo": "https://thesalonsuite.com/assets/logo.png",
+  "description": "Global professional utility platform and verified station calculators for working beauty professionals."
+}
+  </script>
+</head>
+<body class="tool-page-body">
+
+  
+  <!-- Navigation Header -->
+  <header class="site-header" role="banner">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="container nav-inner">
+        <a href="/thesalonsuite/" class="nav-logo" aria-label="The Salon Suite Home">
+          <div class="nav-logo-icon">✨</div>
+          TheSalon<span>Suite</span>
+        </a>
+
+        <!-- Reusable Preference Controls (Independent Region, Unit, Currency) -->
+        <div class="nav-controls">
+          <div class="preference-bar" id="preference-bar" aria-label="Station Regional and Measurement Preferences">
+            
+            <!-- Region Selector -->
+            <div class="pref-group" title="Select Operating Region">
+              <span class="pref-label">Region:</span>
+              <button type="button" class="pref-btn active" data-pref="region" data-val="US" aria-label="United States Edition, prices in US dollars">🇺🇸 US ($)</button>
+              <button type="button" class="pref-btn " data-pref="region" data-val="UK" aria-label="United Kingdom Edition, prices in pounds sterling">🇬🇧 UK (£)</button>
+            </div>
+
+            <!-- Unit Selector -->
+            <div class="pref-group" title="Select Measurement Units">
+              <span class="pref-label">Units:</span>
+              <button type="button" class="pref-btn active" data-pref="unit" data-val="metric" aria-label="Metric Units (g, ml)">Metric</button>
+              <button type="button" class="pref-btn " data-pref="unit" data-val="imperial" aria-label="Imperial Units (oz, fl oz)">Imperial</button>
+            </div>
+
+          </div>
+
+          <a href="/thesalonsuite/" class="nav-back-link" title="Return to directory">&larr; All Calculators</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  
+  <!-- Semantic Breadcrumbs -->
+  <nav class="breadcrumb-nav" aria-label="Breadcrumbs">
+    <div class="container">
+      <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/thesalonsuite/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
+        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/thesalonsuite/#hair-color" itemprop="item"><span itemprop="name">🎨 Hair Color & Chemistry</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li class="breadcrumb-separator" aria-hidden="true">&rsaquo;</li>
+        <li class="breadcrumb-item current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+          <span itemprop="name">Developer Volume Mixing Calculator</span>
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="tool-hero" aria-labelledby="tool-hero-title">
+    <div class="container">
+      <div class="tool-hero-badge">
+        <span class="badge-cat">🎨 Hair Color & Chemistry</span>
+        <span class="badge-divider">&bull;</span>
+        <span class="badge-status">Free Professional Tool</span>
+      </div>
+      <h1 id="tool-hero-title" class="tool-hero-title">Developer Volume Mixing Calculator</h1>
+      <p class="tool-hero-lead">When you run low on 20 Volume developer behind the chair, you do not need to cancel your client. Using Pearson's alligation formula, this calculator tells you the exact ratio of 10 Vol and 30 Vol (or 10 Vol and 40 Vol) to blend for an exact target strength with zero chemical guesswork.</p>
+      <div class="tool-formula-pill">
+        <span class="formula-icon">📐</span>
+        <span class="formula-text">Formula: Parts Low = High Vol - Target Vol | Parts High = Target Vol - Low Vol. Mix in digital grams or fluid ounces.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Calculator & Content Grid -->
+  <main class="container tool-main-content">
+    <div class="tool-layout-grid">
+      
+      <!-- Primary Interactive Station Column -->
+      <div class="tool-primary-col">
+        
+  <!-- Calculator Interactive Form Card -->
+  <div class="calculator-card" id="calc-card">
+    <div class="calc-card-header">
+      <div class="calc-title-wrap">
+        <span class="calc-icon">🧪</span>
+        <div>
+          <h2 class="calc-title">Station Calculator &amp; Formulator</h2>
+          <p class="calc-subtitle">Adjust developer volumes and batch size for instant real-time proportions.</p>
+        </div>
+      </div>
+      <div class="calc-station-badge">📱 Station Ready</div>
+    </div>
+
+    <!-- Active Input Fields -->
+    <form id="tool-calc-form" class="calc-form" onsubmit="return false;" novalidate>
+      <div class="form-grid">
+        <div class="form-group" id="grp-dev1">
+          <label for="inp-dev1" class="form-label">
+            Low Developer Volume (Vol)
+            
+          </label>
+          <div class="input-wrap">
+            <input 
+              type="number" 
+              class="form-control" 
+              id="inp-dev1" 
+              name="dev1"
+              value="10"
+              min="0"
+              max="50"
+              step="1"
+              inputmode="decimal"
+              aria-describedby="err-dev1"
+              required
+            >
+          </div>
+          <span class="field-error" id="err-dev1" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-group" id="grp-dev2">
+          <label for="inp-dev2" class="form-label">
+            High Developer Volume (Vol)
+            
+          </label>
+          <div class="input-wrap">
+            <input 
+              type="number" 
+              class="form-control" 
+              id="inp-dev2" 
+              name="dev2"
+              value="30"
+              min="5"
+              max="60"
+              step="1"
+              inputmode="decimal"
+              aria-describedby="err-dev2"
+              required
+            >
+          </div>
+          <span class="field-error" id="err-dev2" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-group" id="grp-target_vol">
+          <label for="inp-target_vol" class="form-label">
+            Target Desired Volume (Vol)
+            
+          </label>
+          <div class="input-wrap">
+            <input 
+              type="number" 
+              class="form-control" 
+              id="inp-target_vol" 
+              name="target_vol"
+              value="20"
+              min="5"
+              max="50"
+              step="0.5"
+              inputmode="decimal"
+              aria-describedby="err-target_vol"
+              required
+            >
+          </div>
+          <span class="field-error" id="err-target_vol" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-group" id="grp-total_ml">
+          <label for="inp-total_ml" class="form-label">
+            Total Batch Needed
+            <span class="unit-tag" id="unit-tag-total_ml">ml</span>
+          </label>
+          <div class="input-wrap">
+            <input 
+              type="number" 
+              class="form-control" 
+              id="inp-total_ml" 
+              name="total_ml"
+              value="60"
+              min="0.1"
+              max="1000"
+              step="0.1"
+              inputmode="decimal"
+              aria-describedby="err-total_ml"
+              required
+            >
+          </div>
+          <span class="field-error" id="err-total_ml" role="alert" aria-live="polite"></span>
+        </div>
+      </div>
+    </form>
+        
+    <!-- Output Results Display Box -->
+    <div class="results-box" id="calc-results-box" aria-live="polite" aria-atomic="true">
+      <div class="results-box-header">
+        <div class="results-heading">
+          <span class="results-badge">Formula Output</span>
+          <span class="results-verified-tick">✓ Mathematically Verified</span>
+        </div>
+        <div class="results-actions">
+          <button type="button" id="btn-copy-formula" class="btn-action btn-copy" aria-label="Copy recipe to clipboard">
+            📋 Copy Recipe
+          </button>
+          <button type="button" id="btn-print-formula" class="btn-action btn-print" aria-label="Print station recipe sheet">
+            🖨️ Print Sheet
+          </button>
+        </div>
+      </div>
+
+      <div class="results-main-display" id="res-main">Ready</div>
+      <div class="results-sub-details" id="res-details">Enter values above to calculate.</div>
+
+      <!-- Station Feedback Toast -->
+      <div id="copy-toast" class="copy-toast" style="display:none;" role="status">✓ Recipe copied to clipboard!</div>
+      <div id="calc-error-banner" class="calc-error-banner" style="display:none;" role="alert"></div>
+    </div>
+  </div>
+        
+  <!-- Professional Safety & Regulatory Notice -->
+  <aside class="safety-notice-card" aria-labelledby="safety-notice-title">
+    <div class="safety-header">
+      <div class="safety-header-left">
+        <span class="safety-badge risk-medium" aria-label="Risk rating: Medium">
+          🛡️ Risk Rating: Medium
+        </span>
+        <span class="safety-scope">Scope: Licensed Cosmetologists, Hair Colorists & Salon Professionals</span>
+      </div>
+      
+      <div class="safety-review-meta">
+        <span class="reviewer-name">Reviewed by: <strong>Tracey Thompson, Professional Education & Technical Reviewer</strong></span>
+        <span class="review-date">Updated: <time datetime="2026-09-25">2026-09-25</time></span>
+      </div>
+    </div>
+
+    <div class="safety-body">
+      <h3 id="safety-notice-title" class="safety-title">Chemical Safety &amp; Manufacturer Dependency Notice</h3>
+      
+      <ul class="safety-warning-list">
+        <li><strong>Caution:</strong> Only blend developer formulations produced by the same manufacturer and product line.</li>
+        <li><strong>Caution:</strong> Never dilute developer with tap water — doing so destabilizes hydrogen peroxide molecules, dilutes buffering agents, and causes uneven lift.</li>
+        <li><strong>Caution:</strong> Mathematical ratios calculate volumetric peroxide concentration. Always follow manufacturer processing times and perform required client patch tests.</li>
+      </ul>
+      
+      <div class="safety-manufacturer-callout">
+        <strong>⚠️ Manufacturer Specification Rule:</strong> Stabilizers, lipid carriers, and viscosity thickeners differ between brands. Blending different brands may cause chemical destabilization or uneven tonal results. Mathematical calculations provide proportions, but manufacturer guidelines must always take precedence.
+      </div>
+    </div>
+  </aside>
+        
+  <!-- Educational Guide & Formulation Protocol -->
+  <article class="educational-guide" aria-labelledby="guide-heading">
+    <h2 id="guide-heading" class="guide-title">The Chemistry of Developer Volume Blending (The Alligation Method)</h2>
+
+    <p class="guide-lead">Behind the chair, hydrogen peroxide (H<sub>2</sub>O<sub>2</sub>) developers are the chemical oxidative drivers of permanent hair color, high-lift blonding, and toner deposit. The "Volume" rating denotes the volume of pure oxygen gas liberated from one volume of liquid developer during complete oxidation (for example, 20 Volume developer releases 20 times its volume in oxygen, representing approximately 6% hydrogen peroxide concentration by weight).</p>
+    <p class="guide-lead">When a colorist runs out of 20 Volume mid-service, canceling appointments or estimating measurements compromises both lift and tonal deposit. Using the pharmaceutical <strong>Alligation Alternate method</strong> (the rule of mixtures), any two known developer concentrations from the same product line can be mathematically proportioned to create an exact intermediate strength without chemical guesswork.</p>
+
+    
+    <!-- Worked Formula Walkthrough Box -->
+    <div class="formula-walkthrough-box">
+      <h3 class="walkthrough-title">📐 The Exact Alligation Formula Walkthrough</h3>
+      
+      <ol class="walkthrough-steps">
+        <li><strong>Step 1:</strong> Parts of Low Volume Needed = High Volume &minus; Target Volume</li>
+        <li><strong>Step 2:</strong> Parts of High Volume Needed = Target Volume &minus; Low Volume</li>
+        <li><strong>Step 3:</strong> Total Parts = Parts Low + Parts High</li>
+      </ol>
+      
+      <div class="walkthrough-example">
+        <strong>Worked Example:</strong> Formulate 60ml of 20 Vol using 10 Vol and 30 Vol:<br>&bull; Parts of 10 Vol = 30 &minus; 20 = 10 parts<br>&bull; Parts of 30 Vol = 20 &minus; 10 = 10 parts<br>&bull; Total Parts = 20 parts &rarr; Ratio is 10:10 (1:1 equal parts) &rarr; <strong>30ml of 10 Vol + 30ml of 30 Vol = 60ml of 20 Vol</strong>.
+      </div>
+    </div>
+
+    
+    <!-- Quick Reference Table -->
+    <h3 class="section-subheading">Standard Developer Strength Quick-Reference Table</h3>
+    <div class="table-responsive">
+      <table class="reference-table">
+        <thead>
+          <tr>
+            <th scope="col">Volume (US/UK)</th>
+            <th scope="col">Peroxide %</th>
+            <th scope="col">Standard Lift</th>
+            <th scope="col">Primary Behind-the-Chair Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td><strong>10 Volume</strong></td>
+            <td>3.0%</td>
+            <td>0 &ndash; 1 Level</td>
+            <td>Deposit-only, toner glosses, darkening, gentle grey blending.</td>
+          </tr>
+          <tr>
+            <td><strong>20 Volume</strong></td>
+            <td>6.0%</td>
+            <td>1 &ndash; 2 Levels</td>
+            <td>100% grey coverage, standard permanent lift &amp; deposit.</td>
+          </tr>
+          <tr>
+            <td><strong>30 Volume</strong></td>
+            <td>9.0%</td>
+            <td>2 &ndash; 3 Levels</td>
+            <td>High-lift color, open-air balayage, resistant natural dark bases.</td>
+          </tr>
+          <tr>
+            <td><strong>40 Volume</strong></td>
+            <td>12.0%</td>
+            <td>3 &ndash; 4 Levels</td>
+            <td>Super high-lift blondes (off-scalp foil only; never on sensitized hair).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <!-- Critical Rules -->
+    <h3 class="section-subheading">Critical Station Rules for Mixing Developers</h3>
+    <ul class="station-rules-list">
+      
+      <li>
+        <strong>1. Stay Within the Same Brand &amp; Product Line:</strong>
+        Never cross-mix developers from different manufacturers (e.g. Wella with Redken). Manufacturers formulate with distinct lipid carriers, viscosity thickeners, and proprietary buffering agents that can destabilize when combined.
+      </li>
+      <li>
+        <strong>2. Measure by Digital Weight (Grams or Ounces):</strong>
+        Measuring by eyeball or cup lines introduces 10%&ndash;20% volumetric error. Always tare your mixing bowl on a 0.1g digital scale for exact formulation repeatability.
+      </li>
+      <li>
+        <strong>3. Never Dilute Developer with Tap Water:</strong>
+        Adding tap water dilutes the preservative system, alters the pH balance, and causes emulsion thinning, leading to packet bleed and patchy lift. Always blend with a lower volume developer.
+      </li>
+    </ul>
+
+    <!-- FAQ Section -->
+    
+    <section class="faq-section" aria-labelledby="faq-section-title">
+      <h3 id="faq-section-title" class="section-subheading">Frequently Asked Questions</h3>
+      <div class="faq-list">
+        
+          <div class="faq-item">
+            <h4 class="faq-question">How do you mix 10 and 30 volume developer to make 20 volume?</h4>
+            <p class="faq-answer">To formulate 20 Volume (6%) developer, mix equal parts (1:1 ratio) of 10 Volume (3%) and 30 Volume (9%) developer. For example, 30ml of 10 Vol + 30ml of 30 Vol equals 60ml of 20 Vol developer.</p>
+          </div>
+        
+          <div class="faq-item">
+            <h4 class="faq-question">Can I mix different developer brands together?</h4>
+            <p class="faq-answer">No. Different manufacturers formulate developers with proprietary buffers, conditioning agents, and viscosity stabilizers. Blending different brands can cause emulsion breakdown or unpredictable lift.</p>
+          </div>
+        
+          <div class="faq-item">
+            <h4 class="faq-question">Can you dilute 40 volume developer with water to make 20 volume?</h4>
+            <p class="faq-answer">Never use water to dilute developer. Water dilutes the preservative system, alters the pH balance, and thins the product consistency, causing bleeding into foils or scalp irritation.</p>
+          </div>
+        
+          <div class="faq-item">
+            <h4 class="faq-question">How does the Alligation calculation formula work?</h4>
+            <p class="faq-answer">The formula uses Pearson's Square (Alligation Alternate): Parts Low = High Vol - Target Vol; Parts High = Target Vol - Low Vol. Total parts equal Parts Low + Parts High.</p>
+          </div>
+        
+      </div>
+    </section>
+  </article>
+      </div>
+
+      <!-- Contextual Sidebar Column -->
+      <aside class="tool-sidebar-col" aria-label="Station Resources & Gear">
+        
+  <!-- Free Resource Download Box -->
+  <aside class="resource-cta-box" aria-labelledby="resource-cta-title">
+    <div class="resource-cta-content">
+      <span class="resource-badge">Free Printable PDF</span>
+      <h3 id="resource-cta-title" class="resource-title">Developer Volume Blending Station Card</h3>
+      <p class="resource-desc">Laminated station cheatsheet with standard developer ratios (10, 20, 30, 40 Vol) in grams and fluid ounces.</p>
+    </div>
+    <div class="resource-cta-action">
+      <a href="#resource-modal" class="btn-resource-download" id="cta-download-resource" data-resource="developer-mixing-station-card">
+        📥 Download Free Station Card
+      </a>
+      <span class="resource-subtext">Instant Access &bull; 100% Free For Stylists</span>
+    </div>
+  </aside>
+        
+  <!-- Contextual Station Gear Recommendation -->
+  <aside class="contextual-gear-card" aria-label="Recommended Station Gear">
+    <div class="gear-card-inner">
+      <div class="gear-badge-wrap">
+        <span class="gear-badge">Station Essential</span>
+      </div>
+      <h3 class="gear-headline">Professional 0.1g Digital Color Scale</h3>
+      <p class="gear-description">Eliminate formulation drift and bowl waste with station-grade 0.1g digital tare scales.</p>
+      <a href="https://www.amazon.com/s?k=salon+scale+precision+0.1g" target="_blank" rel="noopener sponsored" class="btn-gear-link" id="link-affiliate-sponsor" data-sponsor="Pro Station Scale">
+        Browse Station Scales on Amazon &rarr;
+      </a>
+      <span class="gear-disclosure">Independent editorial recommendation. May contain affiliate links.</span>
+    </div>
+  </aside>
+      </aside>
+
+    </div>
+
+    <!-- Related Tools Section (Bottom of Page) -->
+    
+  <!-- Related Station Tools Cluster -->
+  <section class="related-tools-section" aria-labelledby="related-tools-heading">
+    <div class="section-title-wrap">
+      <span class="section-kicker">Cross-Service Formulas</span>
+      <h3 id="related-tools-heading" class="section-title">Related Color &amp; Station Calculators</h3>
+    </div>
+    <div class="related-tools-grid">
+      
+        <a href="/thesalonsuite/tools/bleach-developer-ratio-calculator/" class="related-tool-card" data-tool-id="bleach-developer-ratio-calculator">
+          <div class="card-icon-badge">
+            <span class="tool-icon">⚖️</span>
+            <span class="tool-badge">Essential</span>
+          </div>
+          <h4 class="tool-name">Bleach & Lightener Ratio Calculator</h4>
+          <p class="tool-desc">Tare your digital scale and calculate exact gram weights for 1:1, 1:1.5, 1:2, and 1:3 powder lightener ratios.</p>
+          <span class="card-link-cta">Open Calculator &rarr;</span>
+        </a>
+      
+        <a href="/thesalonsuite/tools/hair-level-undertone-chart/" class="related-tool-card" data-tool-id="hair-level-undertone-chart">
+          <div class="card-icon-badge">
+            <span class="tool-icon">🎨</span>
+            <span class="tool-badge">Top Tool</span>
+          </div>
+          <h4 class="tool-name">Hair Level & Undertone Neutralizer Guide</h4>
+          <p class="tool-desc">Identify exposed warmth at levels 1 through 10 and look up the exact counteracting toner pigments on the color wheel.</p>
+          <span class="card-link-cta">Open Calculator &rarr;</span>
+        </a>
+      
+        <a href="/thesalonsuite/tools/grey-coverage-formula-calculator/" class="related-tool-card" data-tool-id="grey-coverage-formula-calculator">
+          <div class="card-icon-badge">
+            <span class="tool-icon">👵</span>
+            <span class="tool-badge">Popular</span>
+          </div>
+          <h4 class="tool-name">Grey Hair Coverage Formulation Calculator</h4>
+          <p class="tool-desc">Formulate exact base-to-fashion shade ratios based on client grey percentage (25%, 50%, 75%, 100%).</p>
+          <span class="card-link-cta">Open Calculator &rarr;</span>
+        </a>
+      
+        <a href="/thesalonsuite/tools/toner-ratio-calculator/" class="related-tool-card" data-tool-id="toner-ratio-calculator">
+          <div class="card-icon-badge">
+            <span class="tool-icon">⏱️</span>
+            <span class="tool-badge">Essential</span>
+          </div>
+          <h4 class="tool-name">Hair Toner Ratio & Processing Timer</h4>
+          <p class="tool-desc">Calculate demi-permanent gloss ratios (1:1 vs 1:2) and optimal processing times for damp or dry toning.</p>
+          <span class="card-link-cta">Open Calculator &rarr;</span>
+        </a>
+      
+    </div>
+  </section>
+  </main>
+
+  
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      
+      <!-- Professional Review & Disclaimer Banner -->
+      <div class="footer-safety-notice">
+        <div class="footer-safety-icon">⚠️</div>
+        <div class="footer-safety-text">
+          <strong>Professional Technical Notice:</strong> Calculations and mixing ratios on TheSalonSuite.com are designed as mathematical guidance for licensed cosmetology and beauty professionals. Manufacturer chemical formulations, buffering agents, and processing requirements vary across brands. Always perform mandatory 48-hour client allergy patch tests and follow manufacturer directions.
+          <span class="footer-review-tag">Technically Reviewed by Tracey Thompson, Professional Education & Technical Reviewer.</span>
+          <a href="/thesalonsuite/legal/disclaimer.html" class="footer-legal-link">Read Full Disclaimer &rarr;</a>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>TheSalon<span>Suite</span>.com</h4>
+          <p class="footer-tagline">Professional tools for the people behind the chair.</p>
+          <p class="footer-sub">Calculate. Learn. Create. Grow.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Hair Color & Chemistry</h5>
+          <ul>
+            <li><a href="/thesalonsuite/tools/developer-mixing-calculator/">Developer Mixing</a></li>
+            <li><a href="/thesalonsuite/tools/bleach-developer-ratio-calculator/">Bleach Ratios</a></li>
+            <li><a href="/thesalonsuite/tools/toner-ratio-calculator/">Toner & Glossing</a></li>
+            <li><a href="/thesalonsuite/tools/grey-coverage-formula-calculator/">Grey Coverage</a></li>
+            <li><a href="/thesalonsuite/tools/hair-level-undertone-chart/">Undertone Chart</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Salon Business & Pricing</h5>
+          <ul>
+            <li><a href="/thesalonsuite/tools/chair-rental-profitability-calculator/">Booth Rent vs Commission</a></li>
+            <li><a href="/thesalonsuite/tools/hairdresser-hourly-rate-calculator/">True Hourly Rate</a></li>
+            <li><a href="/thesalonsuite/tools/salon-suite-startup-budget-calculator/">Suite Startup Costs</a></li>
+            <li><a href="/thesalonsuite/tools/retail-product-markup-calculator/">Retail Product Markup</a></li>
+            <li><a href="/thesalonsuite/tools/self-employed-beauty-tax-calculator/">Self-Employed Taxes</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>About & Standards</h5>
+          <ul>
+            <li><a href="/thesalonsuite/legal/disclaimer.html">Technical Review Policy</a></li>
+            <li><a href="/thesalonsuite/legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="/thesalonsuite/legal/terms.html">Terms of Service</a></li>
+            <li><a href="/thesalonsuite/legal/cookies.html">Cookie Policy</a></li>
+            <li><a href="/thesalonsuite/sitemap.xml">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 TheSalonSuite.com &bull; Global Professional Utility Platform</span>
+        <span>100% Free Tools For Working Stylists</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="/thesalonsuite/js/salonmath.js"></script>
+  <script src="/thesalonsuite/js/preferences.js"></script>
+  <script src="/thesalonsuite/js/analytics.js"></script>
+  <script src="/thesalonsuite/js/tools/developer-mixing-calculator.js"></script>
+</body>
+</html>
